@@ -7,6 +7,7 @@
 	import Description from '$lib/components/Description.svelte';
 	import Pricing from '$lib/components/Pricing.svelte';
 	import { PUBLIC_PROJECT_TITLE } from '$env/static/public';
+	import Hero from '$lib/components/Hero.svelte';
 </script>
 
 <svelte:head>
@@ -14,6 +15,7 @@
 </svelte:head>
 
 <Header />
+<Hero />
 <Description />
 <Modules />
 <Pricing />

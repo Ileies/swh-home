@@ -1,2 +1,22 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<script>
+	import Header from '$lib/components/Header.svelte';
+	import Modules from '$lib/components/Modules.svelte';
+	import Privacy from '$lib/components/Privacy.svelte';
+	import CTA from '$lib/components/CTA.svelte';
+	import Footer from '$lib/components/Footer.svelte';
+	import Description from '$lib/components/Description.svelte';
+	import Pricing from '$lib/components/Pricing.svelte';
+	import { PUBLIC_PROJECT_TITLE } from '$env/static/public';
+</script>
+
+<svelte:head>
+	<title>{PUBLIC_PROJECT_TITLE}</title>
+</svelte:head>
+
+<Header />
+<Description />
+<Modules />
+<Pricing />
+<Privacy />
+<CTA />
+<Footer />

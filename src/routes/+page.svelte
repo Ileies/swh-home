@@ -16,6 +16,7 @@
 
 <Header />
 <Hero />
+<div class="h-1 w-full bg-primary"></div>
 <Description />
 <Modules />
 <Pricing />

@@ -24,12 +24,12 @@
 						<div class="opacity-90">KI-Module</div>
 					</div>
 					<div>
-						<div class="font-bold text-2xl">500+</div>
-						<div class="opacity-90">Kunden</div>
+						<div class="font-bold text-2xl">24/7</div>
+						<div class="opacity-90">Verfügbar</div>
 					</div>
 					<div>
-						<div class="font-bold text-2xl">99.9%</div>
-						<div class="opacity-90">Verfügbarkeit</div>
+						<div class="font-bold text-2xl">98%</div>
+						<div class="opacity-90">Zeitersparnis</div>
 					</div>
 				</div>
 			</div>
@@ -37,26 +37,26 @@
 			<!-- Right side: CTA Card -->
 			<div class="md:w-1/3">
 				<div class="bg-base-100 text-base-content rounded-box p-6 shadow-xl">
-					<h3 class="font-bold text-xl mb-4">Kostenlos testen</h3>
+					<h3 class="font-bold text-xl mb-4">Kostenlose Beratung</h3>
 					<ul class="space-y-3 mb-6">
 						<li class="flex items-center gap-2">
 							<ArrowRight class="w-4 h-4 text-primary" />
-							<span>Alle 30+ KI-Module</span>
+							<span>Individuelle Lösungsanalyse</span>
 						</li>
 						<li class="flex items-center gap-2">
 							<ArrowRight class="w-4 h-4 text-primary" />
-							<span>Persönliche Einrichtung</span>
+							<span>Persönlicher Ansprechpartner</span>
 						</li>
 						<li class="flex items-center gap-2">
 							<ArrowRight class="w-4 h-4 text-primary" />
-							<span>Unbegrenzte Nutzung</span>
+							<span>Maßgeschneiderte Strategien</span>
 						</li>
 					</ul>
 					<button class="btn btn-primary w-full">
-						Jetzt starten
+						Jetzt Termin vereinbaren
 					</button>
 					<p class="text-xs text-center mt-4 text-base-content/70">
-						Keine Kreditkarte erforderlich
+						Individuell und unverbindlich
 					</p>
 				</div>
 			</div>

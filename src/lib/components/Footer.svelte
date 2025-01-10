@@ -60,7 +60,6 @@
 				<div class="flex flex-wrap gap-6 text-sm">
 					<a href="/privacy" class="text-base-content/70 hover:text-primary">Datenschutz</a>
 					<a href="/terms" class="text-base-content/70 hover:text-primary">AGB</a>
-					<a href="/security" class="text-base-content/70 hover:text-primary">Sicherheit</a>
 					<a href="/imprint" class="text-base-content/70 hover:text-primary">Impressum</a>
 				</div>
 			</div>

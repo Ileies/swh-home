@@ -50,35 +50,5 @@
 				</div>
 			{/each}
 		</div>
-
-		<!-- Trust Indicators -->
-		<div class="mt-20 pt-16 border-t border-base-content/10">
-			<div class="flex flex-col md:flex-row justify-center items-center gap-12">
-				<div class="flex items-center gap-4">
-					<img
-						src="/api/placeholder/40/40"
-						alt="ISO Zertifizierung"
-						class="opacity-80"
-					/>
-					<span class="font-medium">ISO 27001 zertifiziert</span>
-				</div>
-				<div class="flex items-center gap-4">
-					<img
-						src="/api/placeholder/40/40"
-						alt="DSGVO konform"
-						class="opacity-80"
-					/>
-					<span class="font-medium">DSGVO-konform</span>
-				</div>
-				<div class="flex items-center gap-4">
-					<img
-						src="/api/placeholder/40/40"
-						alt="German Hosting"
-						class="opacity-80"
-					/>
-					<span class="font-medium">Hosting in Deutschland</span>
-				</div>
-			</div>
-		</div>
 	</div>
 </section>

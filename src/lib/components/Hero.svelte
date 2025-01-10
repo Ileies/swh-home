@@ -1,15 +1,4 @@
-<!-- src/routes/+page.svelte -->
-<script lang="ts">
-	import { onMount } from 'svelte';
-
-	// Optional: Animation für das Erscheinen der Elemente
-	let visible = false;
-	onMount(() => {
-		visible = true;
-	});
-</script>
-
-<section class="hero min-h-[90vh] bg-gradient-to-br from-blue-50 to-white relative overflow-hidden">
+<section class="hero min-h-svh bg-gradient-to-br from-blue-50 to-white relative overflow-hidden">
 	<!-- Decorative background elements -->
 	<div class="absolute inset-0">
 		<div class="absolute top-0 left-1/2 w-72 h-72 bg-blue-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
@@ -30,7 +19,7 @@
 			</div>
 
 			<!-- Main heading -->
-			<h1 class="text-5xl md:text-6xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
+			<h1 class="text-5xl md:text-6xl font-bold pb-8 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
 				Revolutioniere deinen Arbeitsalltag mit KI
 			</h1>
 
@@ -52,15 +41,15 @@
 			<!-- Optional: Metrics -->
 			<div class="mt-16 grid grid-cols-2 md:grid-cols-3 gap-8">
 				<div class="text-center">
-					<div class="text-4xl font-bold text-blue-600">500+</div>
+					<div class="text-4xl font-bold text-primary">500+</div>
 					<div class="text-gray-600">Aktive Nutzer</div>
 				</div>
 				<div class="text-center">
-					<div class="text-4xl font-bold text-blue-600">98%</div>
+					<div class="text-4xl font-bold text-primary">98%</div>
 					<div class="text-gray-600">Zeitersparnis</div>
 				</div>
 				<div class="text-center hidden md:block">
-					<div class="text-4xl font-bold text-blue-600">24/7</div>
+					<div class="text-4xl font-bold text-primary">24/7</div>
 					<div class="text-gray-600">Support</div>
 				</div>
 			</div>

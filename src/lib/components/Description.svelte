@@ -1,75 +1,84 @@
 <!-- Description.svelte -->
 <script>
-	import { fade } from 'svelte/transition';
-	import { onMount } from 'svelte';
+	import { Zap, Clock, ChartBar } from 'lucide-svelte';
 
-	let isVisible = false;
-
-	onMount(() => {
-		isVisible = true;
-	});
+	const benefits = [
+		{
+			icon: Zap,
+			title: "Sofort einsetzbar",
+			description: "Alle KI-Module sind sofort und ohne Installation nutzbar. Einfache Integration in bestehende Workflows durch standardisierte APIs."
+		},
+		{
+			icon: Clock,
+			title: "Zeit sparen",
+			description: "Automatisieren Sie repetitive Aufgaben und konzentrieren Sie sich auf strategische Entscheidungen. Unsere KI-Module arbeiten 24/7 für Sie."
+		},
+		{
+			icon: ChartBar,
+			title: "Effizienz steigern",
+			description: "Steigern Sie die Produktivität Ihres Teams messbar. Unsere KI-Module lernen kontinuierlich und werden immer effizienter."
+		}
+	];
 </script>
 
-<section class="bg-gradient-to-b from-white to-gray-50 py-24">
+<section class="py-24 bg-base-200">
 	<div class="container mx-auto px-4">
-		<div class="max-w-4xl mx-auto text-center">
-			{#if isVisible}
-				<div in:fade={{ duration: 1000, delay: 200 }}>
-					<!-- Decorative Element -->
-					<div class="mb-6">
-						<div class="inline-block p-2 bg-primary/10 rounded-full">
-							<svg
-								class="w-8 h-8 text-primary"
-								fill="none"
-								stroke="currentColor"
-								viewBox="0 0 24 24"
-							>
-								<path
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									stroke-width="2"
-									d="M13 10V3L4 14h7v7l9-11h-7z"
-								/>
-							</svg>
-						</div>
-					</div>
+		<!-- Main Description -->
+		<div class="text-center max-w-3xl mx-auto mb-16">
+			<h2 class="text-4xl font-bold mb-6">
+				Intelligente Automatisierung für Ihr Unternehmen
+			</h2>
+			<p class="text-xl text-base-content/80">
+				Smartworkhub vereint leistungsstarke KI-Module in einer intuitiven Plattform.
+				Entwickelt für moderne Unternehmen, die ihre Prozesse optimieren und
+				Wachstum beschleunigen möchten.
+			</p>
+		</div>
 
-					<!-- Headline -->
-					<h1 class="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary leading-relaxed pb-2">
-						Ihr Einstieg in die KI-Revolution
-					</h1>
-
-					<!-- Description Text -->
-					<p class="text-lg md:text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
-						SmartWorkHub wurde entwickelt, um Unternehmen den Zugang zur KI-Technologie
-						so einfach wie möglich zu gestalten. Unsere intuitive Plattform ermöglicht
-						es Ihren Mitarbeitern, ohne technisches Vorwissen oder komplexe Prompt-Eingaben,
-						die Vorteile künstlicher Intelligenz sofort zu nutzen.
+		<!-- Benefits -->
+		<div class="flex flex-col md:flex-row gap-16 max-w-5xl mx-auto">
+			{#each benefits as benefit}
+				<div class="flex-1">
+					<svelte:component
+						this={benefit.icon}
+						class="w-8 h-8 text-primary mb-6"
+					/>
+					<h3 class="text-xl font-bold mb-3">{benefit.title}</h3>
+					<p class="text-base-content/70 leading-relaxed">
+						{benefit.description}
 					</p>
-
-					<!-- Visual Indicators -->
-					<div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-						<div class="p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
-							<div class="text-primary text-2xl font-bold mb-2">Einfach</div>
-							<p class="text-gray-600">Keine technischen Vorkenntnisse erforderlich</p>
-						</div>
-						<div class="p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
-							<div class="text-primary text-2xl font-bold mb-2">Schnell</div>
-							<p class="text-gray-600">Sofortige Integration in Ihren Arbeitsalltag</p>
-						</div>
-						<div class="p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
-							<div class="text-primary text-2xl font-bold mb-2">Effizient</div>
-							<p class="text-gray-600">Maximale Produktivität durch KI-Unterstützung</p>
-						</div>
-					</div>
 				</div>
-			{/if}
+			{/each}
+		</div>
+
+		<!-- Trust Indicators -->
+		<div class="mt-20 pt-16 border-t border-base-content/10">
+			<div class="flex flex-col md:flex-row justify-center items-center gap-12">
+				<div class="flex items-center gap-4">
+					<img
+						src="/api/placeholder/40/40"
+						alt="ISO Zertifizierung"
+						class="opacity-80"
+					/>
+					<span class="font-medium">ISO 27001 zertifiziert</span>
+				</div>
+				<div class="flex items-center gap-4">
+					<img
+						src="/api/placeholder/40/40"
+						alt="DSGVO konform"
+						class="opacity-80"
+					/>
+					<span class="font-medium">DSGVO-konform</span>
+				</div>
+				<div class="flex items-center gap-4">
+					<img
+						src="/api/placeholder/40/40"
+						alt="German Hosting"
+						class="opacity-80"
+					/>
+					<span class="font-medium">Hosting in Deutschland</span>
+				</div>
+			</div>
 		</div>
 	</div>
 </section>
-
-<style>
-    section {
-        overflow: hidden;
-    }
-</style>

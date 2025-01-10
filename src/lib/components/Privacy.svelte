@@ -52,7 +52,7 @@
 			{/each}
 		</div>
 
-		<div class="mt-12 text-center">
+		<!--<div class="mt-12 text-center">
 			<div class="alert bg-primary/10 max-w-2xl mx-auto">
 				<div class="flex items-center gap-4">
 					<Shield class="w-6 h-6 text-primary" />
@@ -62,6 +62,6 @@
           </span>
 				</div>
 			</div>
-		</div>
+		</div>-->
 	</div>
 </section>

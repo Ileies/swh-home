@@ -29,7 +29,7 @@
 				Intelligente Automatisierung für Ihr Unternehmen
 			</h2>
 			<p class="text-xl text-base-content/80">
-				Smartworkhub vereint leistungsstarke KI-Module in einer intuitiven Plattform.
+				SmartWorkHub vereint leistungsstarke KI-Module in einer intuitiven Plattform.
 				Entwickelt für moderne Unternehmen, die ihre Prozesse optimieren und
 				Wachstum beschleunigen möchten.
 			</p>

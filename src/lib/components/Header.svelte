@@ -106,10 +106,3 @@
 		{/if}
 	</div>
 </header>
-
-<style>
-    /* Add padding to body to account for fixed header */
-    :global(body) {
-        padding-top: 4rem;
-    }
-</style>

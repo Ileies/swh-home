@@ -37,7 +37,7 @@
 			<h2 class="text-3xl font-bold mb-4">KI-Power für Ihr Business</h2>
 			<p class="text-base-content/70 text-lg max-w-2xl mx-auto">
 				Unsere KI-Module automatisieren Ihre Prozesse, steigern die Produktivität und
-				erschließen neue Geschäftspotenziale. Getestet und bewährt in über 500 Unternehmen.
+				erschließen neue Geschäftspotenziale.
 			</p>
 		</div>
 

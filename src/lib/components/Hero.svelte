@@ -41,8 +41,8 @@
 			<!-- Optional: Metrics -->
 			<div class="mt-16 grid grid-cols-2 md:grid-cols-3 gap-8">
 				<div class="text-center">
-					<div class="text-4xl font-bold text-primary">500+</div>
-					<div class="text-gray-600">Aktive Nutzer</div>
+					<div class="text-4xl font-bold text-primary">30+</div>
+					<div class="text-gray-600">Module</div>
 				</div>
 				<div class="text-center">
 					<div class="text-4xl font-bold text-primary">98%</div>

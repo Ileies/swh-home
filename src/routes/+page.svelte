@@ -14,7 +14,6 @@
 	<title>{PUBLIC_PROJECT_TITLE}</title>
 </svelte:head>
 
-<Header />
 <Hero />
 <div class="h-1 w-full bg-primary"></div>
 <Description />
@@ -22,4 +21,3 @@
 <Pricing />
 <Privacy />
 <CTA />
-<Footer />

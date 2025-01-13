@@ -5,6 +5,7 @@ const cms = {
 	description: "SmartWorkHub automatisiert deine repetitiven Aufgaben mit modernster KI-Technologie. Spare Zeit und fokussiere dich auf das Wesentliche.",
 	newFeature: "Neu: KI-powered Workflow Automation",
 	cta: "Beratungsgespräch vereinbaren",
+	cta2: "Kostenloses Beratungsgespräch",
 	footerText: "Smartworkhub revolutioniert Ihre Business-Prozesse mit KI-gestützten Lösungen für den modernen Arbeitsalltag.",
 	headerLinks: [
 		{
@@ -102,6 +103,8 @@ const cms = {
 		]
 	},
 	privacy: {
+		title: "Ihre Daten in sicheren Händen",
+		description: "Bei Smartworkhub steht Datensicherheit an erster Stelle. Unsere KI-Lösungen sind von Grund auf sicher und transparent gestaltet.",
 		features: [
 			{
 				icon: Shield,

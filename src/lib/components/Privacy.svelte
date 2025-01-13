@@ -1,21 +1,16 @@
 <script>
 	import cms from '$lib/cms.svelte';
-
-	const privacyFeatures = cms.privacy.features;
 </script>
 
 <section class="py-16 bg-base-200">
 	<div class="container mx-auto px-4">
 		<div class="text-center mb-12">
-			<h2 class="text-3xl font-bold mb-4">Ihre Daten in sicheren Händen</h2>
-			<p class="text-lg text-base-content/80 max-w-2xl mx-auto">
-				Bei Smartworkhub steht Datensicherheit an erster Stelle. Unsere KI-Lösungen
-				sind von Grund auf sicher und transparent gestaltet.
-			</p>
+			<h2 class="text-3xl font-bold mb-4">{cms.privacy.title}</h2>
+			<p class="text-lg text-base-content/80 max-w-2xl mx-auto">{cms.privacy.description}</p>
 		</div>
 
 		<div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
-			{#each privacyFeatures as feature}
+			{#each cms.privacy.features as feature}
 				<div class="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow duration-300">
 					<div class="card-body items-center text-center">
 						<div class="mb-4">

@@ -219,36 +219,28 @@ const cms = {
 		links: [
 			{
 				category: 'Produkt',
-				links: [
-					{ name: 'Features', href: '/features' },
-					{ name: 'Preise', href: '/pricing' },
-					{ name: 'Enterprise', href: '/enterprise' },
-					{ name: 'Updates', href: '/updates' }
-				]
+				links: {
+					'/features': 'Features',
+					'/pricing': 'Preise',
+					'/enterprise': 'Enterprise',
+					'/updates': 'Updates'
+				}
 			},
 			{
 				category: 'Support',
-				links: [
-					{ name: 'Dokumentation', href: '/docs' },
-					{ name: 'Kontakt', href: '/contact' },
-					{ name: 'FAQ', href: '/faq' },
-					{ name: 'Status', href: '/status' }
-				]
-			},
-			{
-				category: 'Rechtliches',
-				links: [
-					{ name: 'Datenschutz', href: '/privacy' },
-					{ name: 'AGB', href: '/terms' },
-					{ name: 'Impressum', href: '/imprint' }
-				]
+				links: {
+					'/docs': 'Dokumentation',
+					'/contact': 'Kontakt',
+					'/faq': 'FAQ',
+					'/status': 'Status'
+				}
 			}
 		],
-		bottomLinks: [
-			{ name: 'Datenschutz', href: '/privacy' },
-			{ name: 'AGB', href: '/terms' },
-			{ name: 'Impressum', href: '/imprint' },
-		]
+		bottomLinks: {
+			'/privacy': 'Datenschutz',
+			'/terms': 'AGB',
+			'/imprint': 'Impressum'
+		}
 	},
 	copyright: "Alle Rechte vorbehalten.",
 	contact: {

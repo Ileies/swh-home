@@ -15,6 +15,7 @@
 <Hero />
 <div class="h-1 w-full bg-accent"></div>
 <Description />
+<div class="h-1 w-full bg-accent"></div>
 <Modules />
 <Pricing />
 <Privacy />

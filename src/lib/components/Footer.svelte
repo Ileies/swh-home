@@ -31,22 +31,23 @@
 				<div>
 					<h4 class="font-bold mb-4">{category.category}</h4>
 					<ul class="space-y-2">
-						{#each category.links as link}
-							<li><a href={link.href} class="text-base-content/70 hover:text-primary">{link.name}</a></li>
+						{#each Object.entries(category.links) as [href, text]}
+							<li><a {href} class="text-base-content/70 hover:text-primary">{text}</a></li>
 						{/each}
 					</ul>
 				</div>
 			{/each}
+		</div>
 
 		<!-- Bottom Bar -->
 		<div class="border-t border-base-content/10 pt-8">
-			<div class="flex flex-col md:flex-row justify-between items-center gap-4">
-				<div class="text-sm text-base-content/70">
+			<div class="flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
+				<div class="text-base-content/70">
 					© 2024 - {new Date().getFullYear()} { PUBLIC_PROJECT_TITLE }. {cms.copyright}
 				</div>
-				<div class="flex flex-wrap gap-6 text-sm">
-					{#each cms.footer.bottomLinks as link}
-						<a href={link.href} class="text-base-content/70 hover:text-primary">{link.name}</a>
+				<div class="flex flex-wrap gap-6">
+					{#each Object.entries(cms.footer.bottomLinks) as [href, text]}
+						<a {href} class="text-base-content/70 hover:text-primary">{text}</a>
 					{/each}
 				</div>
 			</div>

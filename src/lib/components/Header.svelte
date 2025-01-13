@@ -15,8 +15,8 @@
 
 			<!-- Desktop Navigation -->
 			<div class="hidden md:flex items-center space-x-8">
-				{#each cms.headerLinks as link}
-					<a href={link.href} class="text-gray-600 hover:text-primary transition-colors">{link.text}</a>
+				{#each Object.entries(cms.headerLinks) as [href, text]}
+					<a {href} class="text-gray-600 hover:text-primary transition-colors">{text}</a>
 				{/each}
 				<button class="btn btn-primary">{cms.cta}</button>
 			</div>

@@ -1,3 +1,4 @@
+import { PUBLIC_PROJECT_TITLE } from '$env/static/public';
 import {
 	ChartBar,
 	Clock,
@@ -14,31 +15,19 @@ import {
 
 const cms = {
 	title: 'Revolutioniere deinen Arbeitsalltag mit KI',
-	description: 'SmartWorkHub automatisiert deine repetitiven Aufgaben mit modernster KI-Technologie. Spare Zeit und fokussiere dich auf das Wesentliche.',
+	description: `${PUBLIC_PROJECT_TITLE} automatisiert deine repetitiven Aufgaben mit modernster KI-Technologie. Spare Zeit und fokussiere dich auf das Wesentliche.`,
 	newFeature: 'Neu: KI-powered Workflow Automation',
 	cta: 'Beratungsgespräch vereinbaren',
 	cta2: 'Kostenloses Beratungsgespräch',
 	cta3: 'Kontakt aufnehmen',
 	cta4: 'Kostenlose Beratung',
 	faq: 'Häufige Fragen',
-	headerLinks: [
-		{
-			text: 'Features',
-			href: '#features'
-		},
-		{
-			text: 'KI-Module',
-			href: '/modules'
-		},
-		{
-			text: 'Preise',
-			href: '#pricing'
-		},
-		{
-			text: 'Kontakt',
-			href: '#contact'
-		}
-	],
+	headerLinks: {
+		'#features': 'Features',
+		'/modules': 'KI-Module',
+		'#pricing': 'Preise',
+		'#contact': 'Kontakt'
+	},
 	benefits: [
 		{
 			icon: Zap,
@@ -57,7 +46,7 @@ const cms = {
 		}
 	],
 	descriptionTitle: 'Intelligente Automatisierung für Ihr Unternehmen',
-	descriptionText: 'SmartWorkHub vereint leistungsstarke KI-Module in einer intuitiven Plattform. Entwickelt für moderne Unternehmen, die ihre Prozesse optimieren und Wachstum beschleunigen möchten.',
+	descriptionText: `${PUBLIC_PROJECT_TITLE} vereint leistungsstarke KI-Module in einer intuitiven Plattform. Entwickelt für moderne Unternehmen, die ihre Prozesse optimieren und Wachstum beschleunigen möchten.`,
 	stats: [
 		{
 			metric: '30+',
@@ -118,7 +107,7 @@ const cms = {
 	},
 	privacy: {
 		title: 'Ihre Daten in sicheren Händen',
-		description: 'Bei Smartworkhub steht Datensicherheit an erster Stelle. Unsere KI-Lösungen sind von Grund auf sicher und transparent gestaltet.',
+		description: `Bei ${PUBLIC_PROJECT_TITLE} steht Datensicherheit an erster Stelle. Unsere KI-Lösungen sind von Grund auf sicher und transparent gestaltet.`,
 		features: [
 			{
 				icon: Shield,
@@ -215,7 +204,7 @@ const cms = {
 		}
 	],
 	footer: {
-		description: 'Smartworkhub revolutioniert Ihre Business-Prozesse mit KI-gestützten Lösungen für den modernen Arbeitsalltag.',
+		description: `${PUBLIC_PROJECT_TITLE} revolutioniert Ihre Business-Prozesse mit KI-gestützten Lösungen für den modernen Arbeitsalltag.`,
 		links: [
 			{
 				category: 'Produkt',

@@ -25,10 +25,10 @@
 			<!-- CTA Buttons -->
 			<div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
 				<button class="btn btn-primary btn-lg px-8">
-					Kostenloses Beratungsgespräch
+					{cms.cta2}
 				</button>
 				<button class="btn btn-outline btn-lg px-8">
-					Mehr erfahren
+					{cms.moreInfo}
 				</button>
 			</div>
 		</div>

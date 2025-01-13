@@ -2,11 +2,7 @@
 	import { PUBLIC_PROJECT_TITLE } from '$env/static/public';
 	import cms from '$lib/cms.svelte';
 	import MobileNavigation from '$lib/components/MobileNavigation.svelte';
-	let isMenuOpen = false;
-
-	function toggleMenu() {
-		isMenuOpen = !isMenuOpen;
-	}
+	let isMenuOpen = $state(false);
 </script>
 
 <header class="bg-white shadow-lg fixed w-full top-0 z-50">
@@ -14,9 +10,7 @@
 		<nav class="flex items-center justify-between">
 			<!-- Logo -->
 			<div class="flex items-center">
-				<a href="/" class="text-2xl font-bold text-primary">
-					{ PUBLIC_PROJECT_TITLE }
-				</a>
+				<a href="/" class="text-2xl font-bold text-primary">{ PUBLIC_PROJECT_TITLE }</a>
 			</div>
 
 			<!-- Desktop Navigation -->
@@ -30,7 +24,7 @@
 			<!-- Mobile Menu Button -->
 			<button
 				class="md:hidden btn btn-ghost"
-				on:click={toggleMenu}
+				onclick={() => isMenuOpen = !isMenuOpen}
 				aria-label="Menü öffnen"
 			>
 				<svg

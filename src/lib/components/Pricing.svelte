@@ -56,7 +56,7 @@
 	];
 </script>
 
-<section class="py-16 bg-base-100">
+<section id="pricing" class="py-16 bg-base-100">
 	<div class="container mx-auto px-4">
 		<!-- Header -->
 		<div class="text-center mb-12">

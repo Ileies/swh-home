@@ -11,9 +11,7 @@
 			<!-- Company Info -->
 			<div class="md:col-span-2">
 				<h3 class="font-bold text-lg mb-4">{ PUBLIC_PROJECT_TITLE }</h3>
-				<p class="text-base-content/70 mb-4 max-w-md">
-					{cms.footerText}
-				</p>
+				<p class="text-base-content/70 mb-4 max-w-md">{cms.footer.description}</p>
 				<!--<div class="flex gap-4">
 					<a href="https://linkedin.com" class="text-base-content/70 hover:text-primary" aria-label="LinkedIn">
 						<svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
@@ -28,39 +26,28 @@
 				</div>-->
 			</div>
 
-			<!--Produkt -->
-			<div>
-				<h4 class="font-bold mb-4">Produkt</h4>
-				<ul class="space-y-2">
-					<li><a href="/features" class="text-base-content/70 hover:text-primary">Features</a></li>
-					<li><a href="/pricing" class="text-base-content/70 hover:text-primary">Preise</a></li>
-					<li><a href="/enterprise" class="text-base-content/70 hover:text-primary">Enterprise</a></li>
-					<li><a href="/updates" class="text-base-content/70 hover:text-primary">Updates</a></li>
-				</ul>
-			</div>
-
-			<!-- Support -->
-			<div>
-				<h4 class="font-bold mb-4">Support</h4>
-				<ul class="space-y-2">
-					<li><a href="/docs" class="text-base-content/70 hover:text-primary">Dokumentation</a></li>
-					<li><a href="/contact" class="text-base-content/70 hover:text-primary">Kontakt</a></li>
-					<li><a href="/faq" class="text-base-content/70 hover:text-primary">FAQ</a></li>
-					<li><a href="/status" class="text-base-content/70 hover:text-primary">Status</a></li>
-				</ul>
-			</div>
-		</div>
+			<!-- Links -->
+			{#each cms.footer.links as category}
+				<div>
+					<h4 class="font-bold mb-4">{category.category}</h4>
+					<ul class="space-y-2">
+						{#each category.links as link}
+							<li><a href={link.href} class="text-base-content/70 hover:text-primary">{link.name}</a></li>
+						{/each}
+					</ul>
+				</div>
+			{/each}
 
 		<!-- Bottom Bar -->
 		<div class="border-t border-base-content/10 pt-8">
 			<div class="flex flex-col md:flex-row justify-between items-center gap-4">
 				<div class="text-sm text-base-content/70">
-					© 2024 - {new Date().getFullYear()} { PUBLIC_PROJECT_TITLE }. Alle Rechte vorbehalten.
+					© 2024 - {new Date().getFullYear()} { PUBLIC_PROJECT_TITLE }. {cms.copyright}
 				</div>
 				<div class="flex flex-wrap gap-6 text-sm">
-					<a href="/privacy" class="text-base-content/70 hover:text-primary">Datenschutz</a>
-					<a href="/terms" class="text-base-content/70 hover:text-primary">AGB</a>
-					<a href="/imprint" class="text-base-content/70 hover:text-primary">Impressum</a>
+					{#each cms.footer.bottomLinks as link}
+						<a href={link.href} class="text-base-content/70 hover:text-primary">{link.name}</a>
+					{/each}
 				</div>
 			</div>
 		</div>

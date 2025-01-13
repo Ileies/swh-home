@@ -19,8 +19,8 @@ const cms = {
 	cta: 'Beratungsgespräch vereinbaren',
 	cta2: 'Kostenloses Beratungsgespräch',
 	cta3: 'Kontakt aufnehmen',
+	cta4: 'Kostenlose Beratung',
 	faq: 'Häufige Fragen',
-	footerText: 'Smartworkhub revolutioniert Ihre Business-Prozesse mit KI-gestützten Lösungen für den modernen Arbeitsalltag.',
 	headerLinks: [
 		{
 			text: 'Features',
@@ -58,24 +58,24 @@ const cms = {
 	],
 	descriptionTitle: 'Intelligente Automatisierung für Ihr Unternehmen',
 	descriptionText: 'SmartWorkHub vereint leistungsstarke KI-Module in einer intuitiven Plattform. Entwickelt für moderne Unternehmen, die ihre Prozesse optimieren und Wachstum beschleunigen möchten.',
+	stats: [
+		{
+			metric: '30+',
+			title: 'Module'
+		},
+		{
+			metric: '98%',
+			title: 'Zeitersparnis'
+		},
+		{
+			metric: '24/7',
+			title: 'Verfügbarkeit'
+		}
+	],
 	modules: {
 		title: 'KI-Power für Ihr Business',
 		description: 'Unsere KI-Module automatisieren Ihre Prozesse, steigern die Produktivität und erschließen neue Geschäftspotenziale.',
 		discoverAll: 'Entdecken Sie alle 30+ KI-Module',
-		stats: [
-			{
-				metric: '30+',
-				title: 'Module'
-			},
-			{
-				metric: '98%',
-				title: 'Zeitersparnis'
-			},
-			{
-				metric: '24/7',
-				title: 'Verfügbarkeit'
-			}
-		],
 		showcase: [
 			'ki-chat',
 			'uebersetzungsmodul',
@@ -213,7 +213,51 @@ const cms = {
 			question: 'Gibt es versteckte Kosten?',
 			answer: 'Nein, alle Preise verstehen sich inklusive Mehrwertsteuer und beinhalten alle genannten Features ohne versteckte Zusatzkosten.'
 		}
-	]
+	],
+	footer: {
+		description: 'Smartworkhub revolutioniert Ihre Business-Prozesse mit KI-gestützten Lösungen für den modernen Arbeitsalltag.',
+		links: [
+			{
+				category: 'Produkt',
+				links: [
+					{ name: 'Features', href: '/features' },
+					{ name: 'Preise', href: '/pricing' },
+					{ name: 'Enterprise', href: '/enterprise' },
+					{ name: 'Updates', href: '/updates' }
+				]
+			},
+			{
+				category: 'Support',
+				links: [
+					{ name: 'Dokumentation', href: '/docs' },
+					{ name: 'Kontakt', href: '/contact' },
+					{ name: 'FAQ', href: '/faq' },
+					{ name: 'Status', href: '/status' }
+				]
+			},
+			{
+				category: 'Rechtliches',
+				links: [
+					{ name: 'Datenschutz', href: '/privacy' },
+					{ name: 'AGB', href: '/terms' },
+					{ name: 'Impressum', href: '/imprint' }
+				]
+			}
+		],
+		bottomLinks: [
+			{ name: 'Datenschutz', href: '/privacy' },
+			{ name: 'AGB', href: '/terms' },
+			{ name: 'Impressum', href: '/imprint' },
+		]
+	},
+	copyright: "Alle Rechte vorbehalten.",
+	contact: {
+		title: 'Steigern Sie Ihre Produktivität mit KI',
+		description: 'Über 500 Unternehmen vertrauen bereits auf unsere KI-Module. Starten Sie jetzt Ihre 14-tägige kostenlose Testphase und erleben Sie den Unterschied.',
+		appointment: 'Jetzt Termin vereinbaren',
+		slogan: 'Individuell und unverbindlich'
+	},
+	solutions: ["Individuelle Lösungsanalyse", "Persönlicher Ansprechpartner", "Maßgeschneiderte Strategien"],
 };
 
 export default cms;

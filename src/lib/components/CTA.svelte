@@ -3,7 +3,7 @@
 	import { ArrowRight } from 'lucide-svelte';
 </script>
 
-<section class="py-12 bg-primary text-primary-content">
+<section id="contact" class="py-12 bg-primary text-primary-content">
 	<div class="container mx-auto px-4">
 		<div class="flex flex-col md:flex-row items-center justify-between gap-8 max-w-5xl mx-auto">
 			<!-- Left side: Main content -->

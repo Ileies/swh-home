@@ -1,3 +1,8 @@
+<script>
+	import cms from '$lib/cms.svelte';
+	import NewFeatureBadge from '$lib/components/NewFeatureBadge.svelte';
+</script>
+
 <section class="hero min-h-svh bg-gradient-to-br from-blue-50 to-white relative overflow-hidden">
 	<!-- Decorative background elements -->
 	<div class="absolute inset-0">
@@ -9,24 +14,13 @@
 	<!-- Main content -->
 	<div class="hero-content text-center relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
 		<div class="max-w-3xl mx-auto">
-			<!-- Badge -->
-			<div class="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-medium bg-blue-100 text-blue-800 mb-8">
-        <span class="relative flex h-2 w-2 mr-2">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
-        </span>
-				Neu: KI-powered Workflow Automation
-			</div>
+			<NewFeatureBadge />
 
 			<!-- Main heading -->
-			<h1 class="text-5xl md:text-6xl font-bold pb-8 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
-				Revolutioniere deinen Arbeitsalltag mit KI
-			</h1>
+			<h1 class="text-5xl md:text-6xl font-bold pb-8 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">{cms.title}</h1>
 
 			<!-- Subheading -->
-			<p class="text-xl md:text-2xl text-gray-600 mb-12 max-w-2xl mx-auto">
-				SmartWorkHub automatisiert deine repetitiven Aufgaben mit modernster KI-Technologie. Spare Zeit und fokussiere dich auf das Wesentliche.
-			</p>
+			<p class="text-xl md:text-2xl text-gray-600 mb-12 max-w-2xl mx-auto">{cms.description}</p>
 
 			<!-- CTA Buttons -->
 			<div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -36,22 +30,6 @@
 				<button class="btn btn-outline btn-lg px-8">
 					Mehr erfahren
 				</button>
-			</div>
-
-			<!-- Optional: Metrics -->
-			<div class="mt-16 grid grid-cols-2 md:grid-cols-3 gap-8">
-				<div class="text-center">
-					<div class="text-4xl font-bold text-primary">30+</div>
-					<div class="text-gray-600">Module</div>
-				</div>
-				<div class="text-center">
-					<div class="text-4xl font-bold text-primary">98%</div>
-					<div class="text-gray-600">Zeitersparnis</div>
-				</div>
-				<div class="text-center hidden md:block">
-					<div class="text-4xl font-bold text-primary">24/7</div>
-					<div class="text-gray-600">Support</div>
-				</div>
 			</div>
 		</div>
 	</div>

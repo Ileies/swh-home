@@ -1,24 +1,7 @@
-<!-- Privacy.svelte -->
 <script>
-	import { Shield, Lock, Server } from 'lucide-svelte';
+	import cms from '$lib/cms.svelte';
 
-	const privacyFeatures = [
-		{
-			icon: Shield,
-			title: "Datenschutz-konform",
-			description: "Alle Module entsprechen der DSGVO und werden ausschließlich in deutschen Rechenzentren gehostet."
-		},
-		{
-			icon: Lock,
-			title: "Verschlüsselte Übertragung",
-			description: "Ihre Daten werden durchgehend mit modernster Verschlüsselung (TLS 1.3) übertragen und gespeichert."
-		},
-		{
-			icon: Server,
-			title: "Lokale Verarbeitung",
-			description: "Sensible Geschäftsdaten verlassen nie Ihre Infrastruktur. Unsere KI-Module können optional auch On-Premises betrieben werden."
-		}
-	];
+	const privacyFeatures = cms.privacy.features;
 </script>
 
 <section class="py-16 bg-base-200">
@@ -33,9 +16,7 @@
 
 		<div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
 			{#each privacyFeatures as feature}
-				<div
-					class="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow duration-300"
-				>
+				<div class="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow duration-300">
 					<div class="card-body items-center text-center">
 						<div class="mb-4">
 							<svelte:component

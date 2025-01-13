@@ -1,6 +1,7 @@
 <!-- Footer.svelte -->
 <script>
 	import { PUBLIC_PROJECT_TITLE } from '$env/static/public';
+	import cms from '$lib/cms.svelte';
 </script>
 
 <footer class="bg-base-200 pt-16 pb-8">
@@ -11,8 +12,7 @@
 			<div class="md:col-span-2">
 				<h3 class="font-bold text-lg mb-4">{ PUBLIC_PROJECT_TITLE }</h3>
 				<p class="text-base-content/70 mb-4 max-w-md">
-					Smartworkhub revolutioniert Ihre Business-Prozesse mit KI-gestützten
-					Lösungen für den modernen Arbeitsalltag.
+					{cms.footerText}
 				</p>
 				<!--<div class="flex gap-4">
 					<a href="https://linkedin.com" class="text-base-content/70 hover:text-primary" aria-label="LinkedIn">
@@ -28,7 +28,7 @@
 				</div>-->
 			</div>
 
-			<!-- Produkt -->
+			<!--Produkt -->
 			<div>
 				<h4 class="font-bold mb-4">Produkt</h4>
 				<ul class="space-y-2">

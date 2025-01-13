@@ -1,6 +1,7 @@
-<!-- Header.svelte -->
 <script>
-	import { fade } from 'svelte/transition';
+	import { PUBLIC_PROJECT_TITLE } from '$env/static/public';
+	import cms from '$lib/cms.svelte';
+	import MobileNavigation from '$lib/components/MobileNavigation.svelte';
 	let isMenuOpen = false;
 
 	function toggleMenu() {
@@ -14,19 +15,16 @@
 			<!-- Logo -->
 			<div class="flex items-center">
 				<a href="/" class="text-2xl font-bold text-primary">
-					SmartWorkHub
+					{ PUBLIC_PROJECT_TITLE }
 				</a>
 			</div>
 
 			<!-- Desktop Navigation -->
 			<div class="hidden md:flex items-center space-x-8">
-				<a href="#features" class="text-gray-600 hover:text-primary transition-colors">Features</a>
-				<a href="#modules" class="text-gray-600 hover:text-primary transition-colors">Module</a>
-				<a href="#pricing" class="text-gray-600 hover:text-primary transition-colors">Preise</a>
-				<a href="#privacy" class="text-gray-600 hover:text-primary transition-colors">Datenschutz</a>
-				<button class="btn btn-primary">
-					Beratungsgespräch vereinbaren
-				</button>
+				{#each cms.headerLinks as link}
+					<a href={link.href} class="text-gray-600 hover:text-primary transition-colors">{link.text}</a>
+				{/each}
+				<button class="btn btn-primary">{cms.cta}</button>
 			</div>
 
 			<!-- Mobile Menu Button -->
@@ -61,48 +59,6 @@
 		</nav>
 
 		<!-- Mobile Navigation -->
-		{#if isMenuOpen}
-			<div
-				class="md:hidden pt-4 pb-2"
-				transition:fade
-			>
-				<div class="flex flex-col space-y-4">
-					<a
-						href="#features"
-						class="text-gray-600 hover:text-primary transition-colors"
-						on:click={() => isMenuOpen = false}
-					>
-						Features
-					</a>
-					<a
-						href="#modules"
-						class="text-gray-600 hover:text-primary transition-colors"
-						on:click={() => isMenuOpen = false}
-					>
-						Module
-					</a>
-					<a
-						href="#pricing"
-						class="text-gray-600 hover:text-primary transition-colors"
-						on:click={() => isMenuOpen = false}
-					>
-						Preise
-					</a>
-					<a
-						href="#privacy"
-						class="text-gray-600 hover:text-primary transition-colors"
-						on:click={() => isMenuOpen = false}
-					>
-						Datenschutz
-					</a>
-					<button
-						class="btn btn-primary w-full"
-						on:click={() => isMenuOpen = false}
-					>
-						Beratungsgespräch vereinbaren
-					</button>
-				</div>
-			</div>
-		{/if}
+		<MobileNavigation isMenuOpen={isMenuOpen} />
 	</div>
 </header>

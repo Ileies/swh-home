@@ -1,4 +1,3 @@
-<!-- Modules.svelte -->
 <script>
 	import { ArrowRight } from 'lucide-svelte';
 	import ModuleStats from '$lib/components/ModuleStats.svelte';

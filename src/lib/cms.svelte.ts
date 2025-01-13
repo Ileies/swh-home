@@ -1,4 +1,4 @@
-import { MessageSquare, Languages, Terminal, Share2, Users, Shield, Lock, Server } from 'lucide-svelte';
+import { MessageSquare, Languages, Terminal, Share2, Users, Shield, Lock, Server, Zap, Clock, ChartBar } from 'lucide-svelte';
 
 const cms = {
 	title: "Revolutioniere deinen Arbeitsalltag mit KI",
@@ -24,6 +24,25 @@ const cms = {
 			href: "#contact"
 		}
 	],
+	benefits: [
+		{
+			icon: Zap,
+			title: "Sofort einsetzbar",
+			description: "Alle KI-Module sind sofort und ohne Installation nutzbar. Einfache Integration in bestehende Workflows durch standardisierte APIs."
+		},
+		{
+			icon: Clock,
+			title: "Zeit sparen",
+			description: "Automatisieren Sie repetitive Aufgaben und konzentrieren Sie sich auf strategische Entscheidungen. Unsere KI-Module arbeiten 24/7 für Sie."
+		},
+		{
+			icon: ChartBar,
+			title: "Effizienz steigern",
+			description: "Steigern Sie die Produktivität Ihres Teams messbar. Unsere KI-Module lernen kontinuierlich und werden immer effizienter."
+		}
+	],
+	descriptionTitle: "Intelligente Automatisierung für Ihr Unternehmen",
+	descriptionText: "SmartWorkHub vereint leistungsstarke KI-Module in einer intuitiven Plattform. Entwickelt für moderne Unternehmen, die ihre Prozesse optimieren und Wachstum beschleunigen möchten.",
 	modules: {
 		title: "KI-Power für Ihr Business",
 		description: "Unsere KI-Module automatisieren Ihre Prozesse, steigern die Produktivität und erschließen neue Geschäftspotenziale.",

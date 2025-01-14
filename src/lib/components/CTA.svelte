@@ -31,7 +31,7 @@
 				<div class="bg-base-100 text-base-content rounded-box p-6 shadow-xl">
 					<h3 class="font-bold text-xl mb-4">{cms.call}</h3>
 					<ul class="space-y-3 mb-6">
-						{#each cms.solutions as solution}
+						{#each cms.contact.solutions as solution}
 							<li class="flex items-center gap-2">
 								<ArrowRight class="w-4 h-4 text-primary" />
 								<span>{solution}</span>

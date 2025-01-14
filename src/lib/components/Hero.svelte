@@ -33,7 +33,7 @@
 						top: window.scrollY + window.innerHeight,
 						behavior: 'smooth'
 					})} class="btn btn-outline btn-lg px-8">
-					{cms.moreInfo}
+					{cms.hero.moreInfo}
 				</button>
 			</div>
 		</div>

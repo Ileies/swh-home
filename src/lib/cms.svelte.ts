@@ -29,80 +29,42 @@ import {
 } from 'lucide-svelte';
 
 const cms = {
+	headerLinks: {
+		'/#features': 'Features',
+		'/modules': 'KI-Module',
+		'/#pricing': 'Preise',
+		'/#contact': 'Kontakt'
+	},
 	hero: {
 		title: 'Revolutioniere deinen Arbeitsalltag mit KI',
 		description: `${PUBLIC_PROJECT_TITLE} automatisiert deine repetitiven Aufgaben mit modernster KI-Technologie. Spare Zeit und fokussiere dich auf das Wesentliche.`,
-		newFeature: 'Neu: KI-powered Workflow Automation'
+		newFeature: 'Neu: KI-powered Workflow Automation',
+		moreInfo: 'Mehr erfahren',
 	},
-	cta: 'Jetzt Beratungsgespräch vereinbaren',
-	call: 'Kostenlose Beratung',
-	faq: {
-		title: 'Häufige Fragen',
-		list: [
+	description: {
+		benefits: [
 			{
-				question: 'Kann ich den Plan später wechseln?',
-				answer:
-					'Ja, Sie können Ihren Plan jederzeit upgraden oder downgraden. Die Abrechnung wird anteilig angepasst.'
+				icon: Zap,
+				title: 'Sofort einsetzbar',
+				description:
+					'Alle KI-Module sind sofort und ohne Installation nutzbar. Einfache Integration in bestehende Workflows durch standardisierte APIs.'
 			},
 			{
-				question: 'Was passiert nach der kostenlosen Testphase?',
-				answer:
-					'Nach Ablauf der 14-tägigen Testphase wird Ihr ausgewählter Plan aktiv. Sie können jederzeit vor Ende der Testphase kündigen.'
+				icon: Clock,
+				title: 'Zeit sparen',
+				description:
+					'Automatisieren Sie repetitive Aufgaben und konzentrieren Sie sich auf strategische Entscheidungen. Unsere KI-Module arbeiten 24/7 für Sie.'
 			},
 			{
-				question: 'Wie schnell kann ich mit der Nutzung beginnen?',
-				answer:
-					'Nach Ihrer Anmeldung können Sie sofort mit den ersten Modulen starten. Die vollständige Integration in Ihre Systeme ist typischerweise innerhalb eines Werktages abgeschlossen.'
-			},
-			{
-				question: 'Welche technischen Voraussetzungen gibt es?',
-				answer:
-					'Für die Cloud-Version benötigen Sie lediglich einen modernen Webbrowser. Für On-Premises-Installationen beraten wir Sie individuell zu den Systemanforderungen.'
+				icon: ChartBar,
+				title: 'Effizienz steigern',
+				description:
+					'Steigern Sie die Produktivität Ihres Teams messbar. Unsere KI-Module lernen kontinuierlich und werden immer effizienter.'
 			}
-		]
+		],
+		title: 'Intelligente Automatisierung für Ihr Unternehmen',
+		text: `${PUBLIC_PROJECT_TITLE} vereint leistungsstarke KI-Module in einer intuitiven Plattform. Entwickelt für moderne Unternehmen, die ihre Prozesse optimieren und Wachstum beschleunigen möchten.`,
 	},
-	headerLinks: {
-		'#features': 'Features',
-		'/modules': 'KI-Module',
-		'#pricing': 'Preise',
-		'#contact': 'Kontakt'
-	},
-	benefits: [
-		{
-			icon: Zap,
-			title: 'Sofort einsetzbar',
-			description:
-				'Alle KI-Module sind sofort und ohne Installation nutzbar. Einfache Integration in bestehende Workflows durch standardisierte APIs.'
-		},
-		{
-			icon: Clock,
-			title: 'Zeit sparen',
-			description:
-				'Automatisieren Sie repetitive Aufgaben und konzentrieren Sie sich auf strategische Entscheidungen. Unsere KI-Module arbeiten 24/7 für Sie.'
-		},
-		{
-			icon: ChartBar,
-			title: 'Effizienz steigern',
-			description:
-				'Steigern Sie die Produktivität Ihres Teams messbar. Unsere KI-Module lernen kontinuierlich und werden immer effizienter.'
-		}
-	],
-	descriptionTitle: 'Intelligente Automatisierung für Ihr Unternehmen',
-	descriptionText: `${PUBLIC_PROJECT_TITLE} vereint leistungsstarke KI-Module in einer intuitiven Plattform. Entwickelt für moderne Unternehmen, die ihre Prozesse optimieren und Wachstum beschleunigen möchten.`,
-	stats: [
-		{
-			metric: '27',
-			title: 'Module'
-		},
-		{
-			metric: '98%',
-			title: 'Zeitersparnis'
-		},
-		{
-			metric: '24/7',
-			title: 'Verfügbarkeit'
-		}
-	],
 	modules: {
 		title: 'KI-Power für Ihr Business',
 		description:
@@ -356,7 +318,6 @@ const cms = {
 			}
 		]
 	},
-	moreInfo: 'Mehr erfahren',
 	pricing: {
 		title: 'Transparente Preise für jede Unternehmensgröße',
 		description:
@@ -417,25 +378,37 @@ const cms = {
 			}
 		]
 	},
+	contact: {
+		title: 'Steigern Sie Ihre Produktivität mit KI',
+		description:
+			'Über 500 Unternehmen vertrauen bereits auf unsere KI-Module. Starten Sie jetzt Ihre 14-tägige kostenlose Testphase und erleben Sie den Unterschied.',
+		appointment: 'Jetzt Termin vereinbaren',
+		slogan: 'Individuell und unverbindlich',
+		solutions: [
+			'Individuelle Lösungsanalyse',
+			'Persönlicher Ansprechpartner',
+			'Maßgeschneiderte Strategien'
+		]
+	},
 	footer: {
 		description: `${PUBLIC_PROJECT_TITLE} revolutioniert Ihre Business-Prozesse mit KI-gestützten Lösungen für den modernen Arbeitsalltag.`,
 		links: [
 			{
 				category: 'Produkt',
 				links: {
-					'/features': 'Features',
-					'/pricing': 'Preise',
-					'/enterprise': 'Enterprise',
-					'/updates': 'Updates'
+					'/#features': 'Features',
+					'/#pricing': 'Preise',
+					//'/#enterprise': 'Enterprise',
+					//'/#updates': 'Updates'
 				}
 			},
 			{
 				category: 'Support',
 				links: {
-					'/docs': 'Dokumentation',
-					'/contact': 'Kontakt',
-					'/faq': 'FAQ',
-					'/status': 'Status'
+					//'/#docs': 'Dokumentation',
+					'/#contact': 'Kontakt',
+					'/#faq': 'FAQ',
+					//'/#status': 'Status'
 				}
 			}
 		],
@@ -443,21 +416,51 @@ const cms = {
 			'/privacy': 'Datenschutz',
 			'/terms': 'AGB',
 			'/imprint': 'Impressum'
+		},
+		copyright: 'Alle Rechte vorbehalten.'
+	},
+
+	stats: [
+		{
+			metric: '27',
+			title: 'Module'
+		},
+		{
+			metric: '98%',
+			title: 'Zeitersparnis'
+		},
+		{
+			metric: '24/7',
+			title: 'Verfügbarkeit'
 		}
-	},
-	copyright: 'Alle Rechte vorbehalten.',
-	contact: {
-		title: 'Steigern Sie Ihre Produktivität mit KI',
-		description:
-			'Über 500 Unternehmen vertrauen bereits auf unsere KI-Module. Starten Sie jetzt Ihre 14-tägige kostenlose Testphase und erleben Sie den Unterschied.',
-		appointment: 'Jetzt Termin vereinbaren',
-		slogan: 'Individuell und unverbindlich'
-	},
-	solutions: [
-		'Individuelle Lösungsanalyse',
-		'Persönlicher Ansprechpartner',
-		'Maßgeschneiderte Strategien'
-	]
+	],
+	cta: 'Jetzt Beratungsgespräch vereinbaren',
+	call: 'Kostenlose Beratung',
+	faq: {
+		title: 'Häufige Fragen',
+		list: [
+			{
+				question: 'Kann ich den Plan später wechseln?',
+				answer:
+					'Ja, Sie können Ihren Plan jederzeit upgraden oder downgraden. Die Abrechnung wird anteilig angepasst.'
+			},
+			{
+				question: 'Was passiert nach der kostenlosen Testphase?',
+				answer:
+					'Nach Ablauf der 14-tägigen Testphase wird Ihr ausgewählter Plan aktiv. Sie können jederzeit vor Ende der Testphase kündigen.'
+			},
+			{
+				question: 'Wie schnell kann ich mit der Nutzung beginnen?',
+				answer:
+					'Nach Ihrer Anmeldung können Sie sofort mit den ersten Modulen starten. Die vollständige Integration in Ihre Systeme ist typischerweise innerhalb eines Werktages abgeschlossen.'
+			},
+			{
+				question: 'Welche technischen Voraussetzungen gibt es?',
+				answer:
+					'Für die Cloud-Version benötigen Sie lediglich einen modernen Webbrowser. Für On-Premises-Installationen beraten wir Sie individuell zu den Systemanforderungen.'
+			}
+		]
+	}
 };
 
 export default cms;

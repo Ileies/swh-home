@@ -2,17 +2,17 @@
 	import cms from '$lib/cms.svelte';
 </script>
 
-<section class="py-24 bg-base-200">
+<section id="features" class="py-24 bg-base-200">
 	<div class="container mx-auto px-4">
 		<!-- Main Description -->
 		<div class="text-center max-w-3xl mx-auto mb-16">
-			<h2 class="text-4xl font-bold mb-6">{cms.descriptionTitle}</h2>
-			<p class="text-xl text-base-content/80">{cms.descriptionText}</p>
+			<h2 class="text-4xl font-bold mb-6">{cms.description.title}</h2>
+			<p class="text-xl text-base-content/80">{cms.description.text}</p>
 		</div>
 
 		<!-- Benefits -->
 		<div class="flex flex-col md:flex-row gap-16 max-w-5xl mx-auto">
-			{#each cms.benefits as benefit}
+			{#each cms.description.benefits as benefit}
 				<div class="flex-1">
 					<svelte:component
 						this={benefit.icon}

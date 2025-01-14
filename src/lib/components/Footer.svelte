@@ -43,7 +43,7 @@
 		<div class="border-t border-base-content/10 pt-8">
 			<div class="flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
 				<div class="text-base-content/70">
-					© 2024 - {new Date().getFullYear()} { PUBLIC_PROJECT_TITLE }. {cms.copyright}
+					© 2024 - {new Date().getFullYear()} { PUBLIC_PROJECT_TITLE }. {cms.footer.copyright}
 				</div>
 				<div class="flex flex-wrap gap-6">
 					{#each Object.entries(cms.footer.bottomLinks) as [href, text]}

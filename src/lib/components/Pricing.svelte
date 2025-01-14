@@ -2,10 +2,10 @@
 	import { Check, HelpCircle } from 'lucide-svelte';
 	import cms from '$lib/cms.svelte';
 
-	let isAnnual = true;
+	let isAnnual = $state(true);
 </script>
 
-<section class="py-16 bg-base-100" id="pricing">
+<section id="pricing" class="py-16 bg-base-100">
 	<div class="container mx-auto px-4">
 		<!-- Header -->
 		<div class="text-center mb-12">
@@ -14,13 +14,8 @@
 
 			<!-- Billing Toggle -->
 			<div class="flex items-center justify-center gap-4 mb-8">
-				<span class="text-base-content/70" class:font-bold={!isAnnual}>{cms.pricing.monthly}</span>
-				<label class="swap">
-					<input bind:checked={isAnnual} type="checkbox" />
-					<div class="swap-on btn btn-primary btn-sm">{cms.pricing.yearlySale}</div>
-					<div class="swap-off btn btn-primary btn-sm btn-outline">{cms.pricing.yearlySale}</div>
-				</label>
-				<span class="text-base-content/70" class:font-bold={isAnnual}>{cms.pricing.yearly}</span>
+				<button onclick={() => isAnnual = false} class="btn btn-primary btn-sm" class:btn-outline={isAnnual}>{cms.pricing.monthly}</button>
+				<button onclick={() => isAnnual = true} class="btn btn-primary btn-sm" class:btn-outline={!isAnnual}>{cms.pricing.yearlySale}</button>
 			</div>
 		</div>
 
@@ -76,7 +71,7 @@
 		</div>
 
 		<!-- FAQ Section -->
-		<div class="mt-16 max-w-3xl mx-auto">
+		<div id="faq" class="mt-16 max-w-3xl mx-auto">
 			<div class="flex items-center gap-2 justify-center mb-8">
 				<HelpCircle class="w-5 h-5 text-primary" />
 				<h3 class="text-xl font-bold">{cms.faq.title}</h3>

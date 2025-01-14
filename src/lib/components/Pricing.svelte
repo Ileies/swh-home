@@ -1,4 +1,3 @@
-<!-- Pricing.svelte -->
 <script>
 	import { Check, HelpCircle } from 'lucide-svelte';
 	import cms from '$lib/cms.svelte';
@@ -70,7 +69,7 @@
 						</ul>
 
 						<!-- CTA Button -->
-						<button class="btn {plan.buttonStyle} w-full">{cms.cta3}</button>
+						<button class="btn {plan.buttonStyle} w-full">{cms.call}</button>
 					</div>
 				</div>
 			{/each}
@@ -80,11 +79,11 @@
 		<div class="mt-16 max-w-3xl mx-auto">
 			<div class="flex items-center gap-2 justify-center mb-8">
 				<HelpCircle class="w-5 h-5 text-primary" />
-				<h3 class="text-xl font-bold">{cms.faq}</h3>
+				<h3 class="text-xl font-bold">{cms.faq.title}</h3>
 			</div>
 
 			<div class="join join-vertical w-full">
-				{#each cms.faqs as faq}
+				{#each cms.faq.list as faq}
 					<div class="collapse collapse-arrow join-item border border-base-200">
 						<input type="radio" name="faq" />
 						<div class="collapse-title font-medium">

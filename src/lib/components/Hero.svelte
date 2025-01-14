@@ -1,9 +1,10 @@
-<script>
+<script lang="ts">
 	import cms from '$lib/cms.svelte';
 	import NewFeatureBadge from '$lib/components/NewFeatureBadge.svelte';
+	let test: HTMLElement;
 </script>
 
-<section class="hero min-h-svh bg-gradient-to-br from-blue-50 to-white relative overflow-hidden">
+<section bind:this={test} class="hero min-h-svh bg-gradient-to-br from-blue-50 to-white relative overflow-hidden">
 	<!-- Decorative background elements -->
 	<div class="absolute inset-0">
 		<div class="absolute top-0 left-1/2 w-72 h-72 bg-blue-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
@@ -17,17 +18,21 @@
 			<NewFeatureBadge />
 
 			<!-- Main heading -->
-			<h1 class="text-5xl md:text-6xl font-bold pb-8 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">{cms.title}</h1>
+			<h1 class="text-5xl md:text-6xl font-bold pb-8 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">{cms.hero.title}</h1>
 
 			<!-- Subheading -->
-			<p class="text-xl md:text-2xl text-gray-600 mb-12 max-w-2xl mx-auto">{cms.description}</p>
+			<p class="text-xl md:text-2xl text-gray-600 mb-12 max-w-2xl mx-auto">{cms.hero.description}</p>
 
 			<!-- CTA Buttons -->
 			<div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
 				<button class="btn btn-primary btn-lg px-8">
-					{cms.cta2}
+					{cms.call}
 				</button>
-				<button class="btn btn-outline btn-lg px-8">
+				<button
+					onclick={() => window.scrollTo({
+						top: window.scrollY + window.innerHeight,
+						behavior: 'smooth'
+					})} class="btn btn-outline btn-lg px-8">
 					{cms.moreInfo}
 				</button>
 			</div>

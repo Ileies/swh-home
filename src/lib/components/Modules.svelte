@@ -4,7 +4,7 @@
 	import cms from '$lib/cms.svelte';
 	import ModuleGrid from '$lib/components/ModuleGrid.svelte';
 
-	const showcase = $derived(cms.modules.showcase.map(module => cms.modules.list.find(item => item.id === module)));
+	const showcase = $derived(cms.modules.showcase.map(module => cms.modules.list.find(item => item.id === module)).filter(item => item !== undefined));
 </script>
 
 <section class="py-16">
@@ -18,8 +18,8 @@
 
 		<div class="text-center">
 			<a
-				href="/modules"
 				class="btn btn-primary gap-2 px-8"
+				href="/modules"
 			>
 				{cms.modules.discoverAll}
 				<ArrowRight class="w-4 h-4" />

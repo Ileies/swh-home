@@ -381,7 +381,7 @@ const cms = {
 	contact: {
 		title: 'Steigern Sie Ihre Produktivität mit KI',
 		description:
-			'Über 500 Unternehmen vertrauen bereits auf unsere KI-Module. Starten Sie jetzt Ihre 14-tägige kostenlose Testphase und erleben Sie den Unterschied.',
+			'Starten Sie jetzt Ihre 14-tägige kostenlose Testphase und erleben Sie den Unterschied.',
 		appointment: 'Jetzt Termin vereinbaren',
 		slogan: 'Individuell und unverbindlich',
 		solutions: [

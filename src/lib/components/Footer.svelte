@@ -1,6 +1,5 @@
-<!-- Footer.svelte -->
 <script>
-	import { PUBLIC_PROJECT_TITLE } from '$env/static/public';
+	import { PUBLIC_APP_NAME } from '$env/static/public';
 	import cms from '$lib/cms.svelte';
 </script>
 

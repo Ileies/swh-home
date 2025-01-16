@@ -1,4 +1,3 @@
-<!-- +error.svelte -->
 <script>
 	import { Home, ArrowLeft, Bot } from 'lucide-svelte';
 </script>

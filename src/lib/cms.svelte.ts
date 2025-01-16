@@ -33,7 +33,6 @@ const cms = {
 		'/#features': 'Features',
 		'/modules': 'KI-Module',
 		'/#pricing': 'Preise',
-		'/#contact': 'Kontakt'
 	},
 	hero: {
 		title: 'Revolutioniere deinen Arbeitsalltag mit KI',

@@ -321,7 +321,7 @@
 					</p>
 				</div>
 
-			<div>
+			<div class="space-y-4">
 					<h2 class="text-xl font-semibold mb-4">6. Kontaktmöglichkeit über die Internetseite</h2>
 					<p>
 						Die Internetseite der OFF LIMITS IT Services GmbH enthält aufgrund von gesetzlichen Vorschriften Angaben,

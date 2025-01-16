@@ -16,7 +16,7 @@
 				<div class="text-base-content/70 mb-4">
 					<p class="text-sm font-bold">{cms.footer.company_product}</p>
 					<p class="mb-2">{cms.footer.street}<br/>
-						{cms.footer.postal_code}, {cms.footer.city}<br />
+						{cms.footer.postalcode}, {cms.footer.city}<br />
 						{cms.footer.country}</p>
 					<p class="mb-2">E-Mail: <a href="mailto:{ PUBLIC_CONTACT_MAIL }" class="hover:text-primary">{ PUBLIC_CONTACT_MAIL }</a></p>
 				</div>

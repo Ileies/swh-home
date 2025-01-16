@@ -391,6 +391,11 @@ const cms = {
 	},
 	footer: {
 		description: `${PUBLIC_PROJECT_TITLE} revolutioniert Ihre Business-Prozesse mit KI-gestützten Lösungen für den modernen Arbeitsalltag.`,
+		street: "Johann-Philipp-Reis-Straße, 8",
+		postal_code: "53332",
+		city: "Bornheim",
+		country: "Deutschland",
+		company_product: "Ein Produkt der OFF LIMITS IT Services GmbH",
 		links: [
 			{
 				category: 'Produkt',

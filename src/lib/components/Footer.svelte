@@ -1,5 +1,5 @@
 <script>
-	import { PUBLIC_APP_NAME } from '$env/static/public';
+	import { PUBLIC_CONTACT_MAIL, PUBLIC_PROJECT_TITLE } from '$env/static/public';
 	import cms from '$lib/cms.svelte';
 </script>
 
@@ -10,7 +10,15 @@
 			<!-- Company Info -->
 			<div class="md:col-span-2">
 				<h3 class="font-bold text-lg mb-4">{ PUBLIC_PROJECT_TITLE }</h3>
-				<p class="text-base-content/70 mb-4 max-w-md">{cms.footer.description}</p>
+				<!-- <p class="text-base-content/70 mb-4 max-w-md">{cms.footer.description}</p> -->
+				<!-- Company Address and Contact -->
+				<div class="text-base-content/70 mb-4">
+					<p class="text-sm font-bold">{cms.footer.company_product}</p>
+					<p class="mb-2">{cms.footer.street}<br/>
+						{cms.footer.postalcode}, {cms.footer.city}<br />
+						{cms.footer.country}</p>
+					<p class="mb-2">E-Mail: <a href="mailto:{ PUBLIC_CONTACT_MAIL }" class="hover:text-primary">{ PUBLIC_CONTACT_MAIL }</a></p>
+				</div>
 				<!--<div class="flex gap-4">
 					<a href="https://linkedin.com" class="text-base-content/70 hover:text-primary" aria-label="LinkedIn">
 						<svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">

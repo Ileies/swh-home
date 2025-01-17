@@ -1,4 +1,4 @@
-import { PUBLIC_APP_NAME } from '$env/static/public';
+import { PUBLIC_PROJECT_TITLE } from '$env/static/public';
 import {
 	AlertTriangle,
 	ChartNoAxesColumn,
@@ -33,11 +33,10 @@ const cms = {
 		'/#features': 'Features',
 		'/modules': 'KI-Module',
 		'/#pricing': 'Preise',
-		'/#contact': 'Kontakt'
 	},
 	hero: {
 		title: 'Revolutioniere deinen Arbeitsalltag mit KI',
-		description: `${PUBLIC_APP_NAME} automatisiert deine repetitiven Aufgaben mit modernster KI-Technologie. Spare Zeit und fokussiere dich auf das Wesentliche.`,
+		description: `${PUBLIC_PROJECT_TITLE} automatisiert deine repetitiven Aufgaben mit modernster KI-Technologie. Spare Zeit und fokussiere dich auf das Wesentliche.`,
 		newFeature: 'Neu: KI-powered Workflow Automation',
 		moreInfo: 'Mehr erfahren',
 	},
@@ -63,7 +62,7 @@ const cms = {
 			}
 		],
 		title: 'Intelligente Automatisierung für Ihr Unternehmen',
-		text: `${PUBLIC_APP_NAME} vereint leistungsstarke KI-Module in einer intuitiven Plattform. Entwickelt für moderne Unternehmen, die ihre Prozesse optimieren und Wachstum beschleunigen möchten.`,
+		text: `${PUBLIC_PROJECT_TITLE} vereint leistungsstarke KI-Module in einer intuitiven Plattform. Entwickelt für moderne Unternehmen, die ihre Prozesse optimieren und Wachstum beschleunigen möchten.`,
 	},
 	modules: {
 		title: 'KI-Power für Ihr Business',
@@ -296,7 +295,7 @@ const cms = {
 	},
 	privacy: {
 		title: 'Ihre Daten in sicheren Händen',
-		description: `Bei ${PUBLIC_APP_NAME} steht Datensicherheit an erster Stelle. Unsere KI-Lösungen sind von Grund auf sicher und transparent gestaltet.`,
+		description: `Bei ${PUBLIC_PROJECT_TITLE} steht Datensicherheit an erster Stelle. Unsere KI-Lösungen sind von Grund auf sicher und transparent gestaltet.`,
 		features: [
 			{
 				icon: Shield,
@@ -391,7 +390,12 @@ const cms = {
 		]
 	},
 	footer: {
-		description: `${PUBLIC_APP_NAME} revolutioniert Ihre Business-Prozesse mit KI-gestützten Lösungen für den modernen Arbeitsalltag.`,
+		description: `${PUBLIC_PROJECT_TITLE} revolutioniert Ihre Business-Prozesse mit KI-gestützten Lösungen für den modernen Arbeitsalltag.`,
+		street: "Johann-Philipp-Reis-Straße, 8",
+		postalcode: "53332",
+		city: "Bornheim",
+		country: "Deutschland",
+		company_product: "Ein Produkt der OFF LIMITS IT Services GmbH",
 		links: [
 			{
 				category: 'Produkt',

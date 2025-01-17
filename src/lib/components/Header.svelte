@@ -1,5 +1,5 @@
 <script>
-	import { PUBLIC_APP_NAME } from '$env/static/public';
+	import { PUBLIC_PROJECT_TITLE } from '$env/static/public';
 	import cms from '$lib/cms.svelte';
 	import MobileNavigation from '$lib/components/MobileNavigation.svelte';
 	let isMenuOpen = $state(false);
@@ -10,7 +10,7 @@
 		<nav class="flex items-center justify-between">
 			<!-- Logo -->
 			<div class="flex items-center">
-				<a href="/" class="text-2xl font-bold text-primary">{ PUBLIC_APP_NAME }</a>
+				<a href="/" class="text-2xl font-bold text-primary">{ PUBLIC_PROJECT_TITLE }</a>
 			</div>
 
 			<!-- Desktop Navigation -->

@@ -1,4 +1,3 @@
-<!-- Footer.svelte -->
 <script>
 	import { PUBLIC_CONTACT_MAIL, PUBLIC_PROJECT_TITLE } from '$env/static/public';
 	import cms from '$lib/cms.svelte';

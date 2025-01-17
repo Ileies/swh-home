@@ -1,12 +1,16 @@
 <script lang="ts">
 	import { FileText } from 'lucide-svelte';
+	import { fade } from 'svelte/transition';
 	const { modules }: { modules: {icon: typeof FileText, title: string, description: string}[]} = $props();
 </script>
 
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto mb-12">
-	{#each modules as module}
+	{#each modules as module (module.title)}
 		{@const Component = module.icon}
-		<div class="rounded-box border border-base-content/10 bg-base-100 p-6 transition-all duration-300 hover:shadow-lg">
+		<div
+			class="rounded-box border border-base-content/10 bg-base-100 p-6 transition-all duration-300 hover:shadow-lg"
+			transition:fade={{ duration: 300 }}
+		>
 			<div class="mb-4">
 				<Component class="w-8 h-8 text-primary" />
 			</div>

@@ -1,29 +1,21 @@
-<!-- Modules.svelte -->
-<script>
+<script lang="ts">
 	import { ArrowDown, ArrowUp } from 'lucide-svelte';
-	import { slide } from 'svelte/transition';
 	import ModuleStats from '$lib/components/ModuleStats.svelte';
 	import cms from '$lib/cms.svelte';
 	import ModuleGrid from '$lib/components/ModuleGrid.svelte';
-	import { cubicInOut } from 'svelte/easing';
 
-	let showAllModules = false;
-	let showcaseSection;
+	let showAllModules = $state(false);
+	let showcaseSection: HTMLDivElement;
 
-	// Showcase Module
-	$: showcase = cms.modules.showcase
+	const modules = $derived(showAllModules ? cms.modules.list : cms.modules.showcase
 		.map(moduleId => cms.modules.list.find(item => item.id === moduleId))
-		.filter(Boolean);
-
-	// Restliche Module
-	$: remainingModules = cms.modules.list
-		.filter(module => !cms.modules.showcase.includes(module.id));
+		.filter(item => item !== undefined)
+	);
 
 	function toggleModules() {
 		showAllModules = !showAllModules;
 
-		// Wenn Module eingeklappt werden, scroll zurück zum Showcase
-		if (!showAllModules && showcaseSection) {
+		if (!showAllModules) {
 			showcaseSection.scrollIntoView({
 				behavior: 'smooth',
 				block: 'start'
@@ -42,25 +34,13 @@
 		</div>
 
 		<div bind:this={showcaseSection}>
-			<ModuleGrid modules={showcase} />
+			<ModuleGrid {modules} />
 		</div>
-
-		{#if showAllModules}
-			<div
-				class="mt-8"
-				transition:slide={{
-          duration: 400,
-          easing: cubicInOut
-        }}
-			>
-				<ModuleGrid modules={remainingModules} />
-			</div>
-		{/if}
 
 		<div class="text-center mt-8">
 			<button
 				class="btn btn-primary gap-2 px-8 transition-transform duration-300 hover:scale-105"
-				on:click={toggleModules}
+				onclick={toggleModules}
 			>
 				{showAllModules ? 'Weniger anzeigen' : 'Mehr anzeigen'}
 				{#if showAllModules}

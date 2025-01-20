@@ -24,7 +24,7 @@
 	}
 </script>
 
-<section class="py-16">
+<section id="modules" class="py-16">
 	<div class="container mx-auto px-4">
 		<div class="text-center mb-12">
 			<h2 class="text-3xl font-bold mb-4">{cms.modules.title}</h2>

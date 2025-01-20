@@ -3,7 +3,7 @@
 	import cms from '$lib/cms.svelte';
 </script>
 
-<section id="contact" class="py-12 bg-primary text-primary-content">
+<section class="py-12 bg-primary text-primary-content" id="contact">
 	<div class="container mx-auto px-4">
 		<div class="flex flex-col md:flex-row items-center justify-between gap-8 max-w-5xl mx-auto">
 			<!-- Left side: Main content -->
@@ -38,9 +38,11 @@
 							</li>
 						{/each}
 					</ul>
-					<button class="btn btn-primary w-full">
-						{cms.contact.appointment}
-					</button>
+					<a href={cms.contactLink}>
+						<button class="btn btn-primary w-full">
+							{cms.contact.appointment}
+						</button>
+					</a>
 					<p class="text-xs text-center mt-4 text-base-content/70">
 						{cms.contact.slogan}
 					</p>

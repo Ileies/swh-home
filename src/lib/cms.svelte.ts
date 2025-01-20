@@ -29,9 +29,10 @@ import {
 } from 'lucide-svelte';
 
 const cms = {
+	contactLink: 'https://outlook.office.com/bookwithme/user/c55d7df6bf0a4764adc1cb9f1e16671d@offlimits-it.com/meetingtype/7IJ2G8BNa0-E4n8us68ZPQ2?anonymous&ep=mcard',
 	headerLinks: {
 		'/#features': 'Features',
-		'/modules': 'KI-Module',
+		'/#modules': 'KI-Module',
 		'/#pricing': 'Preise',
 	},
 	hero: {
@@ -71,6 +72,41 @@ const cms = {
 		discoverAll: 'Entdecken Sie alle 27 KI-Module',
 		showcase: ['kichat', 'uebersetzung', 'powershell', 'socialmedia', 'kundenbeschwerde'],
 		list: [
+			{
+				id: 'kichat',
+				title: 'KI-Chat',
+				description:
+					'Ein vielseitiger KI-Assistent für die direkte Kommunikation und schnelle Problemlösung im Arbeitsalltag.',
+				icon: MessageCircle
+			},
+			{
+				id: 'uebersetzung',
+				title: 'Übersetzung',
+				description:
+					'Bietet präzise Übersetzungen mit Berücksichtigung von Kontext, Fachterminologie und kulturellen Besonderheiten.',
+				icon: Globe
+			},
+			{
+				id: 'powershell',
+				title: 'PowerShell Generator',
+				description:
+					'Entwickelt maßgeschneiderte PowerShell-Skripte für verschiedene Automatisierungsaufgaben in der IT-Administration.',
+				icon: Terminal
+			},
+			{
+				id: 'socialmedia',
+				title: 'Social Media Beiträge',
+				description:
+					'Generiert zielgruppengerechte Social-Media-Inhalte mit optimierter Reichweite und Engagement-Potenzial.',
+				icon: Share2
+			},
+			{
+				id: 'kundenbeschwerde',
+				title: 'Kundenbeschwerde E-Mail',
+				description:
+					'Generiert professionelle und einfühlsame Antworten auf Kundenbeschwerden unter Berücksichtigung verschiedener Eskalationsstufen.',
+				icon: Mail
+			},
 			/*{
 				"id": "basismodul",
 				"title": "Basis Modul",
@@ -152,13 +188,6 @@ const cms = {
 				icon: Users
 			},
 			{
-				id: 'kichat',
-				title: 'KI-Chat',
-				description:
-					'Ein vielseitiger KI-Assistent für die direkte Kommunikation und schnelle Problemlösung im Arbeitsalltag.',
-				icon: MessageCircle
-			},
-			{
 				id: 'kpiplanner',
 				title: 'KPI-Dashboard-Planer',
 				description:
@@ -166,25 +195,11 @@ const cms = {
 				icon: ChartNoAxesColumn
 			},
 			{
-				id: 'kundenbeschwerde',
-				title: 'Kundenbeschwerde E-Mail',
-				description:
-					'Generiert professionelle und einfühlsame Antworten auf Kundenbeschwerden unter Berücksichtigung verschiedener Eskalationsstufen.',
-				icon: Mail
-			},
-			{
 				id: 'motivationsschreiben',
 				title: 'Motivationsschreiben-Generator',
 				description:
 					'Erstellt überzeugende und personalisierte Motivationsschreiben für Bewerbungen, abgestimmt auf Stelle und Unternehmen.',
 				icon: FileText
-			},
-			{
-				id: 'powershell',
-				title: 'PowerShell Generator',
-				description:
-					'Entwickelt maßgeschneiderte PowerShell-Skripte für verschiedene Automatisierungsaufgaben in der IT-Administration.',
-				icon: Terminal
 			},
 			{
 				id: 'praesentation',
@@ -257,25 +272,11 @@ const cms = {
 				icon: AlertTriangle
 			},
 			{
-				id: 'socialmedia',
-				title: 'Social Media Beiträge',
-				description:
-					'Generiert zielgruppengerechte Social-Media-Inhalte mit optimierter Reichweite und Engagement-Potenzial.',
-				icon: Share2
-			},
-			{
 				id: 'problemloeser',
 				title: 'Technischer Problemlöser',
 				description:
 					'Unterstützt bei der systematischen Analyse und Lösung technischer Probleme durch gezielte Fragestellungen und Lösungsvorschläge.',
 				icon: Wrench
-			},
-			{
-				id: 'uebersetzung',
-				title: 'Übersetzung',
-				description:
-					'Bietet präzise Übersetzungen mit Berücksichtigung von Kontext, Fachterminologie und kulturellen Besonderheiten.',
-				icon: Globe
 			},
 			{
 				id: 'vertragsklausel',

@@ -1,15 +1,19 @@
 <script lang="ts">
 	import cms from '$lib/cms.svelte';
 	import NewFeatureBadge from '$lib/components/NewFeatureBadge.svelte';
+
 	let test: HTMLElement;
 </script>
 
 <section bind:this={test} class="hero min-h-svh bg-gradient-to-br from-blue-50 to-white relative overflow-hidden">
 	<!-- Decorative background elements -->
 	<div class="absolute inset-0">
-		<div class="absolute top-0 left-1/2 w-72 h-72 bg-blue-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
-		<div class="absolute top-0 right-1/4 w-72 h-72 bg-purple-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
-		<div class="absolute -bottom-8 left-1/4 w-72 h-72 bg-pink-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+		<div
+			class="absolute top-0 left-1/2 w-72 h-72 bg-blue-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+		<div
+			class="absolute top-0 right-1/4 w-72 h-72 bg-purple-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+		<div
+			class="absolute -bottom-8 left-1/4 w-72 h-72 bg-pink-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
 	</div>
 
 	<!-- Main content -->
@@ -25,14 +29,16 @@
 
 			<!-- CTA Buttons -->
 			<div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-				<button class="btn btn-primary btn-lg px-8">
-					{cms.call}
-				</button>
+				<a href={cms.contactLink}>
+					<button class="btn btn-primary btn-lg px-8">
+						{cms.call}
+					</button>
+				</a>
 				<button
-					onclick={() => window.scrollTo({
+					class="btn btn-outline btn-lg px-8" onclick={() => window.scrollTo({
 						top: window.scrollY + window.innerHeight,
 						behavior: 'smooth'
-					})} class="btn btn-outline btn-lg px-8">
+					})}>
 					{cms.hero.moreInfo}
 				</button>
 			</div>
@@ -42,10 +48,18 @@
 
 <style>
     @keyframes blob {
-        0% { transform: translate(0px, 0px) scale(1); }
-        33% { transform: translate(30px, -50px) scale(1.1); }
-        66% { transform: translate(-20px, 20px) scale(0.9); }
-        100% { transform: translate(0px, 0px) scale(1); }
+        0% {
+            transform: translate(0px, 0px) scale(1);
+        }
+        33% {
+            transform: translate(30px, -50px) scale(1.1);
+        }
+        66% {
+            transform: translate(-20px, 20px) scale(0.9);
+        }
+        100% {
+            transform: translate(0px, 0px) scale(1);
+        }
     }
 
     .animate-blob {

@@ -1,8 +1,19 @@
 <script>
-	import { Check, HelpCircle } from 'lucide-svelte';
+	import { HelpCircle } from 'lucide-svelte';
 	import cms from '$lib/cms.svelte';
 
-	let isAnnual = $state(true);
+	// State für Mitarbeiteranzahl
+	let rangeValue = $state(50); // Startwert
+
+	// Exponentielles Mapping für den Range Slider
+	const employeeCount = $derived(Math.floor(Math.exp(rangeValue / 50) * 100));
+
+	// Berechnung der Mitarbeiterkosten (aufgerundet auf nächste 100)
+	const employeeCost = $derived(Math.ceil(employeeCount / 100) * 100);
+
+	// Gesamtkosten berechnen
+	const monthlyTotal = $derived(299 + employeeCost);
+	const oneTimePrice = 2999;
 </script>
 
 <section id="pricing" class="py-16 bg-base-100">
@@ -10,85 +21,94 @@
 		<!-- Header -->
 		<div class="text-center mb-12">
 			<h2 class="text-3xl font-bold mb-4">{cms.pricing.title}</h2>
-			<p class="text-base-content/70 text-lg max-w-2xl mx-auto mb-8">{cms.pricing.description}</p>
+			<p class="text-base-content/70 text-lg max-w-2xl mx-auto">{cms.pricing.description}</p>
+		</div>
 
-			<!-- Billing Toggle -->
-			<div class="flex items-center justify-center gap-4 mb-8">
-				<button onclick={() => isAnnual = false} class="btn btn-primary btn-sm" class:btn-outline={isAnnual}>{cms.pricing.monthly}</button>
-				<button onclick={() => isAnnual = true} class="btn btn-primary btn-sm" class:btn-outline={!isAnnual}>{cms.pricing.yearlySale}</button>
+		<!-- Employee Range Slider -->
+		<div class="max-w-3xl mx-auto mb-8">
+			<div class="bg-base-200 rounded-box p-6">
+				<label class="form-control w-full">
+					<div class="label">
+						<span class="label-text font-semibold">Anzahl Mitarbeiter: {employeeCount}</span>
+					</div>
+					<input
+						type="range"
+						bind:value={rangeValue}
+						min="0"
+						max="100"
+						class="range range-primary"
+					/>
+					<div class="label">
+						<span class="label-text-alt">0</span>
+						<span class="label-text-alt">1000+</span>
+					</div>
+				</label>
 			</div>
 		</div>
 
-		<!-- Pricing Cards -->
-		<div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-			{#each cms.pricing.plans as plan}
-				<div
-					class="relative rounded-box border border-base-content/10 bg-base-100 hover:shadow-xl transition-shadow duration-300 {plan.popular ? 'ring-2 ring-primary' : ''}">
-					{#if plan.popular}
-						<div class="absolute -top-4 left-1/2 -translate-x-1/2">
-							<span class="badge badge-primary">{cms.pricing.mostPopular}</span>
-						</div>
-					{/if}
+		<!-- Pricing Table -->
+		<div class="max-w-3xl mx-auto">
+			<div class="overflow-hidden rounded-box border border-base-content/10">
+				<table class="w-full">
+					<thead>
+					<tr class="bg-base-200">
+						<th class="px-6 py-3 text-left font-semibold" colspan="3">
+							Enterprise Paket
+						</th>
+					</tr>
+					</thead>
+					<tbody class="divide-y divide-base-content/10">
+					<tr>
+						<td class="px-6 py-4">Software Lizenz</td>
+						<td class="px-6 py-4">Einmalig</td>
+						<td class="px-6 py-4">{oneTimePrice}€</td>
+					</tr>
+					<tr>
+						<td class="px-6 py-4">Hosting der Plattform</td>
+						<td class="px-6 py-4">Monatlich</td>
+						<td class="px-6 py-4">299€</td>
+					</tr>
+					<tr>
+						<td class="px-6 py-4">Usage</td>
+						<td class="px-6 py-4">Monatlich</td>
+						<td class="px-6 py-4">
+							<div>Mitarbeiter ({employeeCount})</div>
+							<div class="text-base-content/70">{employeeCost}€</div>
+						</td>
+					</tr>
+					</tbody>
+					<tfoot class="bg-base-200">
+					<tr>
+						<td class="px-6 py-4 font-semibold">Ihr Gesamtpreis:</td>
+						<td class="px-6 py-4" colspan="2">
+							<div>Einmalig: {oneTimePrice}€</div>
+							<div>Monatlich: {monthlyTotal}€</div>
+						</td>
+					</tr>
+					</tfoot>
+				</table>
+			</div>
 
-					<div class="p-8">
-						<!-- Plan Header -->
-						<h3 class="text-2xl font-bold mb-2">{plan.name}</h3>
-						<p class="text-base-content/70 mb-4">{plan.description}</p>
-
-						<!-- Price -->
-						<div class="mb-6">
-							{#if plan.customPrice}
-								<div class="text-3xl font-bold">{cms.pricing.individual}</div>
-								<div class="text-base-content/70">{cms.pricing.custom}</div>
-							{:else}
-								<div class="text-3xl font-bold">
-									{isAnnual ? plan.annualPrice : plan.monthlyPrice}€
-									<span class="text-base font-normal text-base-content/70">/{cms.pricing.month}</span>
-								</div>
-								{#if isAnnual}
-									<div class="text-sm text-base-content/70">
-										{cms.pricing.ifYearly}
-									</div>
-								{/if}
-							{/if}
-						</div>
-
-						<!-- Features -->
-						<ul class="space-y-4 mb-8">
-							{#each plan.features as feature}
-								<li class="flex items-start gap-2">
-									<Check class="w-5 h-5 text-success flex-shrink-0 mt-0.5" />
-									<span>{feature}</span>
-								</li>
-							{/each}
-						</ul>
-
-						<!-- CTA Button -->
-						<button class="btn {plan.buttonStyle} w-full">{cms.call}</button>
-					</div>
+			<!-- FAQ Section -->
+			<div id="faq" class="mt-16">
+				<div class="flex items-center gap-2 justify-center mb-8">
+					<HelpCircle class="w-5 h-5 text-primary" />
+					<h3 class="text-xl font-bold">{cms.faq.title}</h3>
 				</div>
-			{/each}
-		</div>
 
-		<!-- FAQ Section -->
-		<div id="faq" class="mt-16 max-w-3xl mx-auto">
-			<div class="flex items-center gap-2 justify-center mb-8">
-				<HelpCircle class="w-5 h-5 text-primary" />
-				<h3 class="text-xl font-bold">{cms.faq.title}</h3>
-			</div>
-
-			<div class="join join-vertical w-full">
-				{#each cms.faq.list as faq}
-					<div class="collapse collapse-arrow join-item border border-base-200">
-						<input type="radio" name="faq" />
-						<div class="collapse-title font-medium">
-							{faq.question}
+				<div class="join join-vertical w-full">
+					{#each cms.faq.list as faq}
+						<div class="collapse collapse-arrow join-item border border-base-200">
+							<input type="radio" name="faq" />
+							<div class="collapse-title font-medium">
+								{faq.question}
+							</div>
+							<div class="collapse-content text-base-content/70">
+								<p>{faq.answer}</p>
+							</div>
 						</div>
-						<div class="collapse-content text-base-content/70">
-							<p>{faq.answer}</p>
-						</div>
-					</div>
-				{/each}
+					{/each}
+				</div>
 			</div>
 		</div>
 	</div>

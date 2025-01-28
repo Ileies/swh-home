@@ -18,7 +18,7 @@
 				{#each Object.entries(cms.headerLinks) as [href, text]}
 					<a {href} class="text-gray-600 hover:text-primary transition-colors">{text}</a>
 				{/each}
-				<button class="btn btn-primary">{cms.cta}</button>
+				<a href={cms.contactLink}><button class="btn btn-primary">{cms.cta}</button></a>
 			</div>
 
 			<!-- Mobile Menu Button -->

@@ -3,13 +3,13 @@
 	import cms from '$lib/cms.svelte';
 
 	// State für Mitarbeiteranzahl
-	let rangeValue = $state(50); // Startwert
+	let rangeValue = $state(0); // Startwert
 
 	// Exponentielles Mapping für den Range Slider
-	const employeeCount = $derived(Math.floor(Math.exp(rangeValue / 50) * 100));
+	const employeeCount = $derived(Math.floor(10 * (Math.pow(Math.E, rangeValue / 100 * Math.log(100)) - 1) + 10));
 
 	// Berechnung der Mitarbeiterkosten (aufgerundet auf nächste 100)
-	const employeeCost = $derived(Math.ceil(employeeCount / 100) * 100);
+	const employeeCost = $derived(Math.ceil(employeeCount / 50) * 100);
 
 	// Gesamtkosten berechnen
 	const monthlyTotal = $derived(299 + employeeCost);

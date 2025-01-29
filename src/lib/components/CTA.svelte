@@ -38,7 +38,7 @@
 							</li>
 						{/each}
 					</ul>
-					<a href={cms.contactLink}>
+					<a href={cms.contactLink} target="_blank">
 						<button class="btn btn-primary w-full">
 							{cms.contact.appointment}
 						</button>

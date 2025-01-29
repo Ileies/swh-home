@@ -36,8 +36,8 @@ const cms = {
 		'/#pricing': 'Preise',
 	},
 	hero: {
-		title: 'Revolutioniere deinen Arbeitsalltag mit KI',
-		description: `${PUBLIC_PROJECT_TITLE} automatisiert deine repetitiven Aufgaben mit modernster KI-Technologie. Spare Zeit und fokussiere dich auf das Wesentliche.`,
+		title: 'Revolutioniere den Arbeitsalltag deiner Mitarbeiter mit KI',
+		description: `${PUBLIC_PROJECT_TITLE} automatisiert deine repetitiven Aufgaben mit modernster KI-Technologie. Spare deinen Mitarbeitern Zeit und fokussiere dich auf das Wesentliche.`,
 		newFeature: 'Neu: KI-powered Workflow Automation',
 		moreInfo: 'Mehr erfahren',
 	},
@@ -70,42 +70,55 @@ const cms = {
 		description:
 			'Unsere KI-Module automatisieren Ihre Prozesse, steigern die Produktivität und erschließen neue Geschäftspotenziale.',
 		discoverAll: 'Entdecken Sie alle 27 KI-Module',
-		showcase: ['kichat', 'uebersetzung', 'powershell', 'socialmedia', 'kundenbeschwerde'],
+		showcase: ['kichat', 'uebersetzung', 'powershell', 'socialmedia', 'kundenbeschwerde', 'emailgenerator'],
 		list: [
 			{
 				id: 'kichat',
 				title: 'KI-Chat',
 				description:
 					'Ein vielseitiger KI-Assistent für die direkte Kommunikation und schnelle Problemlösung im Arbeitsalltag.',
-				icon: MessageCircle
+				icon: MessageCircle,
+				inclusive: true
 			},
 			{
 				id: 'uebersetzung',
 				title: 'Übersetzung',
 				description:
 					'Bietet präzise Übersetzungen mit Berücksichtigung von Kontext, Fachterminologie und kulturellen Besonderheiten.',
-				icon: Globe
+				icon: Globe,
+				inclusive: true
 			},
 			{
 				id: 'powershell',
 				title: 'PowerShell Generator',
 				description:
 					'Entwickelt maßgeschneiderte PowerShell-Skripte für verschiedene Automatisierungsaufgaben in der IT-Administration.',
-				icon: Terminal
+				icon: Terminal,
+				inclusive: true
 			},
 			{
 				id: 'socialmedia',
 				title: 'Social Media Beiträge',
 				description:
 					'Generiert zielgruppengerechte Social-Media-Inhalte mit optimierter Reichweite und Engagement-Potenzial.',
-				icon: Share2
+				icon: Share2,
+				inclusive: true
 			},
 			{
 				id: 'kundenbeschwerde',
 				title: 'Kundenbeschwerde E-Mail',
 				description:
 					'Generiert professionelle und einfühlsame Antworten auf Kundenbeschwerden unter Berücksichtigung verschiedener Eskalationsstufen.',
-				icon: Mail
+				icon: Mail,
+				inclusive: true
+			},
+			{
+				id: 'emailgenerator',
+				title: 'Email-Generator',
+				description:
+					'Erstellt professionelle E-Mail-Vorlagen für verschiedene Geschäftssituationen und spart wertvolle Zeit bei der Kommunikation.',
+				icon: Mail,
+				inclusive: true
 			},
 			/*{
 				"id": "basismodul",
@@ -165,13 +178,6 @@ const cms = {
 				description:
 					'Automatisiert die Erstellung technischer Dokumentationen und Anleitungen mit professionellen Templates und strukturierten Inhalten.',
 				icon: FileText
-			},
-			{
-				id: 'emailgenerator',
-				title: 'Email-Generator',
-				description:
-					'Erstellt professionelle E-Mail-Vorlagen für verschiedene Geschäftssituationen und spart wertvolle Zeit bei der Kommunikation.',
-				icon: Mail
 			},
 			{
 				id: 'feedback',
@@ -300,9 +306,9 @@ const cms = {
 		features: [
 			{
 				icon: Shield,
-				title: 'Datenschutz-konform',
+				title: 'Datensicherheit',
 				description:
-					'Alle Module entsprechen der DSGVO und werden ausschließlich in deutschen Rechenzentren gehostet.'
+					'Der Smartworkhub speichert keine Daten und verarbeitet nur die vom Nutzer bereitgestellten Informationen.'
 			},
 			{
 				icon: Lock,
@@ -314,7 +320,8 @@ const cms = {
 				icon: Server,
 				title: 'Lokale Verarbeitung',
 				description:
-					'Sensible Geschäftsdaten verlassen nie Ihre Infrastruktur. Unsere KI-Module können optional auch On-Premises betrieben werden.'
+					'Sensible Geschäftsdaten verlassen nie Ihre Infrastruktur. Unsere KI-Module können optional auch On-Premises betrieben werden.',
+				special: true
 			}
 		]
 	},
@@ -403,19 +410,20 @@ const cms = {
 				links: {
 					'/#features': 'Features',
 					'/#pricing': 'Preise',
+					'/#contact': 'Kontakt', // eig. im zweiten pack
 					//'/#enterprise': 'Enterprise',
 					//'/#updates': 'Updates'
 				}
-			},
+			}/*,
 			{
 				category: 'Support',
 				links: {
-					//'/#docs': 'Dokumentation',
+					'/#docs': 'Dokumentation',
 					'/#contact': 'Kontakt',
 					'/#faq': 'FAQ',
-					//'/#status': 'Status'
+					'/#status': 'Status'
 				}
-			}
+			}*/
 		],
 		bottomLinks: {
 			'/privacy': 'Datenschutz',
@@ -431,7 +439,7 @@ const cms = {
 			title: 'Module'
 		},
 		{
-			metric: '98%',
+			metric: '~90%',
 			title: 'Zeitersparnis'
 		},
 		{

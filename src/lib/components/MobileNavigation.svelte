@@ -13,7 +13,7 @@
 					 onclick={() => isMenuOpen = false}
 				>{link.text}</a>
 			{/each}
-			<button class="btn btn-primary w-full" onclick={() => isMenuOpen = false}>{cms.cta}</button>
+			<a href={cms.contactLink} target="_blank"><button class="btn btn-primary w-full" onclick={() => isMenuOpen = false}>{cms.cta}</button></a>
 		</div>
 	</div>
 {/if}

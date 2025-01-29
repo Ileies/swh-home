@@ -27,7 +27,7 @@
 		<!-- Employee Range Slider -->
 		<div class="max-w-3xl mx-auto mb-8">
 			<div class="bg-base-200 rounded-box p-6">
-				<label class="form-control w-full">
+				<div class="form-control w-full">
 					<div class="label">
 						<span class="label-text font-semibold">Anzahl Mitarbeiter: {employeeCount}</span>
 					</div>
@@ -39,10 +39,10 @@
 						class="range range-primary"
 					/>
 					<div class="label">
-						<span class="label-text-alt">0</span>
+						<span class="label-text-alt">10</span>
 						<span class="label-text-alt">1000+</span>
 					</div>
-				</label>
+				</div>
 			</div>
 		</div>
 
@@ -90,7 +90,7 @@
 			</div>
 
 			<!-- FAQ Section -->
-			<div id="faq" class="mt-16">
+			<!--<div id="faq" class="mt-16">
 				<div class="flex items-center gap-2 justify-center mb-8">
 					<HelpCircle class="w-5 h-5 text-primary" />
 					<h3 class="text-xl font-bold">{cms.faq.title}</h3>
@@ -109,7 +109,7 @@
 						</div>
 					{/each}
 				</div>
-			</div>
+			</div>-->
 		</div>
 	</div>
 </section>

@@ -11,7 +11,12 @@
 
 		<div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
 			{#each cms.privacy.features as feature}
-				<div class="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow duration-300">
+				<div class="card {feature.special ? 'bg-base-300' : 'bg-base-100'} shadow-xl hover:shadow-2xl transition-shadow duration-300">
+					{#if feature.special}
+						<div class="badge bg-base-content text-base-100 text-xs font-semibold uppercase tracking-wide p-4 m-2 rounded-lg">
+							Soon
+						</div>
+					{/if}
 					<div class="card-body items-center text-center">
 						<div class="mb-4">
 							<svelte:component

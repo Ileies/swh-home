@@ -29,7 +29,7 @@
 
 			<!-- CTA Buttons -->
 			<div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-				<a href={cms.contactLink}>
+				<a href={cms.contactLink} target="_blank">
 					<button class="btn btn-primary btn-lg px-8">
 						{cms.call}
 					</button>

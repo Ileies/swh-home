@@ -5,15 +5,15 @@
 	let test: HTMLElement;
 </script>
 
-<section bind:this={test} class="hero min-h-svh bg-gradient-to-br from-blue-50 to-white relative overflow-hidden">
+<section bind:this={test} class="hero min-h-svh bg-gradient-to-br from-primary/10 to-base-100 relative overflow-hidden">
 	<!-- Decorative background elements -->
 	<div class="absolute inset-0">
 		<div
-			class="absolute top-0 left-1/2 w-72 h-72 bg-blue-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+			class="absolute top-0 left-1/2 w-72 h-72 bg-primary/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
 		<div
-			class="absolute top-0 right-1/4 w-72 h-72 bg-purple-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+			class="absolute top-0 right-1/4 w-72 h-72 bg-secondary/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
 		<div
-			class="absolute -bottom-8 left-1/4 w-72 h-72 bg-pink-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+			class="absolute -bottom-8 left-1/4 w-72 h-72 bg-accent/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
 	</div>
 
 	<!-- Main content -->

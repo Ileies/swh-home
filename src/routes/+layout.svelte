@@ -2,24 +2,44 @@
 	import '../app.css';
 	import Header from '$lib/components/Header.svelte';
 	import Footer from '$lib/components/Footer.svelte';
-	import { PUBLIC_PROJECT_TITLE, PUBLIC_KEYWORDS } from '$env/static/public';
-	//import { page } from '$app/state';
+	import {
+		PUBLIC_PROJECT_TITLE,
+		PUBLIC_KEYWORDS,
+		PUBLIC_PROJECT_DESCRIPTION,
+		PUBLIC_ORIGIN
+	} from '$env/static/public';
+	import { page } from '$app/state';
 
 	let { children } = $props();
+
+	const canonicalUrl = $derived(`${PUBLIC_ORIGIN}${page.url.pathname}`);
+	const ogImageUrl = $derived(`${PUBLIC_ORIGIN}/og-image.png`);
 </script>
 
 <svelte:head>
-	<meta content={PUBLIC_PROJECT_TITLE} name="application-name" />
-	<meta content={PUBLIC_KEYWORDS} name="keywords" />
-	<meta content="noindex, nofollow" name="robots">
-	<!--<meta content={page.data.seo.pageTitle} name="og:title">-->
-	<meta content={PUBLIC_PROJECT_TITLE} name="og:site_name">
-	<!--<meta content={page.data.seo.ogUrl} name="og:url">
-	<meta content={page.data.seo.ogImage} name="og:image">-->
-	<meta content="website" name="og:type">
-	<!--<meta content={page.data.seo.pageDescription} name="og:description">-->
-	<meta content="de_DE" name="og:locale">
-	<!--<title>{page.data.seo.pageTitle}</title>-->
+	<meta name="description" content={PUBLIC_PROJECT_DESCRIPTION} />
+	<meta name="application-name" content={PUBLIC_PROJECT_TITLE} />
+	<meta name="keywords" content={PUBLIC_KEYWORDS} />
+	<link rel="canonical" href={canonicalUrl} />
+
+	<!-- Open Graph -->
+	<meta property="og:site_name" content={PUBLIC_PROJECT_TITLE} />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content={canonicalUrl} />
+	<meta property="og:title" content={PUBLIC_PROJECT_TITLE} />
+	<meta property="og:description" content={PUBLIC_PROJECT_DESCRIPTION} />
+	<meta property="og:image" content={ogImageUrl} />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	<meta property="og:image:alt" content="{PUBLIC_PROJECT_TITLE} – KI-Automatisierung für Unternehmen" />
+	<meta property="og:locale" content="de_DE" />
+
+	<!-- Twitter Card -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content={PUBLIC_PROJECT_TITLE} />
+	<meta name="twitter:description" content={PUBLIC_PROJECT_DESCRIPTION} />
+	<meta name="twitter:image" content={ogImageUrl} />
+	<meta name="twitter:image:alt" content="{PUBLIC_PROJECT_TITLE} – KI-Automatisierung für Unternehmen" />
 </svelte:head>
 
 <Header />

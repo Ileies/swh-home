@@ -1,3 +1,8 @@
+<svelte:head>
+	<title>AGB – SmartWorkHub</title>
+	<meta name="robots" content="noindex, nofollow" />
+</svelte:head>
+
 <section class="py-16 mt-12">
 	<div class="container mx-auto px-4">
 		<div class="max-w-3xl mx-auto space-y-4">

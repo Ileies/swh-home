@@ -2,6 +2,11 @@
 	import { Home, ArrowLeft, Bot } from 'lucide-svelte';
 </script>
 
+<svelte:head>
+	<title>404 – Seite nicht gefunden | SmartWorkHub</title>
+	<meta name="robots" content="noindex, nofollow" />
+</svelte:head>
+
 <div class="h-screen flex flex-col overflow-hidden">
 	<main class="flex-grow flex items-center justify-center py-16 px-4">
 		<div class="max-w-2xl w-full text-center">

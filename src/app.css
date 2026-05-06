@@ -4,6 +4,7 @@
 
 html {
   scroll-padding-top: 72px;
+  scroll-behavior: smooth;
 }
 
 input[type="range"]::-webkit-slider-thumb {

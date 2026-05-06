@@ -29,19 +29,18 @@
 
 			<!-- CTA Buttons -->
 			<div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-				<a href={cms.contactLink} target="_blank">
+				<a href={cms.demoUrl} target="_blank">
 					<button class="btn btn-primary btn-lg px-8">
+						Live Demo starten
+					</button>
+				</a>
+				<a href={cms.contactLink} target="_blank">
+					<button class="btn btn-outline btn-lg px-8">
 						{cms.call}
 					</button>
 				</a>
-				<button
-					class="btn btn-outline btn-lg px-8" onclick={() => window.scrollTo({
-						top: window.scrollY + window.innerHeight,
-						behavior: 'smooth'
-					})}>
-					{cms.hero.moreInfo}
-				</button>
 			</div>
+			<p class="text-sm text-gray-500 mt-4">Keine Registrierung · Keine Kreditkarte</p>
 		</div>
 	</div>
 </section>

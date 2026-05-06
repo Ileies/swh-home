@@ -6,6 +6,7 @@
 	import Pricing from '$lib/components/Pricing.svelte';
 	import { PUBLIC_PROJECT_TITLE, PUBLIC_PROJECT_DESCRIPTION, PUBLIC_ORIGIN } from '$env/static/public';
 	import Hero from '$lib/components/Hero.svelte';
+	import DemoShowcase from '$lib/components/DemoShowcase.svelte';
 
 	const jsonLdOrganization = {
 		'@context': 'https://schema.org',
@@ -60,7 +61,27 @@
 			'E-Mail Generator',
 			'Angebotsgenerator',
 			'Dokumentations-Generator',
-			'Prozessanalyse'
+			'Prozessanalyse',
+			'Präsentations-Outline-Builder',
+			'Projektplan Generator',
+			'Rechtschreib- und Grammatikkorrektur',
+			'Budget-Planungs-Assistent',
+			'Change-Management-Kommunikationsplaner',
+			'Compliance-Checklisten-Generator',
+			'Feedbackformular-Generator',
+			'Interview-Fragen-Generator',
+			'KPI-Dashboard-Planer',
+			'Motivationsschreiben-Generator',
+			'Produktbeschreibungs-Optimierer',
+			'Prozess-Dokumentations-Wizard',
+			'Prüfung Generator',
+			'Recherche-Zusammenfassung',
+			'Risikomanagement-Matrix',
+			'Technischer Problemlöser',
+			'Vertragsklausel-Generator',
+			'Wartungsprotokoll-Generator',
+			'Kundenbeschwerde E-Mail',
+			'Prozessanalyse Assistent'
 		]
 	};
 </script>
@@ -73,6 +94,7 @@
 </svelte:head>
 
 <Hero />
+<DemoShowcase />
 <div class="h-1 w-full bg-accent"></div>
 <Description />
 <div class="h-1 w-full bg-accent"></div>

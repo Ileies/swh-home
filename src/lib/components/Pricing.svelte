@@ -90,7 +90,7 @@
 			</div>
 
 			<!-- FAQ Section -->
-			<!--<div id="faq" class="mt-16">
+			<div id="faq" class="mt-16">
 				<div class="flex items-center gap-2 justify-center mb-8">
 					<HelpCircle class="w-5 h-5 text-primary" />
 					<h3 class="text-xl font-bold">{cms.faq.title}</h3>
@@ -109,7 +109,7 @@
 						</div>
 					{/each}
 				</div>
-			</div>-->
+			</div>
 		</div>
 	</div>
 </section>

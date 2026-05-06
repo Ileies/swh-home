@@ -43,6 +43,11 @@
 							{cms.contact.appointment}
 						</button>
 					</a>
+					<a href={cms.demoUrl} target="_blank">
+						<button class="btn btn-outline w-full mt-3">
+							Live Demo starten
+						</button>
+					</a>
 					<p class="text-xs text-center mt-4 text-base-content/70">
 						{cms.contact.slogan}
 					</p>

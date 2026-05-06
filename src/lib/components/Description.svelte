@@ -13,11 +13,9 @@
 		<!-- Benefits -->
 		<div class="flex flex-col md:flex-row gap-16 max-w-5xl mx-auto">
 			{#each cms.description.benefits as benefit}
+				{@const Icon = benefit.icon}
 				<div class="flex-1">
-					<svelte:component
-						this={benefit.icon}
-						class="w-8 h-8 text-primary mb-6"
-					/>
+					<Icon class="w-8 h-8 text-primary mb-6" />
 					<h3 class="text-xl font-bold mb-3">{benefit.title}</h3>
 					<p class="text-base-content/70 leading-relaxed">
 						{benefit.description}

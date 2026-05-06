@@ -1,6 +1,5 @@
 <script>
 	import { PUBLIC_PROJECT_TITLE } from '$env/static/public';
-	import { Sun, Moon } from 'lucide-svelte';
 	import cms from '$lib/cms.svelte';
 	import MobileNavigation from '$lib/components/MobileNavigation.svelte';
 	let isMenuOpen = $state(false);
@@ -19,6 +18,7 @@
 				{#each Object.entries(cms.headerLinks) as [href, text]}
 					<a {href} class="text-base-content hover:text-primary transition-colors">{text}</a>
 				{/each}
+				<a href={cms.demoUrl} target="_blank"><button class="btn btn-outline">Live Demo</button></a>
 				<a href={cms.contactLink} target="_blank"><button class="btn btn-primary">{cms.cta}</button></a>
 			</div>
 
@@ -52,12 +52,6 @@
 				</svg>
 			</button>
 
-			<!-- Theme Switcher -->
-			<label class="swap swap-rotate">
-				<input type="checkbox" class="theme-controller" value="dark" />
-				<Sun class="swap-off" size=24 />
-				<Moon class="swap-on" size=24 />
-			</label>
 		</nav>
 
 		<!-- Mobile Navigation -->

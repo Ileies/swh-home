@@ -30,15 +30,16 @@ import {
 
 const cms = {
 	contactLink: 'https://outlook.office.com/bookwithme/user/c55d7df6bf0a4764adc1cb9f1e16671d@offlimits-it.com/meetingtype/7IJ2G8BNa0-E4n8us68ZPQ2?anonymous&ep=mcard',
+	demoUrl: 'https://demo.smartworkhub.de',
 	headerLinks: {
 		'/#features': 'Features',
 		'/#modules': 'KI-Module',
 		'/#pricing': 'Preise',
 	},
 	hero: {
-		title: 'Revolutioniere den Arbeitsalltag deiner Mitarbeiter mit KI',
-		description: `${PUBLIC_PROJECT_TITLE} automatisiert deine repetitiven Aufgaben mit modernster KI-Technologie. Spare deinen Mitarbeitern Zeit und fokussiere dich auf das Wesentliche.`,
-		newFeature: 'Neu: KI-powered Workflow Automation',
+		title: 'Revolutionieren Sie den Arbeitsalltag Ihrer Mitarbeiter mit KI',
+		description: `${PUBLIC_PROJECT_TITLE} automatisiert Ihre repetitiven Aufgaben mit modernster KI-Technologie. Sparen Sie Ihren Mitarbeitern Zeit und fokussieren Sie sich auf das Wesentliche.`,
+		newFeature: 'Neu: Live Demo verfügbar - jetzt ausprobieren',
 		moreInfo: 'Mehr erfahren',
 	},
 	description: {
@@ -47,7 +48,7 @@ const cms = {
 				icon: Zap,
 				title: 'Sofort einsetzbar',
 				description:
-					'Alle KI-Module sind sofort und ohne Installation nutzbar. Einfache Integration in bestehende Workflows durch standardisierte APIs.'
+					'Alle KI-Module sind sofort einsatzbereit – in Ihrer Infrastruktur betrieben, kein Datenverlust durch Drittanbieter.'
 			},
 			{
 				icon: Clock,
@@ -57,9 +58,9 @@ const cms = {
 			},
 			{
 				icon: ChartBar,
-				title: 'Effizienz steigern',
+				title: 'Dedizierte Instanz',
 				description:
-					'Steigern Sie die Produktivität Ihres Teams messbar. Unsere KI-Module lernen kontinuierlich und werden immer effizienter.'
+					'Jedes Unternehmen erhält eine eigene, isolierte Umgebung. Ihre Daten bleiben Ihre Daten – kein Shared Hosting, keine Datenvermischung.'
 			}
 		],
 		title: 'Intelligente Automatisierung für Ihr Unternehmen',
@@ -69,8 +70,8 @@ const cms = {
 		title: 'KI-Power für Ihr Business',
 		description:
 			'Unsere KI-Module automatisieren Ihre Prozesse, steigern die Produktivität und erschließen neue Geschäftspotenziale.',
-		discoverAll: 'Entdecken Sie alle 27 KI-Module',
-		showcase: ['kichat', 'uebersetzung', 'powershell', 'socialmedia', 'kundenbeschwerde', 'emailgenerator'],
+		discoverAll: 'Entdecken Sie alle 40 KI-Module',
+		showcase: ['uebersetzung', 'emailgenerator', 'praesentation', 'projektplan', 'rechtschreibung', 'dokumentation'],
 		list: [
 			{
 				id: 'kichat',
@@ -328,7 +329,7 @@ const cms = {
 	pricing: {
 		title: 'Transparente Preise für jede Unternehmensgröße',
 		description:
-			'Wählen Sie den passenden Tarif für Ihr Unternehmen. Alle Pläne beinhalten eine 14-tägige kostenlose Testphase.',
+			'Wählen Sie den passenden Tarif für Ihr Unternehmen. Transparente Preise, keine versteckten Kosten.',
 		mostPopular: 'Beliebteste Wahl',
 		month: 'Monat',
 		monthly: 'Monatlich',
@@ -388,7 +389,7 @@ const cms = {
 	contact: {
 		title: 'Steigern Sie Ihre Produktivität mit KI',
 		description:
-			'Starten Sie jetzt Ihre 14-tägige kostenlose Testphase und erleben Sie den Unterschied.',
+			'Erleben Sie die Plattform live - ohne Registrierung, ohne Kreditkarte.',
 		appointment: 'Jetzt Termin vereinbaren',
 		slogan: 'Individuell und unverbindlich',
 		solutions: [
@@ -435,7 +436,7 @@ const cms = {
 
 	stats: [
 		{
-			metric: '27',
+			metric: '40+',
 			title: 'Module'
 		},
 		{

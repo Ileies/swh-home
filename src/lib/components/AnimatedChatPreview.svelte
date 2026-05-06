@@ -1,117 +1,252 @@
 <script lang="ts">
 	import { onMount, onDestroy } from 'svelte';
 
-	interface UseCase {
-		moduleId: string;
-		moduleLabel: string;
-		moduleIcon: string;
-		userMessage: string;
-		aiResponse: string;
+	interface Props {
+		demo: 'chat-vector' | 'form-agent' | 'builder';
 	}
 
-	const useCases: UseCase[] = [
-		{
-			moduleId: 'meetingprotokoll',
-			moduleLabel: 'Meeting-Protokoll',
-			moduleIcon: '📋',
-			userMessage: 'Erstelle ein Protokoll: Teams-Meeting Projektstand Website-Relaunch, 45 Min, Teilnehmer: Anna, Ben, Clara. Ergebnis: Launch verschoben auf 15. Juni, Ben übernimmt Landingpage.',
-			aiResponse: '**Meeting-Protokoll**\n📅 Datum: ' + new Date().toLocaleDateString('de-DE') + '\n👥 Teilnehmer: Anna, Ben, Clara\n\n**Beschlüsse:**\n- Launch-Termin verschoben auf 15. Juni\n- Ben verantwortlich für Landingpage\n\n**Nächste Schritte:**\n- Ben: Landingpage bis 8. Juni\n- Anna: Freigabe Texte bis 5. Juni'
-		},
-		{
-			moduleId: 'email',
-			moduleLabel: 'E-Mail Generator',
-			moduleIcon: '✉️',
-			userMessage: 'Schreibe eine professionelle Absage an Bewerber Max Müller für die Stelle als Projektleiter. Freundlich, mit Dank für das Interesse.',
-			aiResponse: 'Betreff: Ihre Bewerbung als Projektleiter\n\nSehr geehrter Herr Müller,\n\nvielen Dank für Ihr Interesse und die Zeit, die Sie in Ihre Bewerbung investiert haben. Nach sorgfältiger Prüfung müssen wir Ihnen leider mitteilen, dass wir uns für einen anderen Kandidaten entschieden haben.\n\nWir wünschen Ihnen für Ihren weiteren Berufsweg alles Gute.\n\nMit freundlichen Grüßen'
-		},
-		{
-			moduleId: 'uebersetzung',
-			moduleLabel: 'Übersetzung',
-			moduleIcon: '🌐',
-			userMessage: "Übersetze ins Englische, professionell: 'Wir freuen uns, Ihnen mitteilen zu können, dass Ihr Angebot angenommen wurde. Die Vertragsunterlagen erhalten Sie in Kürze.'",
-			aiResponse: "We are pleased to inform you that your offer has been accepted. You will receive the contract documents shortly.\n\n*Übersetzungshinweis: 'in Kürze' wurde als 'shortly' übersetzt – alternativ auch 'in the near future' für formellere Kontexte.*"
-		}
-	];
+	const { demo }: Props = $props();
 
-	const sidebarModules = [
-		{ id: 'meetingprotokoll', label: 'Protokoll', icon: '📋' },
-		{ id: 'email', label: 'E-Mail', icon: '✉️' },
-		{ id: 'uebersetzung', label: 'Übersetzung', icon: '🌐' },
-		{ id: 'projektplan', label: 'Projektplan', icon: '📊' },
-	];
-
-	let currentCaseIndex = $state(0);
-	let phase = $state<'typing-user' | 'loading' | 'streaming-ai' | 'pause'>('pause');
-	let displayedUserMessage = $state('');
-	let displayedAiResponse = $state('');
-	let isVisible = $state(false);
 	let containerEl: HTMLDivElement;
+	let isVisible = $state(false);
 	let prefersReducedMotion = $state(false);
-
-	let timeoutId: ReturnType<typeof setTimeout> | null = null;
-	let intervalId: ReturnType<typeof setInterval> | null = null;
 	let observer: IntersectionObserver;
+	let timers: ReturnType<typeof setTimeout>[] = [];
 
 	function clearTimers() {
-		if (timeoutId) { clearTimeout(timeoutId); timeoutId = null; }
-		if (intervalId) { clearInterval(intervalId); intervalId = null; }
+		timers.forEach((id) => clearTimeout(id));
+		timers = [];
 	}
 
-	function showStaticState() {
-		const uc = useCases[0];
-		displayedUserMessage = uc.userMessage;
-		displayedAiResponse = uc.aiResponse;
-		phase = 'pause';
+	function later(ms: number, fn: () => void): void {
+		const id = setTimeout(fn, ms);
+		timers.push(id);
 	}
 
-	function runCase(index: number) {
-		const uc = useCases[index];
-		displayedUserMessage = '';
-		displayedAiResponse = '';
-		phase = 'typing-user';
-
-		let charIndex = 0;
-		intervalId = setInterval(() => {
-			charIndex++;
-			displayedUserMessage = uc.userMessage.slice(0, charIndex);
-			if (charIndex >= uc.userMessage.length) {
-				clearTimers();
-				phase = 'loading';
-				timeoutId = setTimeout(() => {
-					phase = 'streaming-ai';
-					let aiChar = 0;
-					intervalId = setInterval(() => {
-						aiChar++;
-						displayedAiResponse = uc.aiResponse.slice(0, aiChar);
-						if (aiChar >= uc.aiResponse.length) {
-							clearTimers();
-							phase = 'pause';
-							timeoutId = setTimeout(() => {
-								currentCaseIndex = (index + 1) % useCases.length;
-								runCase(currentCaseIndex);
-							}, 3000);
-						}
-					}, 18);
-				}, 1200);
+	function typeText(
+		target: string,
+		setter: (s: string) => void,
+		speed: number,
+		done: () => void
+	): void {
+		let i = 0;
+		const id = setInterval(() => {
+			i++;
+			setter(target.slice(0, i));
+			if (i >= target.length) {
+				clearInterval(id);
+				done();
 			}
-		}, 28);
+		}, speed) as unknown as ReturnType<typeof setTimeout>;
+		timers.push(id);
+	}
+
+	// =====================
+	// Demo 1: Chat + Vector Store
+	// =====================
+	type ChatPhase = 'idle' | 'typing-user' | 'file-search' | 'streaming-ai' | 'pause';
+	let chatPhase = $state<ChatPhase>('idle');
+	let chatUserText = $state('');
+	let chatAiText = $state('');
+
+	const CHAT_USER =
+		'Wie lange ist die Kündigungsfrist nach 10 Jahren Betriebszugehörigkeit?';
+	const CHAT_AI =
+		'Laut Kap. 4.2 des Mitarbeiterhandbuchs gilt:\n\nAb 10 Jahren: 3 Monate zum Monatsende.\n\n[Quelle: HR-Handbuch, S. 47]';
+
+	function runChat(restart = false) {
+		if (restart) {
+			chatUserText = '';
+			chatAiText = '';
+		}
+		chatPhase = 'typing-user';
+		typeText(CHAT_USER, (s) => (chatUserText = s), 26, () => {
+			chatPhase = 'file-search';
+			later(1900, () => {
+				chatPhase = 'streaming-ai';
+				typeText(CHAT_AI, (s) => (chatAiText = s), 15, () => {
+					chatPhase = 'pause';
+					later(4500, () => runChat(true));
+				});
+			});
+		});
+	}
+
+	// =====================
+	// Demo 2: Form Agent
+	// =====================
+	type FormPhase =
+		| 'idle'
+		| 'focus-datum'
+		| 'focus-teilnehmer'
+		| 'focus-stichpunkte'
+		| 'submitting'
+		| 'loading'
+		| 'streaming'
+		| 'pause';
+	let formPhase = $state<FormPhase>('idle');
+	let formDatum = $state('');
+	let formTeilnehmer = $state('');
+	let formStichpunkte = $state('');
+	let formResult = $state('');
+	let activeField = $state<string | null>(null);
+
+	const FORM_DATUM = '06.05.2026';
+	const FORM_TEILNEHMER = 'Anna M., Ben K., Tom S.';
+	const FORM_STICHPUNKTE = 'Launch auf 15. Juni verschoben\nBen: Landingpage\nBudget im Plan';
+	const FORM_RESULT =
+		'MEETING-PROTOKOLL - 06.05.2026\nAnna M., Ben K., Tom S.\n\nBeschlüsse:\n- Launch-Termin: 15. Juni\n- Landingpage: Ben K.\n\nAufgaben:\n- Ben K.: bis 08.06.\n- Anna M.: Freigabe bis 05.06.';
+
+	const isFormInput = $derived(
+		formPhase === 'idle' ||
+			formPhase === 'focus-datum' ||
+			formPhase === 'focus-teilnehmer' ||
+			formPhase === 'focus-stichpunkte' ||
+			formPhase === 'submitting'
+	);
+
+	function runForm(restart = false) {
+		if (restart) {
+			formDatum = '';
+			formTeilnehmer = '';
+			formStichpunkte = '';
+			formResult = '';
+		}
+		activeField = 'datum';
+		formPhase = 'focus-datum';
+		later(200, () => {
+			typeText(FORM_DATUM, (s) => (formDatum = s), 55, () => {
+				activeField = 'teilnehmer';
+				formPhase = 'focus-teilnehmer';
+				later(250, () => {
+					typeText(FORM_TEILNEHMER, (s) => (formTeilnehmer = s), 36, () => {
+						activeField = 'stichpunkte';
+						formPhase = 'focus-stichpunkte';
+						later(250, () => {
+							typeText(FORM_STICHPUNKTE, (s) => (formStichpunkte = s), 26, () => {
+								activeField = null;
+								formPhase = 'submitting';
+								later(700, () => {
+									formPhase = 'loading';
+									later(1400, () => {
+										formPhase = 'streaming';
+										typeText(FORM_RESULT, (s) => (formResult = s), 14, () => {
+											formPhase = 'pause';
+											later(4500, () => runForm(true));
+										});
+									});
+								});
+							});
+						});
+					});
+				});
+			});
+		});
+	}
+
+	// =====================
+	// Demo 3: Module Builder
+	// =====================
+	type BuilderPhase =
+		| 'idle'
+		| 'typing-name'
+		| 'typing-desc'
+		| 'adding-fields'
+		| 'saving'
+		| 'success'
+		| 'pause';
+	let builderPhase = $state<BuilderPhase>('idle');
+	let builderName = $state('');
+	let builderDesc = $state('');
+	let builderFields = $state<string[]>([]);
+	let builderActiveField = $state<string | null>(null);
+	let builderSaved = $state(false);
+
+	const BUILDER_NAME = 'Angebots-Generator';
+	const BUILDER_DESC = 'Erstellt professionelle Angebote';
+	const BUILDER_FIELDS = ['Produkt / Dienstleistung', 'Kundenwunsch', 'Budget-Rahmen'];
+
+	function runBuilder(restart = false) {
+		if (restart) {
+			builderName = '';
+			builderDesc = '';
+			builderFields = [];
+			builderSaved = false;
+		}
+		builderActiveField = 'name';
+		builderPhase = 'typing-name';
+		later(200, () => {
+			typeText(BUILDER_NAME, (s) => (builderName = s), 46, () => {
+				builderActiveField = 'desc';
+				builderPhase = 'typing-desc';
+				later(300, () => {
+					typeText(BUILDER_DESC, (s) => (builderDesc = s), 36, () => {
+						builderActiveField = null;
+						builderPhase = 'adding-fields';
+						later(500, () => {
+							builderFields = [BUILDER_FIELDS[0]];
+							later(650, () => {
+								builderFields = [BUILDER_FIELDS[0], BUILDER_FIELDS[1]];
+								later(650, () => {
+									builderFields = BUILDER_FIELDS.slice();
+									builderPhase = 'saving';
+									later(700, () => {
+										builderSaved = true;
+										builderPhase = 'success';
+										later(3800, () => {
+											builderSaved = false;
+											runBuilder(true);
+										});
+									});
+								});
+							});
+						});
+					});
+				});
+			});
+		});
+	}
+
+	// =====================
+	// Lifecycle
+	// =====================
+	function startAnimation() {
+		if (demo === 'chat-vector') runChat();
+		else if (demo === 'form-agent') runForm();
+		else runBuilder();
+	}
+
+	function showStatic() {
+		if (demo === 'chat-vector') {
+			chatUserText = CHAT_USER;
+			chatAiText = CHAT_AI;
+			chatPhase = 'pause';
+		} else if (demo === 'form-agent') {
+			formDatum = FORM_DATUM;
+			formTeilnehmer = FORM_TEILNEHMER;
+			formStichpunkte = FORM_STICHPUNKTE;
+			formResult = FORM_RESULT;
+			formPhase = 'pause';
+		} else {
+			builderName = BUILDER_NAME;
+			builderDesc = BUILDER_DESC;
+			builderFields = BUILDER_FIELDS.slice();
+			builderSaved = true;
+			builderPhase = 'success';
+		}
 	}
 
 	onMount(() => {
 		prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
 		observer = new IntersectionObserver(
 			(entries) => {
 				if (entries[0].isIntersecting && !isVisible) {
 					isVisible = true;
-					if (prefersReducedMotion) {
-						showStaticState();
-					} else {
-						timeoutId = setTimeout(() => runCase(0), 600);
-					}
+					if (prefersReducedMotion) showStatic();
+					else later(350, startAnimation);
 				}
 			},
-			{ threshold: 0.3 }
+			{ threshold: 0.2 }
 		);
 		if (containerEl) observer.observe(containerEl);
 	});
@@ -121,129 +256,245 @@
 		if (observer) observer.disconnect();
 	});
 
-	const currentCase = $derived(useCases[currentCaseIndex]);
+	const chatSidebar = [
+		{ icon: '📚', label: 'HR-Handbuch' },
+		{ icon: '🔧', label: 'IT-Richtlinien' },
+		{ icon: '⚖️', label: 'Compliance' },
+		{ icon: '📦', label: 'Produktkatalog' }
+	];
+
+	const formSidebar = [
+		{ icon: '📋', label: 'Protokoll' },
+		{ icon: '✉️', label: 'E-Mail' },
+		{ icon: '🌐', label: 'Übersetzung' },
+		{ icon: '📊', label: 'Planung' }
+	];
 </script>
 
-<div bind:this={containerEl} class="w-full max-w-3xl mx-auto">
+<div bind:this={containerEl} class="w-full">
+	<div class="rounded-2xl overflow-hidden border border-base-content/10 shadow-xl bg-base-100">
 
-	<!-- Desktop: Two-panel layout -->
-	<div class="hidden md:flex rounded-2xl overflow-hidden border border-base-content/10 shadow-2xl bg-base-100">
-		<!-- Sidebar -->
-		<div class="w-16 bg-base-300 flex flex-col items-center py-4 gap-3">
-			{#each sidebarModules as mod}
-				<div
-					class="w-10 h-10 rounded-xl flex items-center justify-center text-lg transition-all duration-300 cursor-default
-						{currentCase.moduleId === mod.id ? 'bg-primary shadow-md scale-110' : 'bg-base-200 opacity-60'}"
-					title={mod.label}
-				>
-					{mod.icon}
-				</div>
-			{/each}
+		<!-- Browser chrome -->
+		<div class="bg-base-300 px-3 py-2 flex items-center gap-2 border-b border-base-content/10">
+			<div class="flex gap-1.5 shrink-0">
+				<div class="w-2.5 h-2.5 rounded-full bg-error/50"></div>
+				<div class="w-2.5 h-2.5 rounded-full bg-warning/50"></div>
+				<div class="w-2.5 h-2.5 rounded-full bg-success/50"></div>
+			</div>
+			<div class="flex-1 bg-base-100 rounded-full px-3 py-0.5 text-[11px] text-base-content/50 text-center truncate">
+				{demo === 'builder' ? 'demo.smartworkhub.de/builder' : 'demo.smartworkhub.de'}
+			</div>
 		</div>
 
-		<!-- Chat area -->
-		<div class="flex-1 flex flex-col">
-			<!-- Browser chrome -->
-			<div class="bg-base-200 px-4 py-2 flex items-center gap-2 border-b border-base-content/10">
-				<div class="flex gap-1.5">
-					<div class="w-3 h-3 rounded-full bg-error/50"></div>
-					<div class="w-3 h-3 rounded-full bg-warning/50"></div>
-					<div class="w-3 h-3 rounded-full bg-success/50"></div>
-				</div>
-				<div class="flex-1 bg-base-100 rounded-full px-3 py-0.5 text-xs text-base-content/50 text-center">
-					demo.smartworkhub.de
-				</div>
+		{#if demo === 'chat-vector'}
+		<!-- ====== CHAT + VECTOR STORE ====== -->
+		<div class="flex h-[380px]">
+
+			<!-- Sidebar -->
+			<div class="w-12 md:w-14 bg-base-200 flex flex-col items-center py-3 gap-2.5 border-r border-base-content/10 shrink-0">
+				{#each chatSidebar as mod, i}
+					<div
+						title={mod.label}
+						class="w-9 h-9 rounded-xl flex items-center justify-center text-sm transition-all duration-300
+							{i === 0 ? 'bg-primary shadow-md' : 'bg-base-100 opacity-50'}"
+					>{mod.icon}</div>
+				{/each}
 			</div>
 
-			<!-- Module header -->
-			<div class="px-4 py-2 border-b border-base-content/10 flex items-center gap-2">
-				<span class="text-base">{currentCase.moduleIcon}</span>
-				<span class="font-medium text-sm">{currentCase.moduleLabel}</span>
-			</div>
+			<!-- Chat area -->
+			<div class="flex-1 flex flex-col min-w-0">
+				<!-- Module header -->
+				<div class="px-3 py-2 border-b border-base-content/10 flex items-center gap-2">
+					<span class="text-sm">📚</span>
+					<span class="font-semibold text-sm truncate">HR-Handbuch-Assistent</span>
+					<span class="ml-auto text-[10px] text-success flex items-center gap-1 shrink-0 hidden sm:flex">
+						<span class="w-1.5 h-1.5 rounded-full bg-success inline-block"></span>
+						Vector Store
+					</span>
+				</div>
 
-			<!-- Messages -->
-			<div class="flex-1 p-4 space-y-3 min-h-[220px] overflow-hidden">
-				{#if displayedUserMessage}
-					<div class="flex justify-end">
-						<div class="bg-primary text-primary-content rounded-2xl rounded-tr-sm px-4 py-2 max-w-[80%] text-sm leading-relaxed">
-							{displayedUserMessage}{#if phase === 'typing-user'}<span class="inline-block w-0.5 h-4 bg-primary-content/70 ml-0.5 animate-pulse"></span>{/if}
+				<!-- Messages -->
+				<div class="flex-1 p-3 space-y-2.5 overflow-hidden">
+					{#if chatUserText}
+						<div class="flex justify-end">
+							<div class="bg-primary text-primary-content rounded-2xl rounded-tr-sm px-3 py-2 max-w-[82%] text-xs leading-relaxed">
+								{chatUserText}{#if chatPhase === 'typing-user'}<span class="inline-block w-px h-3.5 bg-primary-content/80 ml-px animate-pulse"></span>{/if}
+							</div>
 						</div>
-					</div>
-				{/if}
+					{/if}
 
-				{#if phase === 'loading'}
-					<div class="flex justify-start">
-						<div class="bg-base-200 rounded-2xl rounded-tl-sm px-4 py-3">
-							<div class="flex gap-1">
+					{#if chatPhase === 'file-search'}
+						<div class="flex justify-start">
+							<div class="bg-warning/10 border border-warning/30 text-warning-content rounded-2xl rounded-tl-sm px-3 py-1.5 text-xs flex items-center gap-2">
+								<span class="w-3.5 h-3.5 border-2 border-warning border-t-transparent rounded-full animate-spin shrink-0"></span>
+								<span class="text-base-content/70">Durchsuche HR-Handbuch...</span>
+							</div>
+						</div>
+					{/if}
+
+					{#if chatAiText}
+						<div class="flex justify-start">
+							<div class="bg-base-200 rounded-2xl rounded-tl-sm px-3 py-2 max-w-[85%] text-xs leading-relaxed whitespace-pre-line">
+								{chatAiText}{#if chatPhase === 'streaming-ai'}<span class="inline-block w-px h-3.5 bg-base-content/70 ml-px animate-pulse"></span>{/if}
+							</div>
+						</div>
+					{/if}
+				</div>
+
+				<!-- Input bar -->
+				<div class="px-3 py-2.5 border-t border-base-content/10">
+					<div class="bg-base-200 rounded-full px-3 py-1.5 text-xs text-base-content/30">
+						Nachricht eingeben...
+					</div>
+				</div>
+			</div>
+		</div>
+
+		{:else if demo === 'form-agent'}
+		<!-- ====== FORM AGENT ====== -->
+		<div class="flex h-[380px]">
+
+			<!-- Sidebar -->
+			<div class="w-12 md:w-14 bg-base-200 flex flex-col items-center py-3 gap-2.5 border-r border-base-content/10 shrink-0">
+				{#each formSidebar as mod, i}
+					<div
+						title={mod.label}
+						class="w-9 h-9 rounded-xl flex items-center justify-center text-sm transition-all duration-300
+							{i === 0 ? 'bg-primary shadow-md' : 'bg-base-100 opacity-50'}"
+					>{mod.icon}</div>
+				{/each}
+			</div>
+
+			<!-- Form / Result area -->
+			<div class="flex-1 flex flex-col min-w-0">
+				<!-- Module header -->
+				<div class="px-3 py-2 border-b border-base-content/10 flex items-center gap-2">
+					<span class="text-sm">📋</span>
+					<span class="font-semibold text-sm">Meeting-Protokoll</span>
+				</div>
+
+				<div class="flex-1 p-3 overflow-hidden">
+					{#if isFormInput}
+						<!-- Form -->
+						<div class="space-y-2">
+							<div>
+								<label class="text-[11px] font-medium text-base-content/60 block mb-1">Datum *</label>
+								<div class="rounded-lg border px-2.5 py-1.5 text-xs h-7 flex items-center
+									{activeField === 'datum' ? 'border-primary ring-1 ring-primary/30 bg-base-100' : 'border-base-content/20 bg-base-200'}">
+									{formDatum}{#if activeField === 'datum'}<span class="inline-block w-px h-3.5 bg-primary ml-px animate-pulse"></span>{/if}
+								</div>
+							</div>
+							<div>
+								<label class="text-[11px] font-medium text-base-content/60 block mb-1">Teilnehmer *</label>
+								<div class="rounded-lg border px-2.5 py-1.5 text-xs h-7 flex items-center
+									{activeField === 'teilnehmer' ? 'border-primary ring-1 ring-primary/30 bg-base-100' : 'border-base-content/20 bg-base-200'}">
+									{formTeilnehmer}{#if activeField === 'teilnehmer'}<span class="inline-block w-px h-3.5 bg-primary ml-px animate-pulse"></span>{/if}
+								</div>
+							</div>
+							<div>
+								<label class="text-[11px] font-medium text-base-content/60 block mb-1">Stichpunkte *</label>
+								<div class="rounded-lg border px-2.5 py-2 text-xs min-h-[52px]
+									{activeField === 'stichpunkte' ? 'border-primary ring-1 ring-primary/30 bg-base-100' : 'border-base-content/20 bg-base-200'}">
+									<span class="whitespace-pre-line">{formStichpunkte}</span>{#if activeField === 'stichpunkte'}<span class="inline-block w-px h-3.5 bg-primary ml-px animate-pulse"></span>{/if}
+								</div>
+							</div>
+							<button
+								class="btn btn-sm btn-primary w-full text-xs transition-all duration-150
+									{formPhase === 'submitting' ? 'scale-[0.97] opacity-75' : formPhase === 'idle' ? 'opacity-40 cursor-default' : ''}"
+							>
+								Protokoll erstellen →
+							</button>
+						</div>
+
+					{:else if formPhase === 'loading'}
+						<div class="flex items-center justify-center" style="min-height: 140px;">
+							<div class="bg-base-200 rounded-2xl px-5 py-3 flex gap-1.5">
 								<div class="w-2 h-2 rounded-full bg-base-content/40 animate-bounce" style="animation-delay: 0ms"></div>
 								<div class="w-2 h-2 rounded-full bg-base-content/40 animate-bounce" style="animation-delay: 150ms"></div>
 								<div class="w-2 h-2 rounded-full bg-base-content/40 animate-bounce" style="animation-delay: 300ms"></div>
 							</div>
 						</div>
+
+					{:else}
+						<!-- Result -->
+						<div class="bg-base-200 rounded-xl p-3 text-xs leading-relaxed whitespace-pre-line max-h-[200px] overflow-y-auto">
+							{formResult}{#if formPhase === 'streaming'}<span class="inline-block w-px h-3.5 bg-base-content/70 ml-px animate-pulse"></span>{/if}
+						</div>
+					{/if}
+				</div>
+			</div>
+		</div>
+
+		{:else}
+		<!-- ====== MODULE BUILDER ====== -->
+		<div class="h-[380px] overflow-hidden">
+			<!-- Builder header -->
+			<div class="px-3 py-2 border-b border-base-content/10 flex items-center gap-2 bg-base-200/50">
+				<span class="text-sm">⚙️</span>
+				<span class="font-semibold text-sm">Modul-Builder</span>
+			</div>
+
+			<div class="p-3 space-y-2.5">
+				<!-- Name field -->
+				<div>
+					<label class="text-[11px] font-medium text-base-content/60 block mb-1">Modul-Name *</label>
+					<div class="rounded-lg border px-2.5 py-1.5 text-xs h-7 flex items-center
+						{builderActiveField === 'name' ? 'border-primary ring-1 ring-primary/30 bg-base-100' : 'border-base-content/20 bg-base-200'}">
+						{builderName}{#if builderActiveField === 'name'}<span class="inline-block w-px h-3.5 bg-primary ml-px animate-pulse"></span>{/if}
+					</div>
+				</div>
+
+				<!-- Desc field -->
+				<div>
+					<label class="text-[11px] font-medium text-base-content/60 block mb-1">Beschreibung</label>
+					<div class="rounded-lg border px-2.5 py-1.5 text-xs h-7 flex items-center
+						{builderActiveField === 'desc' ? 'border-primary ring-1 ring-primary/30 bg-base-100' : 'border-base-content/20 bg-base-200'}">
+						{builderDesc}{#if builderActiveField === 'desc'}<span class="inline-block w-px h-3.5 bg-primary ml-px animate-pulse"></span>{/if}
+					</div>
+				</div>
+
+				<!-- Fields list -->
+				<div>
+					<label class="text-[11px] font-medium text-base-content/60 block mb-1.5">Formularfelder</label>
+					<div class="space-y-1.5">
+						{#each builderFields as fieldLabel}
+							<div class="flex items-center gap-2 bg-base-200 rounded-lg px-2 py-1.5 text-xs border border-base-content/10">
+								<span class="text-[10px] font-mono bg-base-100 text-base-content/50 rounded px-1 py-px shrink-0">T</span>
+								<span class="flex-1 truncate">{fieldLabel}</span>
+								<span class="text-base-content/30 shrink-0 text-[10px]">✕</span>
+							</div>
+						{/each}
+						{#if builderFields.length < 3}
+							<div class="flex items-center gap-1.5 text-xs text-primary/60 px-0.5 select-none">
+								<span class="text-base leading-none font-bold">+</span>
+								<span>Feld hinzufügen</span>
+							</div>
+						{/if}
+					</div>
+				</div>
+
+				<!-- Save button -->
+				<button
+					class="btn btn-sm btn-primary w-full text-xs transition-all duration-150
+						{builderPhase === 'saving' ? 'opacity-70 scale-[0.97]' : builderPhase === 'idle' || builderPhase === 'typing-name' || builderPhase === 'typing-desc' ? 'opacity-40 cursor-default' : ''}"
+				>
+					{#if builderPhase === 'saving'}
+						<span class="loading loading-spinner loading-xs"></span>
+					{:else}
+						Modul speichern →
+					{/if}
+				</button>
+
+				<!-- Success toast -->
+				{#if builderSaved}
+					<div class="flex items-center gap-2 bg-success/10 border border-success/20 rounded-xl px-3 py-2 text-xs font-medium text-success">
+						<span>✓</span>
+						<span>Gespeichert - jetzt in der Sidebar verfügbar!</span>
 					</div>
 				{/if}
-
-				{#if displayedAiResponse}
-					<div class="flex justify-start">
-						<div class="bg-base-200 rounded-2xl rounded-tl-sm px-4 py-2 max-w-[80%] text-sm leading-relaxed whitespace-pre-line">
-							{displayedAiResponse}{#if phase === 'streaming-ai'}<span class="inline-block w-0.5 h-4 bg-base-content/70 ml-0.5 animate-pulse"></span>{/if}
-						</div>
-					</div>
-				{/if}
-			</div>
-
-			<!-- Input bar (decorative) -->
-			<div class="px-4 py-3 border-t border-base-content/10">
-				<div class="bg-base-200 rounded-full px-4 py-2 text-sm text-base-content/30">
-					Nachricht eingeben...
-				</div>
 			</div>
 		</div>
-	</div>
+		{/if}
 
-	<!-- Mobile: Chat bubbles only -->
-	<div class="md:hidden rounded-2xl overflow-hidden border border-base-content/10 shadow-xl bg-base-100">
-		<!-- Module badge -->
-		<div class="px-4 py-3 border-b border-base-content/10 flex items-center gap-2 bg-base-200">
-			<span class="text-base">{useCases[0].moduleIcon}</span>
-			<span class="font-medium text-sm">{useCases[0].moduleLabel}</span>
-			<span class="ml-auto text-xs text-base-content/40">demo.smartworkhub.de</span>
-		</div>
-
-		<div class="p-4 space-y-3 min-h-[200px]">
-			{#if displayedUserMessage}
-				<div class="flex justify-end">
-					<div class="bg-primary text-primary-content rounded-2xl rounded-tr-sm px-4 py-2 max-w-[85%] text-sm leading-relaxed">
-						{displayedUserMessage}{#if phase === 'typing-user'}<span class="inline-block w-0.5 h-4 bg-primary-content/70 ml-0.5 animate-pulse"></span>{/if}
-					</div>
-				</div>
-			{/if}
-
-			{#if phase === 'loading'}
-				<div class="flex justify-start">
-					<div class="bg-base-200 rounded-2xl rounded-tl-sm px-4 py-3">
-						<div class="flex gap-1">
-							<div class="w-2 h-2 rounded-full bg-base-content/40 animate-bounce" style="animation-delay: 0ms"></div>
-							<div class="w-2 h-2 rounded-full bg-base-content/40 animate-bounce" style="animation-delay: 150ms"></div>
-							<div class="w-2 h-2 rounded-full bg-base-content/40 animate-bounce" style="animation-delay: 300ms"></div>
-						</div>
-					</div>
-				</div>
-			{/if}
-
-			{#if displayedAiResponse}
-				<div class="flex justify-start">
-					<div class="bg-base-200 rounded-2xl rounded-tl-sm px-4 py-2 max-w-[85%] text-sm leading-relaxed whitespace-pre-line">
-						{displayedAiResponse}{#if phase === 'streaming-ai'}<span class="inline-block w-0.5 h-4 bg-base-content/70 ml-0.5 animate-pulse"></span>{/if}
-					</div>
-				</div>
-			{/if}
-		</div>
-
-		<div class="px-4 py-3 border-t border-base-content/10">
-			<div class="bg-base-200 rounded-full px-4 py-2 text-sm text-base-content/30">
-				Nachricht eingeben...
-			</div>
-		</div>
 	</div>
 </div>

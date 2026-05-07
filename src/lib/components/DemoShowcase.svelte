@@ -42,18 +42,8 @@
 	];
 </script>
 
-<section class="py-20 bg-base-200" id="demo">
+<section class="py-20 bg-white" id="demo">
 	<div class="container mx-auto px-4 max-w-6xl">
-
-		<!-- Section header -->
-		<div class="text-center mb-16">
-			<h2 class="text-3xl md:text-4xl font-bold mb-4">
-				SmartWorkHub in Aktion
-			</h2>
-			<p class="text-lg text-base-content/70 max-w-2xl mx-auto">
-				Drei Wege, wie Ihre Mitarbeiter KI täglich sinnvoll einsetzen – live, ohne Anmeldung testbar.
-			</p>
-		</div>
 
 		<!-- Demo rows -->
 		{#each demos as demo, i}
@@ -64,8 +54,7 @@
 			>
 				<!-- Description -->
 				<div class="w-full md:w-5/12 space-y-4">
-					<div class="badge badge-primary badge-outline text-xs font-medium">{demo.badge}</div>
-					<h3 class="text-xl md:text-2xl font-bold leading-snug">{demo.title}</h3>
+<h3 class="text-xl md:text-2xl font-bold leading-snug">{demo.title}</h3>
 					<p class="text-base-content/70 leading-relaxed text-sm md:text-base">{demo.description}</p>
 					<ul class="space-y-2">
 						{#each demo.bullets as bullet}

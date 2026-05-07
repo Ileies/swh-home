@@ -2,7 +2,7 @@
 	import cms from '$lib/cms.svelte';
 </script>
 
-<section id="features" class="py-24 bg-base-200">
+<section id="features" class="py-24 bg-white">
 	<div class="container mx-auto px-4">
 		<!-- Main Description -->
 		<div class="text-center max-w-3xl mx-auto mb-16">

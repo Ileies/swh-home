@@ -5,7 +5,7 @@
 	let isMenuOpen = $state(false);
 </script>
 
-<header class="bg-base-100 shadow-lg fixed w-full top-0 z-50">
+<header class="bg-base-100 border-b border-gray-100 fixed w-full top-0 z-50">
 	<div class="container mx-auto px-4 py-4">
 		<nav class="flex items-center justify-between">
 			<!-- Logo -->

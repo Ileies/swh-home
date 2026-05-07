@@ -2,17 +2,16 @@
 	import cms from '$lib/cms.svelte';
 </script>
 
-<div class="mt-16 bg-base-200 rounded-box p-8">
-	<div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto text-center">
+<div class="mt-16 rounded-box bg-base-200 p-8">
+	<div class="mx-auto grid max-w-4xl grid-cols-1 gap-8 text-center md:grid-cols-3">
 		{#each cms.stats as stat}
 			<div>
-				<div class="font-bold text-3xl text-primary mb-2">{stat.metric}</div>
+				<div class="mb-2 text-3xl font-bold text-primary">{stat.metric}</div>
 				<div class="text-base-content/70">{stat.title}</div>
 			</div>
 		{/each}
 	</div>
 </div>
-
 
 <!--<div class="flex flex-wrap gap-8 mt-4 text-sm">
 	<div>

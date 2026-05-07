@@ -3,21 +3,27 @@
 	import cms from '$lib/cms.svelte';
 </script>
 
-<footer class="bg-base-200 pt-16 pb-8">
+<footer class="bg-base-200 pb-8 pt-16">
 	<div class="container mx-auto px-4">
 		<!-- Main Footer Content -->
-		<div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+		<div class="mb-12 grid grid-cols-1 gap-8 md:grid-cols-4">
 			<!-- Company Info -->
 			<div class="md:col-span-2">
-				<h3 class="font-bold text-lg mb-4">{ PUBLIC_PROJECT_TITLE }</h3>
+				<h3 class="mb-4 text-lg font-bold">{PUBLIC_PROJECT_TITLE}</h3>
 				<!-- <p class="text-base-content/70 mb-4 max-w-md">{cms.footer.description}</p> -->
 				<!-- Company Address and Contact -->
-				<div class="text-base-content/70 mb-4">
+				<div class="mb-4 text-base-content/70">
 					<p class="text-sm font-bold">{cms.footer.company_product}</p>
-					<p class="mb-2">{cms.footer.street}<br/>
+					<p class="mb-2">
+						{cms.footer.street}<br />
 						{cms.footer.postalcode}, {cms.footer.city}<br />
-						{cms.footer.country}</p>
-					<p class="mb-2">E-Mail: <a href="mailto:{ PUBLIC_CONTACT_MAIL }" class="hover:text-primary">{ PUBLIC_CONTACT_MAIL }</a></p>
+						{cms.footer.country}
+					</p>
+					<p class="mb-2">
+						E-Mail: <a href="mailto:{PUBLIC_CONTACT_MAIL}" class="hover:text-primary"
+							>{PUBLIC_CONTACT_MAIL}</a
+						>
+					</p>
 				</div>
 				<!--<div class="flex gap-4">
 					<a href="https://linkedin.com" class="text-base-content/70 hover:text-primary" aria-label="LinkedIn">
@@ -36,7 +42,7 @@
 			<!-- Links -->
 			{#each cms.footer.links as category}
 				<div>
-					<h4 class="font-bold mb-4">{category.category}</h4>
+					<h4 class="mb-4 font-bold">{category.category}</h4>
 					<ul class="space-y-2">
 						{#each Object.entries(category.links) as [href, text]}
 							<li><a {href} class="text-base-content/70 hover:text-primary">{text}</a></li>
@@ -48,9 +54,10 @@
 
 		<!-- Bottom Bar -->
 		<div class="border-t border-base-content/10 pt-8">
-			<div class="flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
+			<div class="flex flex-col items-center justify-between gap-4 text-sm md:flex-row">
 				<div class="text-base-content/70">
-					© 2024 - {new Date().getFullYear()} { PUBLIC_PROJECT_TITLE }. {cms.footer.copyright}
+					© 2024 - {new Date().getFullYear()}
+					{PUBLIC_PROJECT_TITLE}. {cms.footer.copyright}
 				</div>
 				<div class="flex flex-wrap gap-6">
 					{#each Object.entries(cms.footer.bottomLinks) as [href, text]}

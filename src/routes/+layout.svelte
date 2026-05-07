@@ -31,7 +31,10 @@
 	<meta property="og:image" content={ogImageUrl} />
 	<meta property="og:image:width" content="1200" />
 	<meta property="og:image:height" content="630" />
-	<meta property="og:image:alt" content="{PUBLIC_PROJECT_TITLE} – KI-Automatisierung für Unternehmen" />
+	<meta
+		property="og:image:alt"
+		content="{PUBLIC_PROJECT_TITLE} – KI-Automatisierung für Unternehmen"
+	/>
 	<meta property="og:locale" content="de_DE" />
 
 	<!-- Twitter Card -->
@@ -39,7 +42,10 @@
 	<meta name="twitter:title" content={PUBLIC_PROJECT_TITLE} />
 	<meta name="twitter:description" content={PUBLIC_PROJECT_DESCRIPTION} />
 	<meta name="twitter:image" content={ogImageUrl} />
-	<meta name="twitter:image:alt" content="{PUBLIC_PROJECT_TITLE} – KI-Automatisierung für Unternehmen" />
+	<meta
+		name="twitter:image:alt"
+		content="{PUBLIC_PROJECT_TITLE} – KI-Automatisierung für Unternehmen"
+	/>
 </svelte:head>
 
 <Header />

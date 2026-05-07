@@ -6,38 +6,46 @@
 
 <svelte:head>
 	<title>Alle KI-Module – {PUBLIC_PROJECT_TITLE}</title>
-	<meta name="description" content="Vollständige Übersicht aller {PUBLIC_PROJECT_TITLE} KI-Module – von Chat-Assistenten über Dokumentengeneratoren bis zur Prozessanalyse." />
+	<meta
+		name="description"
+		content="Vollständige Übersicht aller {PUBLIC_PROJECT_TITLE} KI-Module – von Chat-Assistenten über Dokumentengeneratoren bis zur Prozessanalyse."
+	/>
 </svelte:head>
 
 <!-- Header -->
-<section class="pt-32 pb-12 bg-white">
-	<div class="container mx-auto px-4 max-w-4xl text-center">
-		<a href="/#modules" class="inline-flex items-center gap-2 text-sm text-base-content/50 hover:text-base-content transition-colors mb-8">
-			<ArrowLeft class="w-4 h-4" />
+<section class="bg-white pb-12 pt-32">
+	<div class="container mx-auto max-w-4xl px-4 text-center">
+		<a
+			href="/#modules"
+			class="mb-8 inline-flex items-center gap-2 text-sm text-base-content/50 transition-colors hover:text-base-content"
+		>
+			<ArrowLeft class="h-4 w-4" />
 			Zurück zur Startseite
 		</a>
-		<h1 class="text-4xl md:text-5xl font-bold mb-4">Alle KI-Module</h1>
-		<p class="text-lg text-base-content/70 max-w-2xl mx-auto">
+		<h1 class="mb-4 text-4xl font-bold md:text-5xl">Alle KI-Module</h1>
+		<p class="mx-auto max-w-2xl text-lg text-base-content/70">
 			{cms.modules.description}
 		</p>
 	</div>
 </section>
 
 <!-- Module grid -->
-<section class="py-12 bg-white">
-	<div class="container mx-auto px-4 max-w-6xl">
-		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<section class="bg-white py-12">
+	<div class="container mx-auto max-w-6xl px-4">
+		<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
 			{#each cms.modules.list as module (module.id)}
 				{@const Icon = module.icon}
-				<div class="rounded-box border border-base-content/10 bg-base-100 p-6 hover:shadow-lg transition-shadow duration-300">
+				<div
+					class="rounded-box border border-base-content/10 bg-base-100 p-6 transition-shadow duration-300 hover:shadow-lg"
+				>
 					<div class="mb-4">
-						<Icon class="w-8 h-8 text-primary" />
+						<Icon class="h-8 w-8 text-primary" />
 					</div>
-					<h2 class="font-bold text-lg mb-2">{module.title}</h2>
-					<p class="text-base-content/70 text-sm leading-relaxed">{module.description}</p>
+					<h2 class="mb-2 text-lg font-bold">{module.title}</h2>
+					<p class="text-sm leading-relaxed text-base-content/70">{module.description}</p>
 					{#if module.inclusive}
 						<div class="mt-4">
-							<span class="text-xs text-primary font-medium">Im Basispaket enthalten</span>
+							<span class="text-xs font-medium text-primary">Im Basispaket enthalten</span>
 						</div>
 					{/if}
 				</div>
@@ -47,11 +55,13 @@
 </section>
 
 <!-- CTA -->
-<section class="py-16 bg-white border-t border-base-content/10">
-	<div class="container mx-auto px-4 text-center max-w-xl">
-		<h2 class="text-2xl font-bold mb-4">Überzeugt? Testen Sie es live.</h2>
-		<p class="text-base-content/70 mb-8">Alle Module ohne Anmeldung und ohne Kreditkarte ausprobieren.</p>
-		<div class="flex flex-col sm:flex-row gap-4 justify-center">
+<section class="border-t border-base-content/10 bg-white py-16">
+	<div class="container mx-auto max-w-xl px-4 text-center">
+		<h2 class="mb-4 text-2xl font-bold">Überzeugt? Testen Sie es live.</h2>
+		<p class="mb-8 text-base-content/70">
+			Alle Module ohne Anmeldung und ohne Kreditkarte ausprobieren.
+		</p>
+		<div class="flex flex-col justify-center gap-4 sm:flex-row">
 			<a href={cms.demoUrl} target="_blank">
 				<button class="btn btn-primary btn-lg px-8">Live Demo starten</button>
 			</a>

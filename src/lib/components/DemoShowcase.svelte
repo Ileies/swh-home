@@ -42,9 +42,8 @@
 	];
 </script>
 
-<section class="py-20 bg-white" id="demo">
-	<div class="container mx-auto px-4 max-w-6xl">
-
+<section class="bg-white py-20" id="demo">
+	<div class="container mx-auto max-w-6xl px-4">
 		<!-- Demo rows -->
 		{#each demos as demo, i}
 			<div
@@ -53,13 +52,15 @@
 					{i < demos.length - 1 ? 'mb-20 md:mb-24' : ''}"
 			>
 				<!-- Description -->
-				<div class="w-full md:w-5/12 space-y-4">
-<h3 class="text-xl md:text-2xl font-bold leading-snug">{demo.title}</h3>
-					<p class="text-base-content/70 leading-relaxed text-sm md:text-base">{demo.description}</p>
+				<div class="w-full space-y-4 md:w-5/12">
+					<h3 class="text-xl font-bold leading-snug md:text-2xl">{demo.title}</h3>
+					<p class="text-sm leading-relaxed text-base-content/70 md:text-base">
+						{demo.description}
+					</p>
 					<ul class="space-y-2">
 						{#each demo.bullets as bullet}
 							<li class="flex items-start gap-2.5 text-sm">
-								<span class="text-primary font-bold mt-0.5 shrink-0">✓</span>
+								<span class="mt-0.5 shrink-0 font-bold text-primary">✓</span>
 								<span>{bullet}</span>
 							</li>
 						{/each}
@@ -74,13 +75,11 @@
 		{/each}
 
 		<!-- CTA -->
-		<div class="text-center mt-16 pt-8 border-t border-base-content/10">
+		<div class="mt-16 border-t border-base-content/10 pt-8 text-center">
 			<a href={cms.demoUrl} target="_blank" rel="noopener noreferrer">
-				<button class="btn btn-primary btn-lg px-10">
-					Live Demo starten →
-				</button>
+				<button class="btn btn-primary btn-lg px-10"> Live Demo starten → </button>
 			</a>
-			<p class="text-sm text-base-content/50 mt-3">Keine Registrierung · Keine Kreditkarte</p>
+			<p class="mt-3 text-sm text-base-content/50">Keine Registrierung · Keine Kreditkarte</p>
 		</div>
 	</div>
 </section>

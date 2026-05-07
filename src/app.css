@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 html {
-  scroll-padding-top: 72px;
-  scroll-behavior: smooth;
+	scroll-padding-top: 72px;
+	scroll-behavior: smooth;
 }
 
-input[type="range"]::-webkit-slider-thumb {
-  width: 24px;
-  height: 24px;
+input[type='range']::-webkit-slider-thumb {
+	width: 24px;
+	height: 24px;
 }

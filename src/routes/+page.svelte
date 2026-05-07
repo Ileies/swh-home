@@ -4,7 +4,11 @@
 	import CTA from '$lib/components/CTA.svelte';
 	import Description from '$lib/components/Description.svelte';
 	import Pricing from '$lib/components/Pricing.svelte';
-	import { PUBLIC_PROJECT_TITLE, PUBLIC_PROJECT_DESCRIPTION, PUBLIC_ORIGIN } from '$env/static/public';
+	import {
+		PUBLIC_PROJECT_TITLE,
+		PUBLIC_PROJECT_DESCRIPTION,
+		PUBLIC_ORIGIN
+	} from '$env/static/public';
 	import Hero from '$lib/components/Hero.svelte';
 	import DemoShowcase from '$lib/components/DemoShowcase.svelte';
 

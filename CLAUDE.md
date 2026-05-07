@@ -39,6 +39,7 @@ static/
 **`src/lib/cms.svelte.ts` ist die einzige Wahrheitsquelle für Inhalte.** Alle Komponenten lesen daraus via `import cms from '$lib/cms.svelte'`. Neue Texte, Links, Preise oder Abschnitte gehören ausschließlich in `cms.svelte.ts` - nie hart in Komponenten kodieren.
 
 Ausnahmen die direkt in Komponenten stehen (weil sie aus `$env/static/public` kommen):
+
 - `PUBLIC_PROJECT_TITLE` - in Header, Footer, Layout
 - `PUBLIC_CONTACT_MAIL` - in Footer
 - `PUBLIC_ORIGIN`, `PUBLIC_PROJECT_DESCRIPTION`, `PUBLIC_KEYWORDS` - in Layout für SEO
@@ -60,6 +61,7 @@ Alle Variablen sind `PUBLIC_*` - sie landen im Client-Bundle und dürfen keine S
 ## Themes
 
 DaisyUI v4, konfiguriert in `tailwind.config.js`:
+
 - Default-Theme: `winter` (Hell)
 - Zweites Theme: `dark`
 
@@ -71,7 +73,7 @@ Theme-Switcher war in `Header.svelte` vorhanden, wurde entfernt (kein localStora
 - **Icons:** Lucide Svelte - in Komponenten direkt importiert oder via `cms.svelte.ts` als Icon-Referenz übergeben. Das korrekte Svelte-5-Pattern für dynamische Icons:
   ```svelte
   {@const Icon = item.icon}
-  <Icon class="w-8 h-8 text-primary" />
+  <Icon class="h-8 w-8 text-primary" />
   ```
   `<svelte:component this={item.icon}>` ist in Svelte 5 deprecated - nicht verwenden.
 - **Keine Server-Logik** - adapter-static, alles wird zur Build-Zeit gerendert. Kein `+page.server.ts`, kein `+server.ts`.
@@ -115,6 +117,7 @@ Vollständige Liste mit Prioritäten und Implementierungsdetails: `MARKETING_TOD
 Kurzübersicht nach Dringlichkeit:
 
 **Block A - Sofort (reine Content-Fixes):**
+
 - Modulzahl 27 → 40+ in `cms.ts`
 - "NewFeatureBadge" aktualisieren
 - "14-tägige Testphase" aus Pricing-Copy entfernen
@@ -122,20 +125,24 @@ Kurzübersicht nach Dringlichkeit:
 - Hero-Text von "du" auf "Sie" umstellen
 
 **Block B - Kern (Demo-Integration):**
+
 - `DemoShowcase.svelte` - neue Section nach Hero mit `AnimatedChatPreview`
 - `AnimatedChatPreview.svelte` - Desktop: Two-Panel mit Sidebar-Mock + Chat-Stream; Mobile: nur Chat-Bubbles
 - Hero-CTAs umkehren: "Live Demo starten" primär, "Beratung" sekundär
 - Demo-Link in Header, Mobile-Nav, CTA-Section
 
 **Block C - Content-Qualität:**
+
 - Description-Benefits-Texte überarbeiten (keine falschen Versprechen)
 - Pricing-Aufräumen (toten Code, FAQ einkommentieren)
 - Social-Proof-Minimal-Variante
 
 **Block D - Cross-Repo:**
+
 - Demo-Banner im `smartworkhub`-Repo: URL von `smartworkhub.de` auf direkten Booking-Link ändern
 
 **Block E/F - Technisch / SEO:**
+
 - `svelte:component` → Svelte-5-Pattern in Description, Privacy
 - `MobileNavigation` Bug fixen
 - `og-image.png` erstellen und in `static/` ablegen

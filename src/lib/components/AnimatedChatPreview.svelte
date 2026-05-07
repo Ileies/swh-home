@@ -49,8 +49,7 @@
 	let chatUserText = $state('');
 	let chatAiText = $state('');
 
-	const CHAT_USER =
-		'Wie lange ist die Kündigungsfrist nach 10 Jahren Betriebszugehörigkeit?';
+	const CHAT_USER = 'Wie lange ist die Kündigungsfrist nach 10 Jahren Betriebszugehörigkeit?';
 	const CHAT_AI =
 		'Laut Kap. 4.2 des Mitarbeiterhandbuchs gilt:\n\nAb 10 Jahren: 3 Monate zum Monatsende.\n\n[Quelle: HR-Handbuch, S. 47]';
 
@@ -60,16 +59,26 @@
 			chatAiText = '';
 		}
 		chatPhase = 'typing-user';
-		typeText(CHAT_USER, (s) => (chatUserText = s), 26, () => {
-			chatPhase = 'file-search';
-			later(1900, () => {
-				chatPhase = 'streaming-ai';
-				typeText(CHAT_AI, (s) => (chatAiText = s), 15, () => {
-					chatPhase = 'pause';
-					later(4500, () => runChat(true));
+		typeText(
+			CHAT_USER,
+			(s) => (chatUserText = s),
+			26,
+			() => {
+				chatPhase = 'file-search';
+				later(1900, () => {
+					chatPhase = 'streaming-ai';
+					typeText(
+						CHAT_AI,
+						(s) => (chatAiText = s),
+						15,
+						() => {
+							chatPhase = 'pause';
+							later(4500, () => runChat(true));
+						}
+					);
 				});
-			});
-		});
+			}
+		);
 	}
 
 	// =====================
@@ -115,32 +124,52 @@
 		activeField = 'datum';
 		formPhase = 'focus-datum';
 		later(200, () => {
-			typeText(FORM_DATUM, (s) => (formDatum = s), 55, () => {
-				activeField = 'teilnehmer';
-				formPhase = 'focus-teilnehmer';
-				later(250, () => {
-					typeText(FORM_TEILNEHMER, (s) => (formTeilnehmer = s), 36, () => {
-						activeField = 'stichpunkte';
-						formPhase = 'focus-stichpunkte';
-						later(250, () => {
-							typeText(FORM_STICHPUNKTE, (s) => (formStichpunkte = s), 26, () => {
-								activeField = null;
-								formPhase = 'submitting';
-								later(700, () => {
-									formPhase = 'loading';
-									later(1400, () => {
-										formPhase = 'streaming';
-										typeText(FORM_RESULT, (s) => (formResult = s), 14, () => {
-											formPhase = 'pause';
-											later(4500, () => runForm(true));
-										});
-									});
+			typeText(
+				FORM_DATUM,
+				(s) => (formDatum = s),
+				55,
+				() => {
+					activeField = 'teilnehmer';
+					formPhase = 'focus-teilnehmer';
+					later(250, () => {
+						typeText(
+							FORM_TEILNEHMER,
+							(s) => (formTeilnehmer = s),
+							36,
+							() => {
+								activeField = 'stichpunkte';
+								formPhase = 'focus-stichpunkte';
+								later(250, () => {
+									typeText(
+										FORM_STICHPUNKTE,
+										(s) => (formStichpunkte = s),
+										26,
+										() => {
+											activeField = null;
+											formPhase = 'submitting';
+											later(700, () => {
+												formPhase = 'loading';
+												later(1400, () => {
+													formPhase = 'streaming';
+													typeText(
+														FORM_RESULT,
+														(s) => (formResult = s),
+														14,
+														() => {
+															formPhase = 'pause';
+															later(4500, () => runForm(true));
+														}
+													);
+												});
+											});
+										}
+									);
 								});
-							});
-						});
+							}
+						);
 					});
-				});
-			});
+				}
+			);
 		});
 	}
 
@@ -176,34 +205,44 @@
 		builderActiveField = 'name';
 		builderPhase = 'typing-name';
 		later(200, () => {
-			typeText(BUILDER_NAME, (s) => (builderName = s), 46, () => {
-				builderActiveField = 'desc';
-				builderPhase = 'typing-desc';
-				later(300, () => {
-					typeText(BUILDER_DESC, (s) => (builderDesc = s), 36, () => {
-						builderActiveField = null;
-						builderPhase = 'adding-fields';
-						later(500, () => {
-							builderFields = [BUILDER_FIELDS[0]];
-							later(650, () => {
-								builderFields = [BUILDER_FIELDS[0], BUILDER_FIELDS[1]];
-								later(650, () => {
-									builderFields = BUILDER_FIELDS.slice();
-									builderPhase = 'saving';
-									later(700, () => {
-										builderSaved = true;
-										builderPhase = 'success';
-										later(3800, () => {
-											builderSaved = false;
-											runBuilder(true);
+			typeText(
+				BUILDER_NAME,
+				(s) => (builderName = s),
+				46,
+				() => {
+					builderActiveField = 'desc';
+					builderPhase = 'typing-desc';
+					later(300, () => {
+						typeText(
+							BUILDER_DESC,
+							(s) => (builderDesc = s),
+							36,
+							() => {
+								builderActiveField = null;
+								builderPhase = 'adding-fields';
+								later(500, () => {
+									builderFields = [BUILDER_FIELDS[0]];
+									later(650, () => {
+										builderFields = [BUILDER_FIELDS[0], BUILDER_FIELDS[1]];
+										later(650, () => {
+											builderFields = BUILDER_FIELDS.slice();
+											builderPhase = 'saving';
+											later(700, () => {
+												builderSaved = true;
+												builderPhase = 'success';
+												later(3800, () => {
+													builderSaved = false;
+													runBuilder(true);
+												});
+											});
 										});
 									});
 								});
-							});
-						});
+							}
+						);
 					});
-				});
-			});
+				}
+			);
 		});
 	}
 
@@ -272,229 +311,320 @@
 </script>
 
 <div bind:this={containerEl} class="w-full">
-	<div class="rounded-2xl overflow-hidden border border-base-content/10 shadow-xl bg-base-100">
-
+	<div class="overflow-hidden rounded-2xl border border-base-content/10 bg-base-100 shadow-xl">
 		<!-- Browser chrome -->
-		<div class="bg-base-300 px-3 py-2 flex items-center gap-2 border-b border-base-content/10">
-			<div class="flex gap-1.5 shrink-0">
-				<div class="w-2.5 h-2.5 rounded-full bg-error/50"></div>
-				<div class="w-2.5 h-2.5 rounded-full bg-warning/50"></div>
-				<div class="w-2.5 h-2.5 rounded-full bg-success/50"></div>
+		<div class="flex items-center gap-2 border-b border-base-content/10 bg-base-300 px-3 py-2">
+			<div class="flex shrink-0 gap-1.5">
+				<div class="h-2.5 w-2.5 rounded-full bg-error/50"></div>
+				<div class="h-2.5 w-2.5 rounded-full bg-warning/50"></div>
+				<div class="h-2.5 w-2.5 rounded-full bg-success/50"></div>
 			</div>
-			<div class="flex-1 bg-base-100 rounded-full px-3 py-0.5 text-[11px] text-base-content/50 text-center truncate">
+			<div
+				class="flex-1 truncate rounded-full bg-base-100 px-3 py-0.5 text-center text-[11px] text-base-content/50"
+			>
 				{demo === 'builder' ? 'demo.smartworkhub.de/builder' : 'demo.smartworkhub.de'}
 			</div>
 		</div>
 
 		{#if demo === 'chat-vector'}
-		<!-- ====== CHAT + VECTOR STORE ====== -->
-		<div class="flex h-[380px]">
-
-			<!-- Sidebar -->
-			<div class="w-12 md:w-14 bg-base-200 flex flex-col items-center py-3 gap-2.5 border-r border-base-content/10 shrink-0">
-				{#each chatSidebar as mod, i}
-					<div
-						title={mod.label}
-						class="w-9 h-9 rounded-xl flex items-center justify-center text-sm transition-all duration-300
+			<!-- ====== CHAT + VECTOR STORE ====== -->
+			<div class="flex h-[380px]">
+				<!-- Sidebar -->
+				<div
+					class="flex w-12 shrink-0 flex-col items-center gap-2.5 border-r border-base-content/10 bg-base-200 py-3 md:w-14"
+				>
+					{#each chatSidebar as mod, i}
+						<div
+							title={mod.label}
+							class="flex h-9 w-9 items-center justify-center rounded-xl text-sm transition-all duration-300
 							{i === 0 ? 'bg-primary shadow-md' : 'bg-base-100 opacity-50'}"
-					>{mod.icon}</div>
-				{/each}
-			</div>
-
-			<!-- Chat area -->
-			<div class="flex-1 flex flex-col min-w-0">
-				<!-- Module header -->
-				<div class="px-3 py-2 border-b border-base-content/10 flex items-center gap-2">
-					<span class="text-sm">📚</span>
-					<span class="font-semibold text-sm truncate">HR-Handbuch-Assistent</span>
-					<span class="ml-auto text-[10px] text-success flex items-center gap-1 shrink-0 hidden sm:flex">
-						<span class="w-1.5 h-1.5 rounded-full bg-success inline-block"></span>
-						Vector Store
-					</span>
+						>
+							{mod.icon}
+						</div>
+					{/each}
 				</div>
 
-				<!-- Messages -->
-				<div class="flex-1 p-3 space-y-2.5 overflow-hidden">
-					{#if chatUserText}
-						<div class="flex justify-end">
-							<div class="bg-primary text-primary-content rounded-2xl rounded-tr-sm px-3 py-2 max-w-[82%] text-xs leading-relaxed">
-								{chatUserText}{#if chatPhase === 'typing-user'}<span class="inline-block w-px h-3.5 bg-primary-content/80 ml-px animate-pulse"></span>{/if}
-							</div>
-						</div>
-					{/if}
+				<!-- Chat area -->
+				<div class="flex min-w-0 flex-1 flex-col">
+					<!-- Module header -->
+					<div class="flex items-center gap-2 border-b border-base-content/10 px-3 py-2">
+						<span class="text-sm">📚</span>
+						<span class="truncate text-sm font-semibold">HR-Handbuch-Assistent</span>
+						<span
+							class="ml-auto flex hidden shrink-0 items-center gap-1 text-[10px] text-success sm:flex"
+						>
+							<span class="inline-block h-1.5 w-1.5 rounded-full bg-success"></span>
+							Vector Store
+						</span>
+					</div>
 
-					{#if chatPhase === 'file-search'}
-						<div class="flex justify-start">
-							<div class="bg-warning/10 border border-warning/30 text-warning-content rounded-2xl rounded-tl-sm px-3 py-1.5 text-xs flex items-center gap-2">
-								<span class="w-3.5 h-3.5 border-2 border-warning border-t-transparent rounded-full animate-spin shrink-0"></span>
-								<span class="text-base-content/70">Durchsuche HR-Handbuch...</span>
+					<!-- Messages -->
+					<div class="flex-1 space-y-2.5 overflow-hidden p-3">
+						{#if chatUserText}
+							<div class="flex justify-end">
+								<div
+									class="max-w-[82%] rounded-2xl rounded-tr-sm bg-primary px-3 py-2 text-xs leading-relaxed text-primary-content"
+								>
+									{chatUserText}{#if chatPhase === 'typing-user'}<span
+											class="ml-px inline-block h-3.5 w-px animate-pulse bg-primary-content/80"
+										></span>{/if}
+								</div>
 							</div>
-						</div>
-					{/if}
+						{/if}
 
-					{#if chatAiText}
-						<div class="flex justify-start">
-							<div class="bg-base-200 rounded-2xl rounded-tl-sm px-3 py-2 max-w-[85%] text-xs leading-relaxed whitespace-pre-line">
-								{chatAiText}{#if chatPhase === 'streaming-ai'}<span class="inline-block w-px h-3.5 bg-base-content/70 ml-px animate-pulse"></span>{/if}
+						{#if chatPhase === 'file-search'}
+							<div class="flex justify-start">
+								<div
+									class="flex items-center gap-2 rounded-2xl rounded-tl-sm border border-warning/30 bg-warning/10 px-3 py-1.5 text-xs text-warning-content"
+								>
+									<span
+										class="h-3.5 w-3.5 shrink-0 animate-spin rounded-full border-2 border-warning border-t-transparent"
+									></span>
+									<span class="text-base-content/70">Durchsuche HR-Handbuch...</span>
+								</div>
 							</div>
-						</div>
-					{/if}
-				</div>
+						{/if}
 
-				<!-- Input bar -->
-				<div class="px-3 py-2.5 border-t border-base-content/10">
-					<div class="bg-base-200 rounded-full px-3 py-1.5 text-xs text-base-content/30">
-						Nachricht eingeben...
+						{#if chatAiText}
+							<div class="flex justify-start">
+								<div
+									class="max-w-[85%] whitespace-pre-line rounded-2xl rounded-tl-sm bg-base-200 px-3 py-2 text-xs leading-relaxed"
+								>
+									{chatAiText}{#if chatPhase === 'streaming-ai'}<span
+											class="ml-px inline-block h-3.5 w-px animate-pulse bg-base-content/70"
+										></span>{/if}
+								</div>
+							</div>
+						{/if}
+					</div>
+
+					<!-- Input bar -->
+					<div class="border-t border-base-content/10 px-3 py-2.5">
+						<div class="rounded-full bg-base-200 px-3 py-1.5 text-xs text-base-content/30">
+							Nachricht eingeben...
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-
 		{:else if demo === 'form-agent'}
-		<!-- ====== FORM AGENT ====== -->
-		<div class="flex h-[380px]">
-
-			<!-- Sidebar -->
-			<div class="w-12 md:w-14 bg-base-200 flex flex-col items-center py-3 gap-2.5 border-r border-base-content/10 shrink-0">
-				{#each formSidebar as mod, i}
-					<div
-						title={mod.label}
-						class="w-9 h-9 rounded-xl flex items-center justify-center text-sm transition-all duration-300
+			<!-- ====== FORM AGENT ====== -->
+			<div class="flex h-[380px]">
+				<!-- Sidebar -->
+				<div
+					class="flex w-12 shrink-0 flex-col items-center gap-2.5 border-r border-base-content/10 bg-base-200 py-3 md:w-14"
+				>
+					{#each formSidebar as mod, i}
+						<div
+							title={mod.label}
+							class="flex h-9 w-9 items-center justify-center rounded-xl text-sm transition-all duration-300
 							{i === 0 ? 'bg-primary shadow-md' : 'bg-base-100 opacity-50'}"
-					>{mod.icon}</div>
-				{/each}
-			</div>
-
-			<!-- Form / Result area -->
-			<div class="flex-1 flex flex-col min-w-0">
-				<!-- Module header -->
-				<div class="px-3 py-2 border-b border-base-content/10 flex items-center gap-2">
-					<span class="text-sm">📋</span>
-					<span class="font-semibold text-sm">Meeting-Protokoll</span>
+						>
+							{mod.icon}
+						</div>
+					{/each}
 				</div>
 
-				<div class="flex-1 p-3 overflow-hidden">
-					{#if isFormInput}
-						<!-- Form -->
-						<div class="space-y-2">
-							<div>
-								<label class="text-[11px] font-medium text-base-content/60 block mb-1">Datum *</label>
-								<div class="rounded-lg border px-2.5 py-1.5 text-xs h-7 flex items-center
-									{activeField === 'datum' ? 'border-primary ring-1 ring-primary/30 bg-base-100' : 'border-base-content/20 bg-base-200'}">
-									{formDatum}{#if activeField === 'datum'}<span class="inline-block w-px h-3.5 bg-primary ml-px animate-pulse"></span>{/if}
+				<!-- Form / Result area -->
+				<div class="flex min-w-0 flex-1 flex-col">
+					<!-- Module header -->
+					<div class="flex items-center gap-2 border-b border-base-content/10 px-3 py-2">
+						<span class="text-sm">📋</span>
+						<span class="text-sm font-semibold">Meeting-Protokoll</span>
+					</div>
+
+					<div class="flex-1 overflow-hidden p-3">
+						{#if isFormInput}
+							<!-- Form -->
+							<div class="space-y-2">
+								<div>
+									<label class="mb-1 block text-[11px] font-medium text-base-content/60"
+										>Datum *</label
+									>
+									<div
+										class="flex h-7 items-center rounded-lg border px-2.5 py-1.5 text-xs
+									{activeField === 'datum'
+											? 'border-primary bg-base-100 ring-1 ring-primary/30'
+											: 'border-base-content/20 bg-base-200'}"
+									>
+										{formDatum}{#if activeField === 'datum'}<span
+												class="ml-px inline-block h-3.5 w-px animate-pulse bg-primary"
+											></span>{/if}
+									</div>
+								</div>
+								<div>
+									<label class="mb-1 block text-[11px] font-medium text-base-content/60"
+										>Teilnehmer *</label
+									>
+									<div
+										class="flex h-7 items-center rounded-lg border px-2.5 py-1.5 text-xs
+									{activeField === 'teilnehmer'
+											? 'border-primary bg-base-100 ring-1 ring-primary/30'
+											: 'border-base-content/20 bg-base-200'}"
+									>
+										{formTeilnehmer}{#if activeField === 'teilnehmer'}<span
+												class="ml-px inline-block h-3.5 w-px animate-pulse bg-primary"
+											></span>{/if}
+									</div>
+								</div>
+								<div>
+									<label class="mb-1 block text-[11px] font-medium text-base-content/60"
+										>Stichpunkte *</label
+									>
+									<div
+										class="min-h-[52px] rounded-lg border px-2.5 py-2 text-xs
+									{activeField === 'stichpunkte'
+											? 'border-primary bg-base-100 ring-1 ring-primary/30'
+											: 'border-base-content/20 bg-base-200'}"
+									>
+										<span class="whitespace-pre-line">{formStichpunkte}</span
+										>{#if activeField === 'stichpunkte'}<span
+												class="ml-px inline-block h-3.5 w-px animate-pulse bg-primary"
+											></span>{/if}
+									</div>
+								</div>
+								<button
+									class="btn btn-primary btn-sm w-full text-xs transition-all duration-150
+									{formPhase === 'submitting'
+										? 'scale-[0.97] opacity-75'
+										: formPhase === 'idle'
+											? 'cursor-default opacity-40'
+											: ''}"
+								>
+									Protokoll erstellen →
+								</button>
+							</div>
+						{:else if formPhase === 'loading'}
+							<div class="flex items-center justify-center" style="min-height: 140px;">
+								<div class="flex gap-1.5 rounded-2xl bg-base-200 px-5 py-3">
+									<div
+										class="h-2 w-2 animate-bounce rounded-full bg-base-content/40"
+										style="animation-delay: 0ms"
+									></div>
+									<div
+										class="h-2 w-2 animate-bounce rounded-full bg-base-content/40"
+										style="animation-delay: 150ms"
+									></div>
+									<div
+										class="h-2 w-2 animate-bounce rounded-full bg-base-content/40"
+										style="animation-delay: 300ms"
+									></div>
 								</div>
 							</div>
-							<div>
-								<label class="text-[11px] font-medium text-base-content/60 block mb-1">Teilnehmer *</label>
-								<div class="rounded-lg border px-2.5 py-1.5 text-xs h-7 flex items-center
-									{activeField === 'teilnehmer' ? 'border-primary ring-1 ring-primary/30 bg-base-100' : 'border-base-content/20 bg-base-200'}">
-									{formTeilnehmer}{#if activeField === 'teilnehmer'}<span class="inline-block w-px h-3.5 bg-primary ml-px animate-pulse"></span>{/if}
-								</div>
-							</div>
-							<div>
-								<label class="text-[11px] font-medium text-base-content/60 block mb-1">Stichpunkte *</label>
-								<div class="rounded-lg border px-2.5 py-2 text-xs min-h-[52px]
-									{activeField === 'stichpunkte' ? 'border-primary ring-1 ring-primary/30 bg-base-100' : 'border-base-content/20 bg-base-200'}">
-									<span class="whitespace-pre-line">{formStichpunkte}</span>{#if activeField === 'stichpunkte'}<span class="inline-block w-px h-3.5 bg-primary ml-px animate-pulse"></span>{/if}
-								</div>
-							</div>
-							<button
-								class="btn btn-sm btn-primary w-full text-xs transition-all duration-150
-									{formPhase === 'submitting' ? 'scale-[0.97] opacity-75' : formPhase === 'idle' ? 'opacity-40 cursor-default' : ''}"
+						{:else}
+							<!-- Result -->
+							<div
+								class="max-h-[200px] overflow-y-auto whitespace-pre-line rounded-xl bg-base-200 p-3 text-xs leading-relaxed"
 							>
-								Protokoll erstellen →
-							</button>
-						</div>
-
-					{:else if formPhase === 'loading'}
-						<div class="flex items-center justify-center" style="min-height: 140px;">
-							<div class="bg-base-200 rounded-2xl px-5 py-3 flex gap-1.5">
-								<div class="w-2 h-2 rounded-full bg-base-content/40 animate-bounce" style="animation-delay: 0ms"></div>
-								<div class="w-2 h-2 rounded-full bg-base-content/40 animate-bounce" style="animation-delay: 150ms"></div>
-								<div class="w-2 h-2 rounded-full bg-base-content/40 animate-bounce" style="animation-delay: 300ms"></div>
-							</div>
-						</div>
-
-					{:else}
-						<!-- Result -->
-						<div class="bg-base-200 rounded-xl p-3 text-xs leading-relaxed whitespace-pre-line max-h-[200px] overflow-y-auto">
-							{formResult}{#if formPhase === 'streaming'}<span class="inline-block w-px h-3.5 bg-base-content/70 ml-px animate-pulse"></span>{/if}
-						</div>
-					{/if}
-				</div>
-			</div>
-		</div>
-
-		{:else}
-		<!-- ====== MODULE BUILDER ====== -->
-		<div class="h-[380px] overflow-hidden">
-			<!-- Builder header -->
-			<div class="px-3 py-2 border-b border-base-content/10 flex items-center gap-2 bg-base-200/50">
-				<span class="text-sm">⚙️</span>
-				<span class="font-semibold text-sm">Modul-Builder</span>
-			</div>
-
-			<div class="p-3 space-y-2.5">
-				<!-- Name field -->
-				<div>
-					<label class="text-[11px] font-medium text-base-content/60 block mb-1">Modul-Name *</label>
-					<div class="rounded-lg border px-2.5 py-1.5 text-xs h-7 flex items-center
-						{builderActiveField === 'name' ? 'border-primary ring-1 ring-primary/30 bg-base-100' : 'border-base-content/20 bg-base-200'}">
-						{builderName}{#if builderActiveField === 'name'}<span class="inline-block w-px h-3.5 bg-primary ml-px animate-pulse"></span>{/if}
-					</div>
-				</div>
-
-				<!-- Desc field -->
-				<div>
-					<label class="text-[11px] font-medium text-base-content/60 block mb-1">Beschreibung</label>
-					<div class="rounded-lg border px-2.5 py-1.5 text-xs h-7 flex items-center
-						{builderActiveField === 'desc' ? 'border-primary ring-1 ring-primary/30 bg-base-100' : 'border-base-content/20 bg-base-200'}">
-						{builderDesc}{#if builderActiveField === 'desc'}<span class="inline-block w-px h-3.5 bg-primary ml-px animate-pulse"></span>{/if}
-					</div>
-				</div>
-
-				<!-- Fields list -->
-				<div>
-					<label class="text-[11px] font-medium text-base-content/60 block mb-1.5">Formularfelder</label>
-					<div class="space-y-1.5">
-						{#each builderFields as fieldLabel}
-							<div class="flex items-center gap-2 bg-base-200 rounded-lg px-2 py-1.5 text-xs border border-base-content/10">
-								<span class="text-[10px] font-mono bg-base-100 text-base-content/50 rounded px-1 py-px shrink-0">T</span>
-								<span class="flex-1 truncate">{fieldLabel}</span>
-								<span class="text-base-content/30 shrink-0 text-[10px]">✕</span>
-							</div>
-						{/each}
-						{#if builderFields.length < 3}
-							<div class="flex items-center gap-1.5 text-xs text-primary/60 px-0.5 select-none">
-								<span class="text-base leading-none font-bold">+</span>
-								<span>Feld hinzufügen</span>
+								{formResult}{#if formPhase === 'streaming'}<span
+										class="ml-px inline-block h-3.5 w-px animate-pulse bg-base-content/70"
+									></span>{/if}
 							</div>
 						{/if}
 					</div>
 				</div>
-
-				<!-- Save button -->
-				<button
-					class="btn btn-sm btn-primary w-full text-xs transition-all duration-150
-						{builderPhase === 'saving' ? 'opacity-70 scale-[0.97]' : builderPhase === 'idle' || builderPhase === 'typing-name' || builderPhase === 'typing-desc' ? 'opacity-40 cursor-default' : ''}"
-				>
-					{#if builderPhase === 'saving'}
-						<span class="loading loading-spinner loading-xs"></span>
-					{:else}
-						Modul speichern →
-					{/if}
-				</button>
-
-				<!-- Success toast -->
-				{#if builderSaved}
-					<div class="flex items-center gap-2 bg-success/10 border border-success/20 rounded-xl px-3 py-2 text-xs font-medium text-success">
-						<span>✓</span>
-						<span>Gespeichert - jetzt in der Sidebar verfügbar!</span>
-					</div>
-				{/if}
 			</div>
-		</div>
-		{/if}
+		{:else}
+			<!-- ====== MODULE BUILDER ====== -->
+			<div class="h-[380px] overflow-hidden">
+				<!-- Builder header -->
+				<div
+					class="flex items-center gap-2 border-b border-base-content/10 bg-base-200/50 px-3 py-2"
+				>
+					<span class="text-sm">⚙️</span>
+					<span class="text-sm font-semibold">Modul-Builder</span>
+				</div>
 
+				<div class="space-y-2.5 p-3">
+					<!-- Name field -->
+					<div>
+						<label class="mb-1 block text-[11px] font-medium text-base-content/60"
+							>Modul-Name *</label
+						>
+						<div
+							class="flex h-7 items-center rounded-lg border px-2.5 py-1.5 text-xs
+						{builderActiveField === 'name'
+								? 'border-primary bg-base-100 ring-1 ring-primary/30'
+								: 'border-base-content/20 bg-base-200'}"
+						>
+							{builderName}{#if builderActiveField === 'name'}<span
+									class="ml-px inline-block h-3.5 w-px animate-pulse bg-primary"
+								></span>{/if}
+						</div>
+					</div>
+
+					<!-- Desc field -->
+					<div>
+						<label class="mb-1 block text-[11px] font-medium text-base-content/60"
+							>Beschreibung</label
+						>
+						<div
+							class="flex h-7 items-center rounded-lg border px-2.5 py-1.5 text-xs
+						{builderActiveField === 'desc'
+								? 'border-primary bg-base-100 ring-1 ring-primary/30'
+								: 'border-base-content/20 bg-base-200'}"
+						>
+							{builderDesc}{#if builderActiveField === 'desc'}<span
+									class="ml-px inline-block h-3.5 w-px animate-pulse bg-primary"
+								></span>{/if}
+						</div>
+					</div>
+
+					<!-- Fields list -->
+					<div>
+						<label class="mb-1.5 block text-[11px] font-medium text-base-content/60"
+							>Formularfelder</label
+						>
+						<div class="space-y-1.5">
+							{#each builderFields as fieldLabel}
+								<div
+									class="flex items-center gap-2 rounded-lg border border-base-content/10 bg-base-200 px-2 py-1.5 text-xs"
+								>
+									<span
+										class="shrink-0 rounded bg-base-100 px-1 py-px font-mono text-[10px] text-base-content/50"
+										>T</span
+									>
+									<span class="flex-1 truncate">{fieldLabel}</span>
+									<span class="shrink-0 text-[10px] text-base-content/30">✕</span>
+								</div>
+							{/each}
+							{#if builderFields.length < 3}
+								<div class="flex select-none items-center gap-1.5 px-0.5 text-xs text-primary/60">
+									<span class="text-base font-bold leading-none">+</span>
+									<span>Feld hinzufügen</span>
+								</div>
+							{/if}
+						</div>
+					</div>
+
+					<!-- Save button -->
+					<button
+						class="btn btn-primary btn-sm w-full text-xs transition-all duration-150
+						{builderPhase === 'saving'
+							? 'scale-[0.97] opacity-70'
+							: builderPhase === 'idle' ||
+								  builderPhase === 'typing-name' ||
+								  builderPhase === 'typing-desc'
+								? 'cursor-default opacity-40'
+								: ''}"
+					>
+						{#if builderPhase === 'saving'}
+							<span class="loading loading-spinner loading-xs"></span>
+						{:else}
+							Modul speichern →
+						{/if}
+					</button>
+
+					<!-- Success toast -->
+					{#if builderSaved}
+						<div
+							class="flex items-center gap-2 rounded-xl border border-success/20 bg-success/10 px-3 py-2 text-xs font-medium text-success"
+						>
+							<span>✓</span>
+							<span>Gespeichert - jetzt in der Sidebar verfügbar!</span>
+						</div>
+					{/if}
+				</div>
+			</div>
+		{/if}
 	</div>
 </div>

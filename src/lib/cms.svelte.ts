@@ -34,18 +34,19 @@ import {
 } from 'lucide-svelte';
 
 const cms = {
-	contactLink: 'https://outlook.office.com/bookwithme/user/c55d7df6bf0a4764adc1cb9f1e16671d@offlimits-it.com/meetingtype/7IJ2G8BNa0-E4n8us68ZPQ2?anonymous&ep=mcard',
+	contactLink:
+		'https://outlook.office.com/bookwithme/user/c55d7df6bf0a4764adc1cb9f1e16671d@offlimits-it.com/meetingtype/7IJ2G8BNa0-E4n8us68ZPQ2?anonymous&ep=mcard',
 	demoUrl: 'https://demo.smartworkhub.de',
 	headerLinks: {
 		'/#features': 'Features',
 		'/#modules': 'KI-Module',
-		'/#pricing': 'Preise',
+		'/#pricing': 'Preise'
 	},
 	hero: {
 		title: 'Revolutionieren Sie den Arbeitsalltag Ihrer Mitarbeiter mit KI',
 		description: `${PUBLIC_PROJECT_TITLE} automatisiert Ihre repetitiven Aufgaben mit modernster KI-Technologie. Sparen Sie Ihren Mitarbeitern Zeit und fokussieren Sie sich auf das Wesentliche.`,
 		newFeature: 'Neu: Live Demo verfügbar - jetzt ausprobieren',
-		moreInfo: 'Mehr erfahren',
+		moreInfo: 'Mehr erfahren'
 	},
 	description: {
 		benefits: [
@@ -69,14 +70,21 @@ const cms = {
 			}
 		],
 		title: 'Intelligente Automatisierung für Ihr Unternehmen',
-		text: `${PUBLIC_PROJECT_TITLE} vereint leistungsstarke KI-Module in einer intuitiven Plattform. Entwickelt für moderne Unternehmen, die ihre Prozesse optimieren und Wachstum beschleunigen möchten.`,
+		text: `${PUBLIC_PROJECT_TITLE} vereint leistungsstarke KI-Module in einer intuitiven Plattform. Entwickelt für moderne Unternehmen, die ihre Prozesse optimieren und Wachstum beschleunigen möchten.`
 	},
 	modules: {
 		title: 'KI-Power für Ihr Business',
 		description:
 			'Unsere KI-Module automatisieren Ihre Prozesse, steigern die Produktivität und erschließen neue Geschäftspotenziale.',
 		discoverAll: 'Entdecken Sie alle 40 KI-Module',
-		showcase: ['uebersetzung', 'emailgenerator', 'praesentation', 'projektplan', 'rechtschreibung', 'dokumentation'],
+		showcase: [
+			'uebersetzung',
+			'emailgenerator',
+			'praesentation',
+			'projektplan',
+			'rechtschreibung',
+			'dokumentation'
+		],
 		list: [
 			{
 				id: 'uebersetzung',
@@ -268,8 +276,7 @@ const cms = {
 			{
 				id: 'stichpunktetext',
 				title: 'Stichpunkte zu Fließtext',
-				description:
-					'Wandelt Bullet-Point-Listen in professionellen, fließenden Text um.',
+				description: 'Wandelt Bullet-Point-Listen in professionellen, fließenden Text um.',
 				icon: FileText
 			},
 			{
@@ -282,8 +289,7 @@ const cms = {
 			{
 				id: 'sop',
 				title: 'SOP-Generator',
-				description:
-					'Erstellt Standard Operating Procedures aus Prozessbeschreibungen.',
+				description: 'Erstellt Standard Operating Procedures aus Prozessbeschreibungen.',
 				icon: CheckSquare
 			},
 			{
@@ -296,8 +302,7 @@ const cms = {
 			{
 				id: 'faqgenerator',
 				title: 'FAQ-Generator',
-				description:
-					'Generiert vollständige FAQ-Listen zu einem Thema oder Produkt.',
+				description: 'Generiert vollständige FAQ-Listen zu einem Thema oder Produkt.',
 				icon: HelpCircle
 			},
 			{
@@ -345,8 +350,7 @@ const cms = {
 			{
 				id: 'einwandbehandlung',
 				title: 'Einwandbehandlung',
-				description:
-					'Erarbeitet überzeugende Antworten auf konkrete Kundeneinwände.',
+				description: 'Erarbeitet überzeugende Antworten auf konkrete Kundeneinwände.',
 				icon: Shield
 			},
 			{
@@ -452,8 +456,7 @@ const cms = {
 	},
 	contact: {
 		title: 'Steigern Sie Ihre Produktivität mit KI',
-		description:
-			'Erleben Sie die Plattform live - ohne Registrierung, ohne Kreditkarte.',
+		description: 'Erleben Sie die Plattform live - ohne Registrierung, ohne Kreditkarte.',
 		appointment: 'Jetzt Termin vereinbaren',
 		slogan: 'Individuell und unverbindlich',
 		solutions: [
@@ -464,22 +467,22 @@ const cms = {
 	},
 	footer: {
 		description: `${PUBLIC_PROJECT_TITLE} revolutioniert Ihre Business-Prozesse mit KI-gestützten Lösungen für den modernen Arbeitsalltag.`,
-		street: "Johann-Philipp-Reis-Straße, 8",
-		postalcode: "53332",
-		city: "Bornheim",
-		country: "Deutschland",
-		company_product: "Ein Produkt der OFF LIMITS IT Services GmbH",
+		street: 'Johann-Philipp-Reis-Straße, 8',
+		postalcode: '53332',
+		city: 'Bornheim',
+		country: 'Deutschland',
+		company_product: 'Ein Produkt der OFF LIMITS IT Services GmbH',
 		links: [
 			{
 				category: 'Produkt',
 				links: {
 					'/#features': 'Features',
 					'/#pricing': 'Preise',
-					'/#contact': 'Kontakt', // eig. im zweiten pack
+					'/#contact': 'Kontakt' // eig. im zweiten pack
 					//'/#enterprise': 'Enterprise',
 					//'/#updates': 'Updates'
 				}
-			}/*,
+			} /*,
 			{
 				category: 'Support',
 				links: {

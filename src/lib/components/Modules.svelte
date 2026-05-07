@@ -4,24 +4,26 @@
 	import ModuleStats from '$lib/components/ModuleStats.svelte';
 
 	const modules = cms.modules.showcase
-		.map(moduleId => cms.modules.list.find(item => item.id === moduleId))
-		.filter(item => item !== undefined);
+		.map((moduleId) => cms.modules.list.find((item) => item.id === moduleId))
+		.filter((item) => item !== undefined);
 </script>
 
-<section id="modules" class="py-16 bg-white">
+<section id="modules" class="bg-white py-16">
 	<div class="container mx-auto px-4">
-		<div class="text-center mb-12">
-			<h2 class="text-3xl font-bold mb-4">{cms.modules.title}</h2>
-			<p class="text-base-content/70 text-lg max-w-2xl mx-auto">
+		<div class="mb-12 text-center">
+			<h2 class="mb-4 text-3xl font-bold">{cms.modules.title}</h2>
+			<p class="mx-auto max-w-2xl text-lg text-base-content/70">
 				{cms.modules.description}
 			</p>
 		</div>
 
 		<ModuleGrid {modules} />
 
-		<div class="text-center mt-8">
+		<div class="mt-8 text-center">
 			<a href="/modules">
-				<button class="btn btn-primary gap-2 px-8 transition-transform duration-300 hover:scale-105">
+				<button
+					class="btn btn-primary gap-2 px-8 transition-transform duration-300 hover:scale-105"
+				>
 					{cms.modules.discoverAll}
 				</button>
 			</a>

@@ -79,14 +79,6 @@ const cms = {
 		showcase: ['uebersetzung', 'emailgenerator', 'praesentation', 'projektplan', 'rechtschreibung', 'dokumentation'],
 		list: [
 			{
-				id: 'kichat',
-				title: 'KI-Chat',
-				description:
-					'Ein vielseitiger KI-Assistent für die direkte Kommunikation und schnelle Problemlösung im Arbeitsalltag.',
-				icon: MessageCircle,
-				inclusive: true
-			},
-			{
 				id: 'uebersetzung',
 				title: 'Übersetzung',
 				description:

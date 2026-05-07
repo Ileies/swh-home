@@ -1,10 +1,12 @@
 import { PUBLIC_PROJECT_TITLE } from '$env/static/public';
 import {
 	AlertTriangle,
-	ChartNoAxesColumn,
 	BookOpen,
+	Briefcase,
 	Calculator,
+	Calendar,
 	ChartBar,
+	ChartNoAxesColumn,
 	CheckCircle,
 	CheckSquare,
 	ClipboardCheck,
@@ -12,13 +14,16 @@ import {
 	FileText,
 	GitBranch,
 	Globe,
+	GraduationCap,
 	Hammer,
+	HelpCircle,
 	Lock,
 	Mail,
 	MessageCircle,
 	MessageSquare,
 	Package,
 	Presentation,
+	Scale,
 	Server,
 	Share2,
 	Shield,
@@ -121,30 +126,6 @@ const cms = {
 				icon: Mail,
 				inclusive: true
 			},
-			/*{
-				"id": "basismodul",
-				"title": "Basis Modul",
-				"description": "Der grundlegende Baustein für die Integration von KI-Funktionen, der als Vorlage für weitere Module dient und die Basisfunktionalitäten demonstriert.",
-				"icon": CircleAlert
-			},
-				{
-					"id": "layoutmodul",
-					"title": "Layout Modul",
-					"description": "Eine umfassende Sammlung von UI-Komponenten und Layoutelementen, die eine konsistente und professionelle Benutzeroberfläche ermöglicht.",
-					"icon": LayoutGrid
-				},
-				{
-					"id": "apitestmodul",
-					"title": "API-Test Modul",
-					"description": "Ermöglicht schnelles und effizientes Testen verschiedener API-Endpunkte mit unterschiedlichen Konfigurationen, perfekt für Entwickler und Systemintegratoren.",
-					"icon": TestTube
-				},
-				{
-					"id": "anleitungsmodul",
-					"title": "Anleitungs Modul",
-					"description": "Ein interaktiver Leitfaden, der neue Benutzer Schritt für Schritt durch die Funktionen der Plattform führt und so die Einarbeitungszeit minimiert.",
-					"icon": BookOpen
-				},*/
 			{
 				id: 'angebotsgenerator',
 				title: 'Angebotsgenerator',
@@ -244,20 +225,6 @@ const cms = {
 				icon: GitBranch
 			},
 			{
-				id: 'pruefung',
-				title: 'Prüfung Generator',
-				description:
-					'Automatisiert die Erstellung und Auswertung von Prüfungsunterlagen für verschiedene Anwendungsfälle.',
-				icon: CheckSquare
-			},
-			/*{
-				id: 'raltest',
-				title: 'RAL Test',
-				description:
-					'Unterstützt bei der Überprüfung und Dokumentation von RAL-Gütezeichen-Anforderungen.',
-				icon: CheckCircle
-			},*/
-			{
 				id: 'recherche',
 				title: 'Recherche-Zusammenfassung',
 				description:
@@ -298,6 +265,111 @@ const cms = {
 				description:
 					'Erstellt standardisierte Wartungsprotokolle für verschiedene Assets und Wartungsarten mit allen relevanten Informationen.',
 				icon: Hammer
+			},
+			{
+				id: 'meetingprotokoll',
+				title: 'Meeting-Protokoll-Generator',
+				description:
+					'Erstellt strukturierte Meeting-Protokolle mit Beschlüssen und Aufgaben aus rohen Stichpunkten.',
+				icon: Calendar
+			},
+			{
+				id: 'stichpunktetext',
+				title: 'Stichpunkte zu Fließtext',
+				description:
+					'Wandelt Bullet-Point-Listen in professionellen, fließenden Text um.',
+				icon: FileText
+			},
+			{
+				id: 'zusammenfassung',
+				title: 'Text-Zusammenfassung',
+				description:
+					'Fasst lange Texte als Fließtext, Stichpunkte oder Executive Summary zusammen.',
+				icon: BookOpen
+			},
+			{
+				id: 'sop',
+				title: 'SOP-Generator',
+				description:
+					'Erstellt Standard Operating Procedures aus Prozessbeschreibungen.',
+				icon: CheckSquare
+			},
+			{
+				id: 'absage',
+				title: 'Absage-Generator',
+				description:
+					'Erstellt höfliche, professionelle Absagen für Lieferanten, Bewerber, Anfragen und Termine.',
+				icon: Mail
+			},
+			{
+				id: 'faqgenerator',
+				title: 'FAQ-Generator',
+				description:
+					'Generiert vollständige FAQ-Listen zu einem Thema oder Produkt.',
+				icon: HelpCircle
+			},
+			{
+				id: 'stellenbeschreibung',
+				title: 'Stellenbeschreibung-Generator',
+				description:
+					'Erstellt vollständige Stellenausschreibungen mit Aufgaben, Anforderungen und Unternehmensdarstellung.',
+				icon: Briefcase
+			},
+			{
+				id: 'onboarding',
+				title: 'Onboarding-Plan-Generator',
+				description:
+					'Erstellt strukturierte 30/60/90-Tage-Einarbeitungspläne für neue Mitarbeiter.',
+				icon: Users
+			},
+			{
+				id: 'jahresgespraech',
+				title: 'Jahresgespräch-Vorbereitung',
+				description:
+					'Bereitet Führungskräfte auf Mitarbeiterjahresgespräche vor: Leitfaden, Formulierungen, Zielvorschläge.',
+				icon: MessageCircle
+			},
+			{
+				id: 'schulungsunterlagen',
+				title: 'Schulungsunterlagen-Generator',
+				description:
+					'Erstellt Schulungsskripte, Lernpläne oder Handouts zu einem beliebigen Thema.',
+				icon: GraduationCap
+			},
+			{
+				id: 'statusbericht',
+				title: 'Statusbericht-Generator',
+				description:
+					'Erstellt strukturierte Fortschrittsberichte für Management oder Fachpublikum.',
+				icon: ChartNoAxesColumn
+			},
+			{
+				id: 'gespraechsvorbereitung',
+				title: 'Gesprächsvorbereitung',
+				description:
+					'Erstellt strukturierte Leitfäden für Kunden- und Vertriebsgespräche mit Fragen, Einwand-Antworten und Argumentation.',
+				icon: MessageCircle
+			},
+			{
+				id: 'einwandbehandlung',
+				title: 'Einwandbehandlung',
+				description:
+					'Erarbeitet überzeugende Antworten auf konkrete Kundeneinwände.',
+				icon: Shield
+			},
+			{
+				id: 'verhandlung',
+				title: 'Verhandlungsvorbereitung',
+				description:
+					'Bereitet Verhandlungen vor: Positionsanalyse, BATNA, Strategie, Kompromissszenarien, rote Linien.',
+				icon: Scale
+			},
+			{
+				id: 'dsgvo',
+				title: 'DSGVO-Checkliste',
+				description:
+					'Erstellt eine erste DSGVO-Orientierungscheckliste für neue Software, Prozesse oder Dienstleister.',
+				icon: Lock
 			}
 		]
 	},

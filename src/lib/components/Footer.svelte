@@ -9,7 +9,10 @@
 		<div class="mb-12 grid grid-cols-1 gap-8 md:grid-cols-4">
 			<!-- Company Info -->
 			<div class="md:col-span-2">
-				<h3 class="mb-4 text-lg font-bold">{PUBLIC_PROJECT_TITLE}</h3>
+				<div class="mb-4 flex items-center gap-2">
+					<img src="/favicon.svg" alt="" class="h-7 w-7" aria-hidden="true" />
+					<h3 class="text-lg font-bold">{PUBLIC_PROJECT_TITLE}</h3>
+				</div>
 				<!-- <p class="text-base-content/70 mb-4 max-w-md">{cms.footer.description}</p> -->
 				<!-- Company Address and Contact -->
 				<div class="mb-4 text-base-content/70">

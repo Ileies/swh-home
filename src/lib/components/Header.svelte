@@ -10,7 +10,10 @@
 		<nav class="flex items-center justify-between">
 			<!-- Logo -->
 			<div class="flex items-center">
-				<a href="/" class="text-2xl font-bold text-primary">{PUBLIC_PROJECT_TITLE}</a>
+				<a href="/" class="flex items-center gap-2 text-2xl font-bold text-primary">
+					<img src="/favicon.svg" alt="" class="h-8 w-8" aria-hidden="true" />
+					{PUBLIC_PROJECT_TITLE}
+				</a>
 			</div>
 
 			<!-- Desktop Navigation -->

@@ -4,9 +4,6 @@ const SSH_HOST = 'root@offlimits-it.biz';
 const REMOTE_DIR = '/var/www/vhosts/smartworkhub.de/httpdocs';
 
 try {
-	console.log('Building...');
-	await $`bun run build`;
-
 	console.log('Compressing build directory...');
 	await $`tar -czf ./build.tar.gz -C ./build .`;
 

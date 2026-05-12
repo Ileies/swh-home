@@ -437,8 +437,8 @@
 							<!-- Form -->
 							<div class="space-y-2">
 								<div>
-									<label class="mb-1 block text-[11px] font-medium text-base-content/60"
-										>Datum *</label
+									<span class="mb-1 block text-[11px] font-medium text-base-content/60"
+										>Datum *</span
 									>
 									<div
 										class="flex h-7 items-center rounded-lg border px-2.5 py-1.5 text-xs
@@ -452,8 +452,8 @@
 									</div>
 								</div>
 								<div>
-									<label class="mb-1 block text-[11px] font-medium text-base-content/60"
-										>Teilnehmer *</label
+									<span class="mb-1 block text-[11px] font-medium text-base-content/60"
+										>Teilnehmer *</span
 									>
 									<div
 										class="flex h-7 items-center rounded-lg border px-2.5 py-1.5 text-xs
@@ -467,8 +467,8 @@
 									</div>
 								</div>
 								<div>
-									<label class="mb-1 block text-[11px] font-medium text-base-content/60"
-										>Stichpunkte *</label
+									<span class="mb-1 block text-[11px] font-medium text-base-content/60"
+										>Stichpunkte *</span
 									>
 									<div
 										class="min-h-[52px] rounded-lg border px-2.5 py-2 text-xs
@@ -537,8 +537,8 @@
 				<div class="space-y-2.5 p-3">
 					<!-- Name field -->
 					<div>
-						<label class="mb-1 block text-[11px] font-medium text-base-content/60"
-							>Modul-Name *</label
+						<span class="mb-1 block text-[11px] font-medium text-base-content/60"
+							>Modul-Name *</span
 						>
 						<div
 							class="flex h-7 items-center rounded-lg border px-2.5 py-1.5 text-xs
@@ -554,8 +554,8 @@
 
 					<!-- Desc field -->
 					<div>
-						<label class="mb-1 block text-[11px] font-medium text-base-content/60"
-							>Beschreibung</label
+						<span class="mb-1 block text-[11px] font-medium text-base-content/60"
+							>Beschreibung</span
 						>
 						<div
 							class="flex h-7 items-center rounded-lg border px-2.5 py-1.5 text-xs
@@ -571,8 +571,8 @@
 
 					<!-- Fields list -->
 					<div>
-						<label class="mb-1.5 block text-[11px] font-medium text-base-content/60"
-							>Formularfelder</label
+						<span class="mb-1.5 block text-[11px] font-medium text-base-content/60"
+							>Formularfelder</span
 						>
 						<div class="space-y-1.5">
 							{#each builderFields as fieldLabel}

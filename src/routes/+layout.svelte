@@ -13,7 +13,7 @@
 	let { children } = $props();
 
 	const canonicalUrl = $derived(`${PUBLIC_ORIGIN}${page.url.pathname}`);
-	const ogImageUrl = $derived(`${PUBLIC_ORIGIN}/og-image.png`);
+	const ogImageUrl = `${PUBLIC_ORIGIN}/screenshot.png`;
 </script>
 
 <svelte:head>
@@ -29,6 +29,8 @@
 	<meta property="og:title" content={PUBLIC_PROJECT_TITLE} />
 	<meta property="og:description" content={PUBLIC_PROJECT_DESCRIPTION} />
 	<meta property="og:image" content={ogImageUrl} />
+	<meta property="og:image:secure_url" content={ogImageUrl} />
+	<meta property="og:image:type" content="image/png" />
 	<meta property="og:image:width" content="1200" />
 	<meta property="og:image:height" content="630" />
 	<meta

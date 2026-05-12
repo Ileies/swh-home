@@ -6,6 +6,7 @@
 
 <svelte:head>
 	<title>Alle KI-Module – {PUBLIC_PROJECT_TITLE}</title>
+	<meta name="robots" content="index, follow" />
 	<meta
 		name="description"
 		content="Vollständige Übersicht aller {PUBLIC_PROJECT_TITLE} KI-Module – von Chat-Assistenten über Dokumentengeneratoren bis zur Prozessanalyse."

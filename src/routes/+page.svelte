@@ -12,6 +12,19 @@
 	import Hero from '$lib/components/Hero.svelte';
 	import DemoShowcase from '$lib/components/DemoShowcase.svelte';
 
+	const jsonLdWebsite = {
+		'@context': 'https://schema.org',
+		'@type': 'WebSite',
+		name: PUBLIC_PROJECT_TITLE,
+		url: PUBLIC_ORIGIN,
+		inLanguage: 'de-DE',
+		potentialAction: {
+			'@type': 'SearchAction',
+			target: `${PUBLIC_ORIGIN}/modules?q={search_term_string}`,
+			'query-input': 'required name=search_term_string'
+		}
+	};
+
 	const jsonLdOrganization = {
 		'@context': 'https://schema.org',
 		'@type': 'Organization',
@@ -57,6 +70,7 @@
 			'@type': 'Organization',
 			name: 'OFF LIMITS IT Services GmbH'
 		},
+		screenshot: `${PUBLIC_ORIGIN}/screenshot.png`,
 		featureList: [
 			'KI-Chat Assistent',
 			'Automatische Übersetzung',
@@ -93,6 +107,7 @@
 <svelte:head>
 	<title>{PUBLIC_PROJECT_TITLE} – KI-Automatisierung für Unternehmen</title>
 	<meta name="robots" content="index, follow" />
+	{@html `<script type="application/ld+json">${JSON.stringify(jsonLdWebsite)}</script>`}
 	{@html `<script type="application/ld+json">${JSON.stringify(jsonLdOrganization)}</script>`}
 	{@html `<script type="application/ld+json">${JSON.stringify(jsonLdWebApplication)}</script>`}
 </svelte:head>
